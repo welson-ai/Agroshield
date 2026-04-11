@@ -1,36 +1,34 @@
 import hre from "hardhat";
 import fs from "fs";
 
-const ethers = hre.ethers;
-
 async function main() {
   console.log("Deploying AgroShieldPool to Celo Sepolia testnet...");
 
   // cUSD token address on Celo Sepolia testnet
   const CUSD_ADDRESS = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1";
-  
+
   // Get deployer account
-  const [deployer] = await ethers.getSigners();
-  console.log("👤 Deployer:", deployer.address);
-  console.log("💰 Balance:", ethers.formatEther(await deployer.provider.getBalance(deployer.address)), "CELO");
+  const [deployer] = await hre.viem.getWalletClients();
+  console.log("👤 Deployer:", deployer.account.address);
+
+  const publicClient = await hre.viem.getPublicClient();
+  const balance = await publicClient.getBalance({ address: deployer.account.address });
+  console.log("💰 Balance:", balance.toString(), "wei");
 
   // Deploy AgroShieldPool
   console.log("\nDeploying AgroShieldPool...");
-  const AgroShieldPool = await ethers.getContractFactory("AgroShieldPool");
-  const agroShieldPoolContract = await AgroShieldPool.deploy(CUSD_ADDRESS);
-  await agroShieldPoolContract.waitForDeployment();
-  const poolAddress = await agroShieldPoolContract.getAddress();
-  
-  console.log("✅ AgroShieldPool deployed to:", poolAddress);
-  console.log("CeloScan: https://celo-sepolia.celoscan.io/address/" + poolAddress);
+  const agroShieldPool = await hre.viem.deployContract("AgroShieldPool", [CUSD_ADDRESS]);
+
+  console.log("✅ AgroShieldPool deployed to:", agroShieldPool.address);
+  console.log("CeloScan: https://celo-sepolia.celoscan.io/address/" + agroShieldPool.address);
 
   // Save deployment info
   const deploymentInfo = {
     contract: "AgroShieldPool",
-    address: poolAddress,
+    address: agroShieldPool.address,
     network: "celo-sepolia",
     deployedAt: new Date().toISOString(),
-    deployer: deployer.address,
+    deployer: deployer.account.address,
     cusdToken: CUSD_ADDRESS
   };
 
@@ -41,7 +39,7 @@ async function main() {
   console.log("📄 Deployment info saved to deployment-pool.json");
 
   console.log("\n🎯 Next: Deploy AgroShieldOracle");
-  console.log("💡 Command: npx hardhat run scripts/deploy-oracle.js --network alfajores");
+  console.log("💡 Command: npx hardhat run scripts/deploy-oracle.js --network celo-sepolia");
 }
 
 main()

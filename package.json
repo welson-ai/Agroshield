@@ -5,19 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test": "hardhat test",
-    "deploy": "hardhat run scripts/deploy-pool.js --network alfajores"
+    "deploy": "hardhat run scripts/deploy-pool.js --network celo-sepolia"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@celo/hardhat-celo": "*",
-    "hardhat": "*"
+    "@nomicfoundation/hardhat-toolbox-viem": "^3.0.0",
+    "hardhat": "^3.0.0"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "*",
-    "dotenv": "*",
-    "ethers": "^6.16.0"
+    "@openzeppelin/contracts": "^5.0.0",
+    "dotenv": "^16.0.0",
+    "viem": "^2.0.0"
   },
   "type": "module"
 }
