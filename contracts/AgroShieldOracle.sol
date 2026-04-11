@@ -192,18 +192,16 @@ contract AgroShieldOracle is Ownable, ReentrancyGuard {
     
     /**
      * @dev Check if any policies need payouts based on weather data
-     * @param location Location identifier
-     * @param timestamp Unix timestamp
-     * @param rainfall Actual rainfall amount
+     * Internal function for future implementation
      */
-    function _checkPolicyPayouts(uint256 location, uint256 timestamp, uint256 rainfall) internal {
+    function _checkPolicyPayouts(uint256 /*location*/, uint256 /*timestamp*/, uint256 /*rainfall*/) internal pure {
         // This would typically query the policy contract for active policies
-        // For now, we'll emit an event that can be listened to off-chain
+        // For now, this is a placeholder for future implementation
         // In a production system, this would automatically trigger payouts
         
         // Placeholder for automatic payout logic
         // The policy contract would need to expose a function to query active policies by location
-        emit PayoutTriggered(0, location, rainfall, 0); // policyId = 0 for notification
+        // emit PayoutTriggered(0, location, rainfall, 0); // policyId = 0 for notification
     }
     
     /**
@@ -288,7 +286,7 @@ contract AgroShieldOracle is Ownable, ReentrancyGuard {
      * @dev Get pending verification count
      * @return Number of pending verifications
      */
-    function getPendingVerificationsCount() external view returns (uint256) {
+    function getPendingVerificationsCount() external pure returns (uint256) {
         uint256 count = 0;
         // This is a simplified version - in production, you'd maintain a separate counter
         return count;

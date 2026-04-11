@@ -1,5 +1,5 @@
-const { ethers } = require("hardhat");
-const fs = require("fs");
+import { ethers } from "hardhat";
+import fs from "fs";
 
 async function main() {
   console.log("Deploying AgroShield contracts to Celo Alfajores testnet...");

@@ -9,9 +9,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
   "devDependencies": {
     "@celo/contractkit": "^10.0.3",
+    "@nomicfoundation/hardhat-ethers": "^4.0.7",
     "@nomicfoundation/hardhat-ignition": "^3.1.1",
     "@nomicfoundation/hardhat-toolbox": "^7.0.0",
     "@nomicfoundation/hardhat-toolbox-viem": "^5.0.3",
@@ -24,6 +24,8 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.9.6",
-    "dotenv": "^17.4.1"
-  }
+    "dotenv": "^17.4.1",
+    "ethers": "^6.16.0"
+  },
+  "type": "module"
 }
