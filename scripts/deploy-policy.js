@@ -1,4 +1,5 @@
-import { ethers } from "hardhat";
+import { task } from "hardhat/config";
+import { ethers } from "ethers";
 import fs from "fs";
 
 async function main() {
