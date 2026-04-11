@@ -38,7 +38,7 @@ contract AgroShieldPool is Ownable, ReentrancyGuard {
     event PayoutProcessed(address indexed policy, uint256 amount);
     event ReserveUpdated(uint256 newReserve);
     
-    constructor(address _cusdToken) {
+    constructor(address _cusdToken) Ownable(msg.sender) {
         cusdToken = IERC20(_cusdToken);
     }
     

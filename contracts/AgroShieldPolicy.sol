@@ -77,7 +77,7 @@ contract AgroShieldPolicy is Ownable, ReentrancyGuard {
         _;
     }
     
-    constructor(address _cusdToken, address _poolContract) {
+    constructor(address _cusdToken, address _poolContract) Ownable(msg.sender) {
         cusdToken = IERC20(_cusdToken);
         poolContract = _poolContract;
         nextPolicyId = 1;

@@ -74,7 +74,7 @@ contract AgroShieldOracle is Ownable, ReentrancyGuard {
         _;
     }
     
-    constructor() {
+    constructor() Ownable(msg.sender) {
         // Contract deployer is initially authorized as provider
         authorizedProviders[msg.sender] = true;
     }
