@@ -1,31 +1,21 @@
-import { ethers } from "ethers";
+import hre from "hardhat";
 import fs from "fs";
 
 async function main() {
   console.log("Deploying AgroShieldOracle to Celo Sepolia testnet...");
   
-  // Get private key from environment
-  const PRIVATE_KEY = process.env.PRIVATE_KEY;
-  if (!PRIVATE_KEY) {
-    console.error("PRIVATE_KEY not found in .env file");
-    process.exit(1);
-  }
+  // Get ethers from hardhat runtime environment
+  const { ethers } = hre;
   
-  // Setup provider and wallet for Celo Sepolia
-  const provider = new ethers.JsonRpcProvider("https://forno.celo.org/sepolia");
-  const deployer = new ethers.Wallet(PRIVATE_KEY, provider);
+  // Get deployer account
+  const [deployer] = await ethers.getSigners();
   console.log("👤 Deployer:", deployer.address);
-  console.log("💰 Balance:", ethers.formatEther(await provider.getBalance(deployer.address)), "CELO");
+  console.log("💰 Balance:", ethers.formatEther(await deployer.provider.getBalance(deployer.address)), "CELO");
 
   // Deploy AgroShieldOracle
   console.log("\n🚀 Deploying AgroShieldOracle...");
-  const AgroShieldOracleArtifact = require("../artifacts/contracts/AgroShieldOracle.sol/AgroShieldOracle.json");
-  const agroShieldOracle = new ethers.ContractFactory(
-    AgroShieldOracleArtifact.abi,
-    AgroShieldOracleArtifact.bytecode,
-    deployer
-  );
-  const agroShieldOracleContract = await agroShieldOracle.deploy();
+  const AgroShieldOracle = await ethers.getContractFactory("AgroShieldOracle");
+  const agroShieldOracleContract = await AgroShieldOracle.deploy();
   await agroShieldOracleContract.waitForDeployment();
   const oracleAddress = await agroShieldOracleContract.getAddress();
   
