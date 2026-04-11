@@ -35,7 +35,7 @@ export default defineConfig({
       gasPrice: 20000000000, // 20 gwei
       gas: 2100000,
     },
-    // Celo Mainnet (for future production deployment)
+    // Celo Mainnet
     celo: {
       type: "http",
       chainType: "l1",

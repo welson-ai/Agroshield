@@ -1,10 +1,10 @@
 import { createWalletClient, http, createPublicClient, formatEther } from "viem";
-import { celoSepolia } from "viem/chains";
+import { celo } from "viem/chains";
 import { privateKeyToAccount } from "viem/accounts";
 import fs from "fs";
 
 async function main() {
-  console.log("Deploying AgroShieldPool to Celo Sepolia testnet...");
+  console.log("Deploying AgroShieldPool to Celo mainnet...");
 
   const CUSD_ADDRESS = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1";
 
@@ -20,14 +20,14 @@ async function main() {
   const account = privateKeyToAccount(PRIVATE_KEY);
 
   const publicClient = createPublicClient({
-    chain: celoSepolia,
-    transport: http(),
+    chain: celo,
+    transport: http("https://forno.celo.org"),
   });
 
   const walletClient = createWalletClient({
     account,
-    chain: celoSepolia,
-    transport: http(),
+    chain: celo,
+    transport: http("https://forno.celo.org"),
   });
 
   console.log("👤 Deployer:", account.address);
@@ -52,12 +52,12 @@ async function main() {
   }
 
   console.log("✅ AgroShieldPool deployed to:", poolAddress);
-  console.log("CeloScan: https://celo-sepolia.celoscan.io/address/" + poolAddress);
+  console.log("CeloScan: https://celoscan.io/address/" + poolAddress);
 
   const deploymentInfo = {
     contract: "AgroShieldPool",
     address: poolAddress,
-    network: "celo-sepolia",
+    network: "celo",
     deployedAt: new Date().toISOString(),
     deployer: account.address,
     cusdToken: CUSD_ADDRESS

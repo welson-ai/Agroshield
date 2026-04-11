@@ -1,0 +1,8 @@
+{
+  "contract": "AgroShieldPool",
+  "address": "0x369b50a492e9de0e4989910bd3594aebd89b5d21",
+  "network": "celo-sepolia",
+  "deployedAt": "2026-04-11T17:26:01.903Z",
+  "deployer": "0x9d304a71Fe97d58d00D86C8ED6e5161f11Ea8608",
+  "cusdToken": "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1"
+}
