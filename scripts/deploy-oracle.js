@@ -1,21 +1,33 @@
-import { task } from "hardhat/config";
 import { ethers } from "ethers";
 import fs from "fs";
 
 async function main() {
   console.log("🌤️ Deploying AgroShieldOracle to Celo Alfajores testnet...");
   
-  // Get deployer account
-  const [deployer] = await ethers.getSigners();
+  // Get private key from environment
+  const PRIVATE_KEY = process.env.PRIVATE_KEY;
+  if (!PRIVATE_KEY) {
+    console.error("❌ PRIVATE_KEY not found in .env file");
+    process.exit(1);
+  }
+  
+  // Setup provider and wallet
+  const provider = new ethers.JsonRpcProvider("https://alfajores-forno.celo-testnet.org");
+  const deployer = new ethers.Wallet(PRIVATE_KEY, provider);
   console.log("👤 Deployer:", deployer.address);
-  console.log("💰 Balance:", ethers.formatEther(await deployer.provider.getBalance(deployer.address)), "CELO");
+  console.log("💰 Balance:", ethers.formatEther(await provider.getBalance(deployer.address)), "CELO");
 
   // Deploy AgroShieldOracle
   console.log("\n🚀 Deploying AgroShieldOracle...");
-  const AgroShieldOracle = await ethers.getContractFactory("AgroShieldOracle");
-  const agroShieldOracle = await AgroShieldOracle.deploy();
-  await agroShieldOracle.waitForDeployment();
-  const oracleAddress = await agroShieldOracle.getAddress();
+  const AgroShieldOracleArtifact = require("../artifacts/contracts/AgroShieldOracle.sol/AgroShieldOracle.json");
+  const agroShieldOracle = new ethers.ContractFactory(
+    AgroShieldOracleArtifact.abi,
+    AgroShieldOracleArtifact.bytecode,
+    deployer
+  );
+  const agroShieldOracleContract = await agroShieldOracle.deploy();
+  await agroShieldOracleContract.waitForDeployment();
+  const oracleAddress = await agroShieldOracleContract.getAddress();
   
   console.log("✅ AgroShieldOracle deployed to:", oracleAddress);
   console.log("🔗 CeloScan: https://alfajores.celoscan.io/address/" + oracleAddress);
