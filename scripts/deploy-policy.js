@@ -2,9 +2,9 @@ import { ethers } from "ethers";
 import fs from "fs";
 
 async function main() {
-  console.log("📋 Deploying AgroShieldPolicy to Celo Alfajores testnet...");
+  console.log("📋 Deploying AgroShieldPolicy to Celo Sepolia testnet...");
 
-  // cUSD token address on Celo Alfajores testnet
+  // cUSD token address on Celo Sepolia testnet
   const CUSD_ADDRESS = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1";
   
   // Get private key from environment
@@ -14,8 +14,8 @@ async function main() {
     process.exit(1);
   }
   
-  // Setup provider and wallet using Hardhat config
-  const provider = new ethers.JsonRpcProvider("https://alfajores-forno.celo-testnet.org");
+  // Setup provider and wallet using Hardhat config for Celo Sepolia
+  const provider = new ethers.JsonRpcProvider("https://forno.celo.org/sepolia");
   const deployer = new ethers.Wallet(PRIVATE_KEY, provider);
   console.log("👤 Deployer:", deployer.address);
   console.log("💰 Balance:", ethers.formatEther(await provider.getBalance(deployer.address)), "CELO");
@@ -28,8 +28,8 @@ async function main() {
     poolAddress = poolDeployment.address;
     console.log("🏊 Using AgroShieldPool:", poolAddress);
   } catch (error) {
-    console.log("⚠️  Please deploy AgroShieldPool first");
-    console.log("💡 Command: npx hardhat run scripts/deploy-pool.js --network alfajores");
+    console.log("Please deploy AgroShieldPool first");
+    console.log("Command: npx hardhat run scripts/deploy-pool.js --network celo-sepolia");
     process.exit(1);
   }
 
@@ -39,7 +39,7 @@ async function main() {
     console.log("🌤️ Using AgroShieldOracle:", oracleAddress);
   } catch (error) {
     console.log("⚠️  Please deploy AgroShieldOracle first");
-    console.log("💡 Command: npx hardhat run scripts/deploy-oracle.js --network alfajores");
+    console.log("💡 Command: npx hardhat run scripts/deploy-oracle.js --network celo-sepolia");
     process.exit(1);
   }
 
@@ -56,7 +56,7 @@ async function main() {
   const policyAddress = await agroShieldPolicyContract.getAddress();
   
   console.log("✅ AgroShieldPolicy deployed to:", policyAddress);
-  console.log("🔗 CeloScan: https://alfajores.celoscan.io/address/" + policyAddress);
+  console.log("CeloScan: https://celo-sepolia.celoscan.io/address/" + policyAddress);
 
   // Setup contract relationships
   console.log("\n🔗 Setting up contract relationships...");

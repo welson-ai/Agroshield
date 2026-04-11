@@ -2,17 +2,17 @@ import { ethers } from "ethers";
 import fs from "fs";
 
 async function main() {
-  console.log("🌤️ Deploying AgroShieldOracle to Celo Alfajores testnet...");
+  console.log("Deploying AgroShieldOracle to Celo Sepolia testnet...");
   
   // Get private key from environment
   const PRIVATE_KEY = process.env.PRIVATE_KEY;
   if (!PRIVATE_KEY) {
-    console.error("❌ PRIVATE_KEY not found in .env file");
+    console.error("PRIVATE_KEY not found in .env file");
     process.exit(1);
   }
   
-  // Setup provider and wallet using Hardhat config
-  const provider = new ethers.JsonRpcProvider("https://alfajores-forno.celo-testnet.org");
+  // Setup provider and wallet for Celo Sepolia
+  const provider = new ethers.JsonRpcProvider("https://forno.celo.org/sepolia");
   const deployer = new ethers.Wallet(PRIVATE_KEY, provider);
   console.log("👤 Deployer:", deployer.address);
   console.log("💰 Balance:", ethers.formatEther(await provider.getBalance(deployer.address)), "CELO");
@@ -30,13 +30,13 @@ async function main() {
   const oracleAddress = await agroShieldOracleContract.getAddress();
   
   console.log("✅ AgroShieldOracle deployed to:", oracleAddress);
-  console.log("🔗 CeloScan: https://alfajores.celoscan.io/address/" + oracleAddress);
+  console.log("CeloScan: https://celo-sepolia.celoscan.io/address/" + oracleAddress);
 
   // Save deployment info
   const deploymentInfo = {
     contract: "AgroShieldOracle",
     address: oracleAddress,
-    network: "celo-alfajores",
+    network: "celo-sepolia",
     deployedAt: new Date().toISOString(),
     deployer: deployer.address
   };

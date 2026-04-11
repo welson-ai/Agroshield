@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 import fs from "fs";
 
 async function main() {
-  console.log("🏊 Deploying AgroShieldPool to Celo Alfajores testnet...");
+  console.log("Deploying AgroShieldPool to Celo Sepolia testnet...");
 
   // cUSD token address on Celo Alfajores testnet
   const CUSD_ADDRESS = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1";
@@ -14,8 +14,8 @@ async function main() {
     process.exit(1);
   }
   
-  // Setup provider and wallet using Hardhat config
-  const provider = new ethers.JsonRpcProvider("https://alfajores-forno.celo-testnet.org");
+  // Setup provider and wallet for Celo Sepolia
+  const provider = new ethers.JsonRpcProvider("https://forno.celo.org/sepolia");
   const deployer = new ethers.Wallet(PRIVATE_KEY, provider);
   console.log("👤 Deployer:", deployer.address);
   console.log("💰 Balance:", ethers.formatEther(await provider.getBalance(deployer.address)), "CELO");
@@ -33,13 +33,13 @@ async function main() {
   const poolAddress = await agroShieldPoolContract.getAddress();
   
   console.log("✅ AgroShieldPool deployed to:", poolAddress);
-  console.log("🔗 CeloScan: https://alfajores.celoscan.io/address/" + poolAddress);
+  console.log("CeloScan: https://celo-sepolia.celoscan.io/address/" + poolAddress);
 
   // Save deployment info
   const deploymentInfo = {
     contract: "AgroShieldPool",
     address: poolAddress,
-    network: "celo-alfajores",
+    network: "celo-sepolia",
     deployedAt: new Date().toISOString(),
     deployer: deployer.address,
     cusdToken: CUSD_ADDRESS

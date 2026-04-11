@@ -27,11 +27,11 @@ export default defineConfig({
       url: "http://127.0.0.1:8545",
       chainId: 1337,
     },
-    // Celo Alfajores Testnet
-    alfajores: {
+    // Celo Sepolia Testnet
+    "celo-sepolia": {
       type: "http",
       chainType: "l1",
-      url: "https://alfajores-forno.celo-testnet.org",
+      url: "https://forno.celo.org/sepolia",
       chainId: 44787,
       accounts: [configVariable("PRIVATE_KEY")],
       gasPrice: 20000000000, // 20 gwei
