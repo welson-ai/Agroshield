@@ -1,14 +1,13 @@
 import hre from "hardhat";
 import fs from "fs";
 
+const ethers = hre.ethers;
+
 async function main() {
   console.log("Deploying AgroShieldPool to Celo Sepolia testnet...");
 
   // cUSD token address on Celo Sepolia testnet
   const CUSD_ADDRESS = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1";
-  
-  // Get ethers from hardhat runtime environment
-  const { ethers } = hre;
   
   // Get deployer account
   const [deployer] = await ethers.getSigners();

@@ -1,11 +1,10 @@
 import hre from "hardhat";
 import fs from "fs";
 
+const ethers = hre.ethers;
+
 async function main() {
   console.log("Deploying AgroShieldOracle to Celo Sepolia testnet...");
-  
-  // Get ethers from hardhat runtime environment
-  const { ethers } = hre;
   
   // Get deployer account
   const [deployer] = await ethers.getSigners();
