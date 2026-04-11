@@ -21,13 +21,13 @@ async function main() {
 
   const publicClient = createPublicClient({
     chain: celoSepolia,
-    transport: http("https://forno.celo.org/sepolia"),
+    transport: http(),
   });
 
   const walletClient = createWalletClient({
     account,
     chain: celoSepolia,
-    transport: http("https://forno.celo.org/sepolia"),
+    transport: http(),
   });
 
   console.log("👤 Deployer:", account.address);

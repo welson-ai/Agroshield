@@ -30,7 +30,7 @@ export default defineConfig({
       type: "http",
       chainType: "l1",
       url: "https://forno.celo.org/sepolia",
-      chainId: 44787,
+      chainId: 11142220,
       accounts: [configVariable("PRIVATE_KEY")],
       gasPrice: 20000000000, // 20 gwei
       gas: 2100000,
