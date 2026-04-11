@@ -1,5 +1,5 @@
 import { createWalletClient, http, createPublicClient, formatEther } from "viem";
-import { celo, celoSepolia } from "viem/chains";
+import { celoSepolia } from "viem/chains";
 import { privateKeyToAccount } from "viem/accounts";
 import fs from "fs";
 
@@ -8,14 +8,17 @@ async function main() {
 
   const CUSD_ADDRESS = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1";
 
-  const PRIVATE_KEY = process.env.PRIVATE_KEY;
+  let PRIVATE_KEY = process.env.PRIVATE_KEY;
   if (!PRIVATE_KEY) {
     console.error("PRIVATE_KEY not found in .env file");
     process.exit(1);
   }
 
-  const account = privateKeyToAccount(PRIVATE_KEY as `0x${string}`);
-  
+  // Ensure 0x prefix — no TypeScript casting needed
+  if (!PRIVATE_KEY.startsWith("0x")) PRIVATE_KEY = "0x" + PRIVATE_KEY;
+
+  const account = privateKeyToAccount(PRIVATE_KEY);
+
   const publicClient = createPublicClient({
     chain: celoSepolia,
     transport: http("https://forno.celo.org/sepolia"),
@@ -27,17 +30,16 @@ async function main() {
     transport: http("https://forno.celo.org/sepolia"),
   });
 
-  console.log("Deployer:", account.address);
+  console.log("👤 Deployer:", account.address);
   const balance = await publicClient.getBalance({ address: account.address });
-  console.log("Balance:", formatEther(balance), "CELO");
+  console.log("💰 Balance:", formatEther(balance), "CELO");
 
-  // Read contract bytecode and ABI
   const artifact = JSON.parse(fs.readFileSync("./artifacts/contracts/AgroShieldPool.sol/AgroShieldPool.json", "utf8"));
-  
+
   console.log("\nDeploying AgroShieldPool...");
   const hash = await walletClient.deployContract({
     abi: artifact.abi,
-    bytecode: artifact.bytecode as `0x${string}`,
+    bytecode: artifact.bytecode,
     args: [CUSD_ADDRESS],
   });
 
@@ -49,7 +51,7 @@ async function main() {
     process.exit(1);
   }
 
-  console.log("AgroShieldPool deployed to:", poolAddress);
+  console.log("✅ AgroShieldPool deployed to:", poolAddress);
   console.log("CeloScan: https://celo-sepolia.celoscan.io/address/" + poolAddress);
 
   const deploymentInfo = {
@@ -62,10 +64,7 @@ async function main() {
   };
 
   fs.writeFileSync("deployment-pool.json", JSON.stringify(deploymentInfo, null, 2));
-  console.log("Deployment info saved to deployment-pool.json");
-
-  console.log("\nNext: Deploy AgroShieldOracle");
-  console.log("Command: npx hardhat run scripts/deploy-oracle.js --network celo-sepolia");
+  console.log("📄 Deployment info saved to deployment-pool.json");
 }
 
 main()
