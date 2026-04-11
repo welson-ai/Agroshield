@@ -1,4 +1,4 @@
-import { ethers } from "hardhat";
+import { ethers } from "ethers";
 import fs from "fs";
 
 async function main() {
@@ -7,15 +7,28 @@ async function main() {
   // cUSD token address on Celo Alfajores testnet
   const CUSD_ADDRESS = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1";
   
-  // Get deployer account from Hardhat
-  const [deployer] = await ethers.getSigners();
+  // Get private key from environment
+  const PRIVATE_KEY = process.env.PRIVATE_KEY;
+  if (!PRIVATE_KEY) {
+    console.error("❌ PRIVATE_KEY not found in .env file");
+    process.exit(1);
+  }
+  
+  // Setup provider and wallet using Hardhat config
+  const provider = new ethers.JsonRpcProvider("https://alfajores-forno.celo-testnet.org");
+  const deployer = new ethers.Wallet(PRIVATE_KEY, provider);
   console.log("👤 Deployer:", deployer.address);
-  console.log("💰 Balance:", ethers.formatEther(await deployer.provider.getBalance(deployer.address)), "CELO");
+  console.log("💰 Balance:", ethers.formatEther(await provider.getBalance(deployer.address)), "CELO");
 
   // Deploy AgroShieldPool
   console.log("\n🚀 Deploying AgroShieldPool...");
-  const AgroShieldPool = await ethers.getContractFactory("AgroShieldPool");
-  const agroShieldPoolContract = await AgroShieldPool.deploy(CUSD_ADDRESS);
+  const AgroShieldPoolArtifact = require("../artifacts/contracts/AgroShieldPool.sol/AgroShieldPool.json");
+  const agroShieldPool = new ethers.ContractFactory(
+    AgroShieldPoolArtifact.abi,
+    AgroShieldPoolArtifact.bytecode,
+    deployer
+  );
+  const agroShieldPoolContract = await agroShieldPool.deploy(CUSD_ADDRESS);
   await agroShieldPoolContract.waitForDeployment();
   const poolAddress = await agroShieldPoolContract.getAddress();
   
