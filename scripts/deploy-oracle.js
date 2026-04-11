@@ -12,7 +12,7 @@ async function main() {
   }
   
   // Setup provider and wallet
-  const provider = new ethers.JsonRpcProvider("https://alfajores-forno.celo-testnet.org");
+  const provider = new ethers.JsonRpcProvider("https://alfajores-forno.celo.org");
   const deployer = new ethers.Wallet(PRIVATE_KEY, provider);
   console.log("👤 Deployer:", deployer.address);
   console.log("💰 Balance:", ethers.formatEther(await provider.getBalance(deployer.address)), "CELO");
