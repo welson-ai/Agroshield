@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Navbar } from '@/components/navbar'
+import { WalletInfo } from '@/components/wallet-info'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -93,6 +94,8 @@ export default function Dashboard() {
 
           {/* Stats & Info */}
           <div className="space-y-6">
+            <WalletInfo />
+            
             <Card>
               <CardHeader>
                 <CardTitle>Policy Stats</CardTitle>

@@ -3,8 +3,15 @@
 import Link from 'next/link'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { Button } from '@/components/ui/button'
+import { useAccount, useBalance } from 'wagmi'
+import { formatEther } from 'viem'
 
 export function Navbar() {
+  const { address, isConnected } = useAccount()
+  const { data: balance } = useBalance({
+    address,
+  })
+
   return (
     <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
@@ -30,7 +37,21 @@ export function Navbar() {
         </div>
         
         <div className="flex items-center space-x-4">
-          <ConnectButton />
+          {isConnected && address ? (
+            <div className="flex items-center space-x-3">
+              <div className="text-sm text-gray-600">
+                <div className="font-medium">
+                  {balance ? `${parseFloat(formatEther(balance.value)).toFixed(4)} CELO` : '0.0000 CELO'}
+                </div>
+                <div className="text-xs">
+                  {address.slice(0, 6)}...{address.slice(-4)}
+                </div>
+              </div>
+              <ConnectButton />
+            </div>
+          ) : (
+            <ConnectButton />
+          )}
         </div>
       </div>
     </nav>
