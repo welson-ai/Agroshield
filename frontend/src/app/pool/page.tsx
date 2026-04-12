@@ -1,15 +1,15 @@
 'use client'
 
-import { useState } from 'react'
 import { Navbar } from '@/components/navbar'
+import { PoolStats } from '@/components/pool-stats'
+import { UserPosition } from '@/components/user-position'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+import { useAgroShieldPool } from '@/hooks'
+import { useAccount } from 'wagmi'
 
 export default function Pool() {
-  const [depositAmount, setDepositAmount] = useState('')
-  const [withdrawAmount, setWithdrawAmount] = useState('')
+  const { address } = useAccount()
+  const { totalLiquidity, isLoadingRead, readError } = useAgroShieldPool()
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50">
@@ -22,141 +22,145 @@ export default function Pool() {
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Pool Operations */}
+          {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
+            {/* User Position */}
+            <UserPosition />
+            
+            {/* Pool Information */}
             <Card>
               <CardHeader>
-                <CardTitle>Provide Liquidity</CardTitle>
+                <CardTitle>Pool Information</CardTitle>
                 <CardDescription>
-                  Deposit cUSD to earn yield from insurance premiums
+                  Learn about providing liquidity to AgroShield
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div>
-                  <Label htmlFor="deposit">Deposit Amount (cUSD)</Label>
-                  <Input
-                    id="deposit"
-                    type="number"
-                    placeholder="100"
-                    value={depositAmount}
-                    onChange={(e) => setDepositAmount(e.target.value)}
-                  />
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="text-blue-800 text-sm">
+                    <div className="font-medium mb-2">💰 Why Provide Liquidity?</div>
+                    <div className="space-y-2">
+                      <div>• Earn passive yield from insurance premiums</div>
+                      <div>• Support farmers with crop insurance</div>
+                      <div>• Contribute to DeFi ecosystem growth</div>
+                      <div>• Withdraw anytime with no lockup period</div>
+                    </div>
+                  </div>
                 </div>
-                <Button className="w-full bg-green-600 hover:bg-green-700">
-                  Deposit cUSD
-                </Button>
-              </CardContent>
-            </Card>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Withdraw Liquidity</CardTitle>
-                <CardDescription>
-                  Withdraw your liquidity and earnings
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <Label htmlFor="withdraw">Withdraw Amount (cUSD)</Label>
-                  <Input
-                    id="withdraw"
-                    type="number"
-                    placeholder="50"
-                    value={withdrawAmount}
-                    onChange={(e) => setWithdrawAmount(e.target.value)}
-                  />
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <div className="text-green-800 text-sm">
+                    <div className="font-medium mb-2">🛡️ Risk Management</div>
+                    <div className="space-y-2">
+                      <div>• 10% reserve fund for claim payouts</div>
+                      <div>• Diversified across multiple policies</div>
+                      <div>• Weather-based triggers reduce fraud</div>
+                      <div>• Transparent on-chain execution</div>
+                    </div>
+                  </div>
                 </div>
-                <Button className="w-full" variant="outline">
-                  Withdraw cUSD
-                </Button>
-              </CardContent>
-            </Card>
 
-            {/* Your Position */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Your Position</CardTitle>
-                <CardDescription>
-                  Your current liquidity position
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-8 text-gray-500">
-                  <div className="mb-4">💰</div>
-                  <p>No liquidity provided</p>
-                  <p className="text-sm">Deposit cUSD to start earning</p>
+                <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                  <div className="text-purple-800 text-sm">
+                    <div className="font-medium mb-2">📊 Yield Potential</div>
+                    <div className="space-y-2">
+                      <div>• Earn from insurance premiums</div>
+                      <div>• Profit from successful underwriting</div>
+                      <div>• Compound earnings with reinvestment</div>
+                      <div>• Competitive APY rates</div>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
           </div>
 
-          {/* Pool Stats */}
+          {/* Sidebar */}
           <div className="space-y-6">
+            {/* Pool Statistics */}
+            <PoolStats />
+            
+            {/* Contract Info */}
             <Card>
               <CardHeader>
-                <CardTitle>Pool Statistics</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Total Liquidity</span>
-                  <span className="font-semibold">0 cUSD</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Available Liquidity</span>
-                  <span className="font-semibold">0 cUSD</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">APY</span>
-                  <span className="font-semibold text-green-600">0%</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Total Providers</span>
-                  <span className="font-semibold">0</span>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Risk Metrics</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Active Coverage</span>
-                  <span className="font-semibold">0 cUSD</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Reserve Ratio</span>
-                  <span className="font-semibold">10%</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Utilization</span>
-                  <span className="font-semibold">0%</span>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>How Liquidity Works</CardTitle>
+                <CardTitle>Contract Details</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3 text-sm">
-                <div className="flex items-start gap-2">
-                  <span className="text-blue-600">1.</span>
-                  <p>Deposit cUSD tokens into the pool</p>
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Contract:</span>
+                    <span className="font-mono text-xs">AgroShieldPool</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Network:</span>
+                    <span>Celo Mainnet</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Address:</span>
+                    <span className="font-mono text-xs break-all">0x369b...5d21</span>
+                  </div>
                 </div>
-                <div className="flex items-start gap-2">
-                  <span className="text-blue-600">2.</span>
-                  <p>Receive liquidity provider shares</p>
+                
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
+                  <div className="text-gray-700">
+                    <div className="font-medium mb-1">⚙️ Pool Configuration</div>
+                    <div className="space-y-1 text-xs">
+                      <div>• Reserve Ratio: 10%</div>
+                      <div>• Base Premium Rate: 5%</div>
+                      <div>• Asset: cUSD Token</div>
+                      <div>• Chain: Celo (42220)</div>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex items-start gap-2">
-                  <span className="text-blue-600">3.</span>
-                  <p>Earn yield from insurance premiums</p>
+
+                <div className="mt-4">
+                  <a 
+                    href="https://celoscan.io/address/0x369b50a492e9de0e4989910bd3594aebd89b5d21"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                  >
+                    View on CeloScan →
+                  </a>
                 </div>
-                <div className="flex items-start gap-2">
-                  <span className="text-blue-600">4.</span>
-                  <p>Withdraw anytime with earnings</p>
+              </CardContent>
+            </Card>
+
+            {/* Status Indicators */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Pool Status</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <div className={`w-3 h-3 rounded-full ${
+                      totalLiquidity && totalLiquidity > 0n ? 'bg-green-500' : 'bg-gray-300'
+                    }`}></div>
+                    <span className="text-sm">
+                      {totalLiquidity && totalLiquidity > 0n ? 'Pool Active' : 'Pool Empty'}
+                    </span>
+                  </div>
+                  
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                    <span className="text-sm">Oracle Connected</span>
+                  </div>
+                  
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-purple-500"></div>
+                    <span className="text-sm">Policy Contract Ready</span>
+                  </div>
                 </div>
+
+                {!address && (
+                  <div className="mt-4 p-3 bg-orange-50 border border-orange-200 rounded-lg">
+                    <div className="text-orange-800 text-sm text-center">
+                      <div className="font-medium mb-1">🔌 Connect Required</div>
+                      <div>Connect your wallet to provide liquidity</div>
+                    </div>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>
