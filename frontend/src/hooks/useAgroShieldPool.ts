@@ -1,10 +1,12 @@
 import { useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import { AGROSHIELD_CONTRACTS, AGROSHIELD_ABIS } from '@/constants/contracts'
 import { parseEther, formatEther } from 'viem'
+import { useTransactionToast } from './useTransactionToast'
 
 export function useAgroShieldPool() {
   const contractAddress = AGROSHIELD_CONTRACTS.CELO.POOL
   const contractAbi = AGROSHIELD_ABIS.POOL
+  const { showSuccessToast, showErrorToast, showLoadingToast, dismissToast } = useTransactionToast()
 
   // Read functions
   const { data: totalLiquidity, ...totalLiquidityRead } = useReadContract({
@@ -29,38 +31,80 @@ export function useAgroShieldPool() {
   // Write functions
   const { data: writeData, writeContract, ...writeContractState } = useWriteContract()
 
-  const provideLiquidity = (amount: string) => {
-    const amountInWei = parseEther(amount)
-    return writeContract({
-      address: contractAddress,
-      abi: contractAbi,
-      functionName: 'provideLiquidity',
-      args: [amountInWei],
-    })
+  const provideLiquidity = async (amount: string) => {
+    try {
+      showLoadingToast('Depositing liquidity...')
+      const amountInWei = parseEther(amount)
+      const hash = await writeContract({
+        address: contractAddress,
+        abi: contractAbi,
+        functionName: 'provideLiquidity',
+        args: [amountInWei],
+      })
+      
+      // Show pending toast
+      showLoadingToast('Transaction pending...')
+      
+      return hash
+    } catch (error) {
+      showErrorToast('Failed to deposit liquidity')
+      throw error
+    }
   }
 
-  const withdrawLiquidity = (amount: string) => {
-    const amountInWei = parseEther(amount)
-    return writeContract({
-      address: contractAddress,
-      abi: contractAbi,
-      functionName: 'withdrawLiquidity',
-      args: [amountInWei],
-    })
+  const withdrawLiquidity = async (amount: string) => {
+    try {
+      showLoadingToast('Withdrawing liquidity...')
+      const amountInWei = parseEther(amount)
+      const hash = await writeContract({
+        address: contractAddress,
+        abi: contractAbi,
+        functionName: 'withdrawLiquidity',
+        args: [amountInWei],
+      })
+      
+      // Show pending toast
+      showLoadingToast('Transaction pending...')
+      
+      return hash
+    } catch (error) {
+      showErrorToast('Failed to withdraw liquidity')
+      throw error
+    }
   }
 
-  const authorizePolicy = (policyAddress: string) => {
-    return writeContract({
-      address: contractAddress,
-      abi: contractAbi,
-      functionName: 'authorizePolicy',
-      args: [policyAddress],
-    })
+  const authorizePolicy = async (policyAddress: string) => {
+    try {
+      showLoadingToast('Authorizing policy...')
+      const hash = await writeContract({
+        address: contractAddress,
+        abi: contractAbi,
+        functionName: 'authorizePolicy',
+        args: [policyAddress],
+      })
+      
+      // Show pending toast
+      showLoadingToast('Transaction pending...')
+      
+      return hash
+    } catch (error) {
+      showErrorToast('Failed to authorize policy')
+      throw error
+    }
   }
 
   const { data: receipt, ...waitState } = useWaitForTransactionReceipt({
     hash: writeData,
   })
+
+  // Show success/error toasts based on transaction status
+  if (receipt && receipt.status === 'success') {
+    dismissToast()
+    showSuccessToast('Transaction confirmed!', receipt.transactionHash)
+  } else if (receipt && receipt.status === 'reverted') {
+    dismissToast()
+    showErrorToast('Transaction failed')
+  }
 
   return {
     // Read data

@@ -1,10 +1,12 @@
 import { useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import { AGROSHIELD_CONTRACTS, AGROSHIELD_ABIS } from '@/constants/contracts'
 import { parseEther, formatEther } from 'viem'
+import { useTransactionToast } from './useTransactionToast'
 
 export function useAgroShieldPolicy() {
   const contractAddress = AGROSHIELD_CONTRACTS.CELO.POLICY
   const contractAbi = AGROSHIELD_ABIS.POLICY
+  const { showSuccessToast, showErrorToast, showLoadingToast, dismissToast } = useTransactionToast()
 
   // Read functions
   const { data: nextPolicyId, ...nextPolicyIdRead } = useReadContract({
@@ -36,46 +38,88 @@ export function useAgroShieldPolicy() {
   // Write functions
   const { data: writeData, writeContract, ...writeContractState } = useWriteContract()
 
-  const createPolicy = (
+  const createPolicy = async (
     coverageAmount: string,
     rainfallThreshold: string,
     measurementPeriod: string,
     location: string
   ) => {
-    return writeContract({
-      address: contractAddress,
-      abi: contractAbi,
-      functionName: 'createPolicy',
-      args: [
-        parseEther(coverageAmount),
-        BigInt(rainfallThreshold),
-        BigInt(measurementPeriod),
-        BigInt(location)
-      ],
-    })
+    try {
+      showLoadingToast('Creating policy...')
+      const hash = await writeContract({
+        address: contractAddress,
+        abi: contractAbi,
+        functionName: 'createPolicy',
+        args: [
+          parseEther(coverageAmount),
+          BigInt(rainfallThreshold),
+          BigInt(measurementPeriod),
+          BigInt(location)
+        ],
+      })
+      
+      // Show pending toast
+      showLoadingToast('Transaction pending...')
+      
+      return hash
+    } catch (error) {
+      showErrorToast('Failed to create policy')
+      throw error
+    }
   }
 
-  const payPremium = (policyId: number) => {
-    return writeContract({
-      address: contractAddress,
-      abi: contractAbi,
-      functionName: 'payPremium',
-      args: [policyId],
-    })
+  const payPremium = async (policyId: number) => {
+    try {
+      showLoadingToast('Paying premium...')
+      const hash = await writeContract({
+        address: contractAddress,
+        abi: contractAbi,
+        functionName: 'payPremium',
+        args: [policyId],
+      })
+      
+      // Show pending toast
+      showLoadingToast('Transaction pending...')
+      
+      return hash
+    } catch (error) {
+      showErrorToast('Failed to pay premium')
+      throw error
+    }
   }
 
-  const setOracleContract = (oracleAddress: string) => {
-    return writeContract({
-      address: contractAddress,
-      abi: contractAbi,
-      functionName: 'setOracleContract',
-      args: [oracleAddress],
-    })
+  const setOracleContract = async (oracleAddress: string) => {
+    try {
+      showLoadingToast('Setting oracle contract...')
+      const hash = await writeContract({
+        address: contractAddress,
+        abi: contractAbi,
+        functionName: 'setOracleContract',
+        args: [oracleAddress],
+      })
+      
+      // Show pending toast
+      showLoadingToast('Transaction pending...')
+      
+      return hash
+    } catch (error) {
+      showErrorToast('Failed to set oracle contract')
+      throw error
+    }
   }
 
   const { data: receipt, ...waitState } = useWaitForTransactionReceipt({
     hash: writeData,
   })
+
+  // Show success/error toasts based on transaction status
+  if (receipt && receipt.status === 'success') {
+    dismissToast()
+    showSuccessToast('Transaction confirmed!', receipt.transactionHash)
+  } else if (receipt && receipt.status === 'reverted') {
+    dismissToast()
+    showErrorToast('Transaction failed')
+  }
 
   return {
     // Read data
