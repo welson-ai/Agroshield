@@ -40,10 +40,10 @@ export function PoolStats() {
     )
   }
 
-  const availableLiquidity = totalLiquidity ? 
-    (totalLiquidity * BigInt(9000)) / BigInt(10000) : 0n // 90% available after 10% reserve
-  const utilization = totalLiquidity && totalLiquidity > 0n ? 
-    Number((totalLiquidity - availableLiquidity) * 100n / totalLiquidity) : 0
+  const availableLiquidity = totalLiquidity && typeof totalLiquidity === 'bigint' ? 
+    (totalLiquidity * BigInt(9000)) / BigInt(10000) : BigInt(0) // 90% available after 10% reserve
+  const utilization = totalLiquidity && typeof totalLiquidity === 'bigint' && totalLiquidity > BigInt(0) ? 
+    Number((totalLiquidity - availableLiquidity) * BigInt(100) / totalLiquidity) : 0
 
   return (
     <Card>

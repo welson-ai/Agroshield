@@ -19,26 +19,10 @@ export function useTransactionToast() {
   if (receipt && receipt.status === 'success') {
     const celoscanUrl = `https://celoscan.io/tx/${receipt.transactionHash}`
     
-    toast.success(
-      <div className="flex flex-col items-center">
-        <div className="font-medium">Transaction confirmed!</div>
-        <div className="text-sm opacity-80 mt-1">
-          View on{' '}
-          <a 
-            href={celoscanUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-200 underline hover:text-blue-100 transition-colors"
-          >
-            CeloScan
-          </a>
-        </div>
-      </div>,
-      {
-        id: receipt.transactionHash,
-        duration: 5000,
-      }
-    )
+    toast.success('Transaction confirmed!', {
+      id: receipt.transactionHash,
+      duration: 5000,
+    })
   }
 
   // Show error toast when transaction fails
@@ -51,29 +35,12 @@ export function useTransactionToast() {
   return {
     showSuccessToast: (message: string, txHash?: string) => {
       const celoscanUrl = txHash ? `https://celoscan.io/tx/${txHash}` : undefined
+      const displayMessage = txHash ? `${message} - View on CeloScan` : message
       
-      toast.success(
-        <div className="flex flex-col items-center">
-          <div className="font-medium">{message}</div>
-          {txHash && (
-            <div className="text-sm opacity-80 mt-1">
-              View on{' '}
-              <a 
-                href={celoscanUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-200 underline hover:text-blue-100 transition-colors"
-              >
-                CeloScan
-              </a>
-            </div>
-          )}
-        </div>,
-        {
-          id: txHash || 'success',
-          duration: 5000,
-        }
-      )
+      toast.success(displayMessage, {
+        id: txHash || 'success',
+        duration: 5000,
+      })
     },
     showErrorToast: (message: string) => {
       toast.error(message, {
