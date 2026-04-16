@@ -32,11 +32,11 @@ export default function Admin() {
 
     try {
       await submitWeatherData({
-        location: parseInt(location),
-        timestamp: Math.floor(Date.now() / 1000), // Convert to seconds
-        rainfall: parseFloat(rainfall),
-        temperature: parseInt(temperature),
-        humidity: parseInt(humidity)
+        location: location,
+        timestamp: Math.floor(Date.now() / 1000).toString(), // Convert to seconds
+        rainfall: rainfall,
+        temperature: temperature,
+        humidity: humidity
       })
       
       // Clear form
