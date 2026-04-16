@@ -31,13 +31,13 @@ export default function Admin() {
     }
 
     try {
-      await submitWeatherData({
-        location: location,
-        timestamp: Math.floor(Date.now() / 1000).toString(), // Convert to seconds
-        rainfall: rainfall,
-        temperature: temperature,
-        humidity: humidity
-      })
+      await submitWeatherData(
+        location,
+        Math.floor(Date.now() / 1000).toString(), // Convert to seconds
+        rainfall,
+        temperature,
+        humidity
+      )
       
       // Clear form
       setLocation('')
