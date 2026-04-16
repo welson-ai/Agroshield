@@ -11,7 +11,7 @@ import { formatEther, parseEther } from 'viem'
 
 export function UserPosition() {
   const { address } = useAccount()
-  const { userShares, totalLiquidity, provideLiquidity, withdrawLiquidity, isWriting, isConfirmed } = useAgroShieldPool()
+  const { userShares, totalLiquidity, provideLiquidity, withdrawLiquidity, isWriting, isConfirmed, confirmationReceipt } = useAgroShieldPool()
   
   const [depositAmount, setDepositAmount] = useState('')
   const [withdrawAmount, setWithdrawAmount] = useState('')
@@ -89,7 +89,7 @@ export function UserPosition() {
               Your liquidity has been added to the pool
             </div>
             <div className="text-sm text-gray-600">
-              Transaction Hash: {isConfirmed.transactionHash?.slice(0, 10)}...
+              Transaction Hash: {confirmationReceipt?.transactionHash?.slice(0, 10)}...
             </div>
             <Button 
               onClick={() => setShowDepositSuccess(false)}
@@ -117,7 +117,7 @@ export function UserPosition() {
               Your withdrawal has been processed
             </div>
             <div className="text-sm text-gray-600">
-              Transaction Hash: {isConfirmed.transactionHash?.slice(0, 10)}...
+              Transaction Hash: {confirmationReceipt?.transactionHash?.slice(0, 10)}...
             </div>
             <Button 
               onClick={() => setShowWithdrawSuccess(false)}
