@@ -46,7 +46,7 @@ export function WeatherDisplay() {
           <CardTitle>Current Weather Data</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-center py-8 text-gray-500">
+          <div className="text-center py-8 text-black">
             <div className="mb-4">🌤️</div>
             <p>No weather data available</p>
             <p className="text-sm">Data will appear here once submitted</p>
@@ -78,13 +78,13 @@ export function WeatherDisplay() {
         <div className="grid grid-cols-2 gap-4">
           <div className="text-center p-4 bg-blue-50 rounded-lg">
             <div className="text-2xl mb-1">💧</div>
-            <div className="text-sm text-gray-600">Rainfall</div>
+            <div className="text-sm text-black">Rainfall</div>
             <div className="text-xl font-bold text-blue-600">{rainfall}mm</div>
           </div>
           
           <div className="text-center p-4 bg-orange-50 rounded-lg">
             <div className="text-2xl mb-1">🌡️</div>
-            <div className="text-sm text-gray-600">Temperature</div>
+            <div className="text-sm text-black">Temperature</div>
             <div className="text-xl font-bold text-orange-600">{temperature}°C</div>
           </div>
         </div>
@@ -92,13 +92,13 @@ export function WeatherDisplay() {
         <div className="grid grid-cols-2 gap-4">
           <div className="text-center p-4 bg-purple-50 rounded-lg">
             <div className="text-2xl mb-1">💨</div>
-            <div className="text-sm text-gray-600">Humidity</div>
+            <div className="text-sm text-black">Humidity</div>
             <div className="text-xl font-bold text-purple-600">{humidity}%</div>
           </div>
           
           <div className="text-center p-4 bg-gray-50 rounded-lg">
             <div className="text-2xl mb-1">📅</div>
-            <div className="text-sm text-gray-600">Last Updated</div>
+            <div className="text-sm text-black">Last Updated</div>
             <div className="text-sm font-medium">
               {new Date(Number(timestamp) * 1000).toLocaleString()}
             </div>

@@ -88,7 +88,7 @@ export function UserPosition() {
             <div className="text-lg font-medium">
               Your liquidity has been added to the pool
             </div>
-            <div className="text-sm text-gray-600">
+            <div className="text-sm text-black">
               Transaction Hash: {confirmationReceipt?.transactionHash?.slice(0, 10)}...
             </div>
             <Button 
@@ -116,7 +116,7 @@ export function UserPosition() {
             <div className="text-lg font-medium">
               Your withdrawal has been processed
             </div>
-            <div className="text-sm text-gray-600">
+            <div className="text-sm text-black">
               Transaction Hash: {confirmationReceipt?.transactionHash?.slice(0, 10)}...
             </div>
             <Button 
@@ -145,20 +145,20 @@ export function UserPosition() {
         <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div>
-              <div className="text-sm text-gray-600">Your Shares</div>
+              <div className="text-sm text-black">Your Shares</div>
               <div className="text-xl font-bold">
                 {userShares ? `${Number(userShares) / 10000}%` : '0.00%'}
               </div>
             </div>
             <div>
-              <div className="text-sm text-gray-600">Liquidity Value</div>
+              <div className="text-sm text-black">Liquidity Value</div>
               <div className="text-xl font-bold">
                 {userLiquidityValue ? formatEther(userLiquidityValue) : '0.0000'} cUSD
               </div>
             </div>
           </div>
           
-          <div className="text-sm text-gray-700">
+          <div className="text-sm text-black">
             <div className="font-medium mb-2">💰 Position Summary</div>
             <div className="space-y-1">
               <div>• Share of pool: {userShares ? `${Number(userShares) / 100}%` : '0.00%'}</div>

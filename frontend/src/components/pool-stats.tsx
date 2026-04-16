@@ -57,7 +57,7 @@ export function PoolStats() {
         <div className="grid grid-cols-2 gap-4">
           <div className="text-center p-4 bg-blue-50 rounded-lg">
             <div className="text-2xl mb-1">💰</div>
-            <div className="text-sm text-gray-600">Total Liquidity</div>
+            <div className="text-sm text-black">Total Liquidity</div>
             <div className="text-xl font-bold text-blue-600">
               {totalLiquidity && typeof totalLiquidity === 'bigint' ? formatEther(totalLiquidity) : '0.0000'} cUSD
             </div>
@@ -65,7 +65,7 @@ export function PoolStats() {
           
           <div className="text-center p-4 bg-green-50 rounded-lg">
             <div className="text-2xl mb-1">💧</div>
-            <div className="text-sm text-gray-600">Available Liquidity</div>
+            <div className="text-sm text-black">Available Liquidity</div>
             <div className="text-xl font-bold text-green-600">
               {availableLiquidity && typeof availableLiquidity === 'bigint' ? formatEther(availableLiquidity) : '0.0000'} cUSD
             </div>
@@ -75,7 +75,7 @@ export function PoolStats() {
         <div className="grid grid-cols-2 gap-4">
           <div className="text-center p-4 bg-purple-50 rounded-lg">
             <div className="text-2xl mb-1">📊</div>
-            <div className="text-sm text-gray-600">Reserve Ratio</div>
+            <div className="text-sm text-black">Reserve Ratio</div>
             <div className="text-xl font-bold text-purple-600">
               {reserveRatio ? `${Number(reserveRatio) / 100}%` : '10%'}
             </div>
@@ -83,7 +83,7 @@ export function PoolStats() {
           
           <div className="text-center p-4 bg-orange-50 rounded-lg">
             <div className="text-2xl mb-1">📈</div>
-            <div className="text-sm text-gray-600">Utilization</div>
+            <div className="text-sm text-black">Utilization</div>
             <div className="text-xl font-bold text-orange-600">
               {utilization.toFixed(1)}%
             </div>
@@ -91,7 +91,7 @@ export function PoolStats() {
         </div>
 
         <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-          <div className="text-sm text-gray-700 space-y-2">
+          <div className="text-sm text-black space-y-2">
             <div className="flex justify-between">
               <span>🏊 Pool Status:</span>
               <span className="font-medium text-green-600">

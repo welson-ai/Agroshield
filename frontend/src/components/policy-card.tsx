@@ -50,13 +50,13 @@ export function PolicyCard({ policy, onPayPremium, isLoading }: PolicyCardProps)
       <CardContent className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <div className="text-sm text-gray-600">Coverage Amount</div>
+            <div className="text-sm text-black">Coverage Amount</div>
             <div className="font-semibold">
               {formatEther(policy.coverageAmount)} cUSD
             </div>
           </div>
           <div>
-            <div className="text-sm text-gray-600">Premium</div>
+            <div className="text-sm text-black">Premium</div>
             <div className="font-semibold">
               {formatEther(policy.premiumAmount)} cUSD
             </div>
@@ -65,11 +65,11 @@ export function PolicyCard({ policy, onPayPremium, isLoading }: PolicyCardProps)
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <div className="text-sm text-gray-600">Rainfall Threshold</div>
+            <div className="text-sm text-black">Rainfall Threshold</div>
             <div className="font-semibold">{policy.rainfallThreshold}mm</div>
           </div>
           <div>
-            <div className="text-sm text-gray-600">Current Progress</div>
+            <div className="text-sm text-black">Current Progress</div>
             <div className="font-semibold">{progress.toFixed(1)}%</div>
           </div>
         </div>
