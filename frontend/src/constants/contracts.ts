@@ -1,7 +1,4 @@
-import AgroShieldPoolArtifact from '../../../artifacts/contracts/AgroShieldPool.sol/AgroShieldPool.json'
-import AgroShieldPolicyArtifact from '../../../artifacts/contracts/AgroShieldPolicy.sol/AgroShieldPolicy.json'
-import AgroShieldOracleArtifact from '../../../artifacts/contracts/AgroShieldOracle.sol/AgroShieldOracle.json'
-
+// Contract addresses on Celo mainnet
 export const AGROSHIELD_CONTRACTS = {
   CELO: {
     CUSD_TOKEN: "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1",
@@ -11,10 +8,30 @@ export const AGROSHIELD_CONTRACTS = {
   },
 } as const
 
+// Minimal ABIs for essential functions
 export const AGROSHIELD_ABIS = {
-  POOL: AgroShieldPoolArtifact.abi,
-  POLICY: AgroShieldPolicyArtifact.abi,
-  ORACLE: AgroShieldOracleArtifact.abi,
+  POOL: [
+    "function provideLiquidity(uint256)",
+    "function withdrawLiquidity(uint256)",
+    "function getTotalLiquidity() view returns (uint256)",
+    "function getUserShares(address) view returns (uint256)",
+    "function getAvailableLiquidity() view returns (uint256)",
+    "function getReserveRatio() view returns (uint256)"
+  ],
+  POLICY: [
+    "function createPolicy(string,uint256,uint256,uint256,uint256,uint256)",
+    "function payPremium(uint256)",
+    "function getActivePoliciesCount() view returns (uint256)",
+    "function getUserPolicies(address) view returns (tuple[])",
+    "function getPolicy(uint256) view returns (tuple)"
+  ],
+  ORACLE: [
+    "function submitWeatherData(uint256,uint256,uint256,uint256)",
+    "function getLatestWeatherData() view returns (tuple)",
+    "function setPolicyContract(address)",
+    "function authorizeProvider(address)",
+    "function manualPayoutTrigger(uint256)"
+  ]
 } as const
 
 export type Network = keyof typeof AGROSHIELD_CONTRACTS
