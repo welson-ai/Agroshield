@@ -56,7 +56,7 @@ export function WeatherDisplay() {
     )
   }
 
-  const { rainfall, temperature, humidity, timestamp, verified } = latestWeatherData
+  const { rainfall, temperature, humidity, timestamp, verified } = latestWeatherData || {}
 
   return (
     <Card>
