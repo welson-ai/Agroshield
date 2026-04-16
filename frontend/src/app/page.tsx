@@ -2,8 +2,24 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Navbar } from '@/components/navbar'
+import { useAgroShieldPool, useAgroShieldPolicy } from '@/hooks'
+import { formatEther } from 'viem'
 
 export default function Home() {
+  const { totalLiquidity } = useAgroShieldPool()
+  const { activePoliciesCount, userPolicies } = useAgroShieldPolicy()
+
+  // Calculate real statistics
+  const totalInsured = userPolicies && Array.isArray(userPolicies) 
+    ? userPolicies.reduce((sum, policy) => 
+        sum + Number(policy.coverageAmount), BigInt(0)
+      ).toString() 
+    : '0'
+  
+  const activePolicies = Number(activePoliciesCount) || 0
+  const tvl = totalLiquidity && typeof totalLiquidity === 'bigint' 
+    ? formatEther(totalLiquidity) 
+    : '0.0000'
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-blue-50">
       <Navbar />
@@ -116,7 +132,9 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-8">
             <Card className="bg-white/80 backdrop-blur-sm border border-green-200">
               <CardContent className="text-center py-8">
-                <div className="text-5xl font-bold text-green-600 mb-2">0</div>
+                <div className="text-5xl font-bold text-green-600 mb-2">
+                  {parseFloat(formatEther(totalInsured || '0')).toFixed(0)}
+                </div>
                 <div className="text-gray-900 font-medium">Total Insured</div>
                 <div className="text-sm text-gray-600 mt-1">cUSD coverage</div>
               </CardContent>
@@ -124,7 +142,7 @@ export default function Home() {
 
             <Card className="bg-white/80 backdrop-blur-sm border border-blue-200">
               <CardContent className="text-center py-8">
-                <div className="text-5xl font-bold text-blue-600 mb-2">0</div>
+                <div className="text-5xl font-bold text-blue-600 mb-2">{activePolicies}</div>
                 <div className="text-gray-900 font-medium">Active Policies</div>
                 <div className="text-sm text-gray-600 mt-1">Currently protected</div>
               </CardContent>
@@ -140,7 +158,7 @@ export default function Home() {
 
             <Card className="bg-white/80 backdrop-blur-sm border border-orange-200">
               <CardContent className="text-center py-8">
-                <div className="text-5xl font-bold text-orange-600 mb-2">0</div>
+                <div className="text-5xl font-bold text-orange-600 mb-2">{parseFloat(tvl).toFixed(0)}</div>
                 <div className="text-gray-900 font-medium">TVL</div>
                 <div className="text-sm text-gray-600 mt-1">Total Value Locked</div>
               </CardContent>
