@@ -6,12 +6,50 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { useAgroShieldOracle } from '@/hooks'
+import { useAccount } from 'wagmi'
 
 export default function Admin() {
+  const { address } = useAccount()
+  const { submitWeatherData, isWriting } = useAgroShieldOracle()
   const [location, setLocation] = useState('')
   const [rainfall, setRainfall] = useState('')
   const [temperature, setTemperature] = useState('')
   const [humidity, setHumidity] = useState('')
+
+  const handleSubmitWeatherData = async (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    if (!address) {
+      alert('Please connect your wallet first')
+      return
+    }
+
+    if (!location || !rainfall || !temperature || !humidity) {
+      alert('Please fill in all fields')
+      return
+    }
+
+    try {
+      await submitWeatherData({
+        location: parseInt(location),
+        rainfall: parseFloat(rainfall),
+        temperature: parseInt(temperature),
+        humidity: parseInt(humidity)
+      })
+      
+      // Clear form
+      setLocation('')
+      setRainfall('')
+      setTemperature('')
+      setHumidity('')
+      
+      alert('Weather data submitted successfully!')
+    } catch (error) {
+      console.error('Failed to submit weather data:', error)
+      alert('Failed to submit weather data. Please try again.')
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50">
@@ -80,8 +118,12 @@ export default function Admin() {
                   </div>
                 </div>
 
-                <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                  Submit Weather Data
+                <Button 
+                  className="w-full bg-blue-600 hover:bg-blue-700"
+                  onClick={handleSubmitWeatherData}
+                  disabled={isWriting}
+                >
+                  {isWriting ? 'Submitting...' : 'Submit Weather Data'}
                 </Button>
               </CardContent>
             </Card>
