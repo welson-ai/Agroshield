@@ -18,8 +18,8 @@ export function UserPosition() {
   const [showDepositSuccess, setShowDepositSuccess] = useState(false)
   const [showWithdrawSuccess, setShowWithdrawSuccess] = useState(false)
 
-  const userLiquidityValue = userShares && totalLiquidity ? 
-    (userShares * totalLiquidity) / 10000n : 0n // Assuming shares are basis points
+  const userLiquidityValue = userShares && totalLiquidity && typeof userShares === 'bigint' && typeof totalLiquidity === 'bigint' ? 
+    (userShares * totalLiquidity) / BigInt(10000) : BigInt(0) // Assuming shares are basis points
 
   const handleDeposit = async (e: React.FormEvent) => {
     e.preventDefault()
