@@ -25,29 +25,15 @@ A Next.js 14 frontend for the AgroShield parametric crop insurance protocol on C
 
 - Node.js 18+ 
 - npm or yarn
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/welson-ai/Agroshield.git
-cd Agroshield/frontend
-```
-
 2. Install dependencies:
-```bash
-npm install
-```
-
-3. Set up environment variables:
-```bash
-cp .env.local.example .env.local
-# Add your WalletConnect Project ID
-```
-
-4. Run the development server:
-```bash
-npm run dev
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 ```
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser.
