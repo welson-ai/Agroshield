@@ -56,7 +56,7 @@ export function WeatherDisplay() {
     )
   }
 
-  const weatherData = latestWeatherData && typeof latestWeatherData === 'object' ? latestWeatherData : {}
+  const weatherData = (latestWeatherData as any) || {}
   const { rainfall, temperature, humidity, timestamp, verified } = weatherData
 
   return (
