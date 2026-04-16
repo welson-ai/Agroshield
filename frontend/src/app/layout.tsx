@@ -18,6 +18,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "AgroShield - Parametric Crop Insurance",
   description: "Decentralized parametric crop insurance protocol on Celo blockchain",
+  other: {
+    "talentapp:project_verification": "e54b8387bedc605952a4ae7ce248f00a5f7ad166ca9c844a546e671d8b4b22ef591020c9ef3510d9809d4f905050576efc3a3638b44c62d83051cb3db39dafc8"
+  }
 };
 
 export default function RootLayout({
