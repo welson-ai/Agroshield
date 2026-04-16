@@ -117,32 +117,32 @@ export default function Home() {
             <Card className="bg-white/80 backdrop-blur-sm border border-green-200">
               <CardContent className="text-center py-8">
                 <div className="text-5xl font-bold text-green-600 mb-2">0</div>
-                <div className="text-gray-700 font-medium">Total Insured</div>
-                <div className="text-sm text-gray-500 mt-1">cUSD coverage</div>
+                <div className="text-gray-900 font-medium">Total Insured</div>
+                <div className="text-sm text-gray-600 mt-1">cUSD coverage</div>
               </CardContent>
             </Card>
 
             <Card className="bg-white/80 backdrop-blur-sm border border-blue-200">
               <CardContent className="text-center py-8">
                 <div className="text-5xl font-bold text-blue-600 mb-2">0</div>
-                <div className="text-gray-700 font-medium">Active Policies</div>
-                <div className="text-sm text-gray-500 mt-1">Currently protected</div>
+                <div className="text-gray-900 font-medium">Active Policies</div>
+                <div className="text-sm text-gray-600 mt-1">Currently protected</div>
               </CardContent>
             </Card>
 
             <Card className="bg-white/80 backdrop-blur-sm border border-purple-200">
               <CardContent className="text-center py-8">
                 <div className="text-5xl font-bold text-purple-600 mb-2">0</div>
-                <div className="text-gray-700 font-medium">Payouts Made</div>
-                <div className="text-sm text-gray-500 mt-1">Automatic claims</div>
+                <div className="text-gray-900 font-medium">Payouts Made</div>
+                <div className="text-sm text-gray-600 mt-1">Automatic claims</div>
               </CardContent>
             </Card>
 
             <Card className="bg-white/80 backdrop-blur-sm border border-orange-200">
               <CardContent className="text-center py-8">
                 <div className="text-5xl font-bold text-orange-600 mb-2">0</div>
-                <div className="text-gray-700 font-medium">TVL</div>
-                <div className="text-sm text-gray-500 mt-1">Total Value Locked</div>
+                <div className="text-gray-900 font-medium">TVL</div>
+                <div className="text-sm text-gray-600 mt-1">Total Value Locked</div>
               </CardContent>
             </Card>
           </div>
