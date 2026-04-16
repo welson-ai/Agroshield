@@ -59,7 +59,7 @@ export function PoolStats() {
             <div className="text-2xl mb-1">💰</div>
             <div className="text-sm text-gray-600">Total Liquidity</div>
             <div className="text-xl font-bold text-blue-600">
-              {totalLiquidity ? formatEther(totalLiquidity) : '0.0000'} cUSD
+              {totalLiquidity && typeof totalLiquidity === 'bigint' ? formatEther(totalLiquidity) : '0.0000'} cUSD
             </div>
           </div>
           
@@ -67,7 +67,7 @@ export function PoolStats() {
             <div className="text-2xl mb-1">💧</div>
             <div className="text-sm text-gray-600">Available Liquidity</div>
             <div className="text-xl font-bold text-green-600">
-              {availableLiquidity ? formatEther(availableLiquidity) : '0.0000'} cUSD
+              {availableLiquidity && typeof availableLiquidity === 'bigint' ? formatEther(availableLiquidity) : '0.0000'} cUSD
             </div>
           </div>
         </div>
@@ -95,13 +95,13 @@ export function PoolStats() {
             <div className="flex justify-between">
               <span>🏊 Pool Status:</span>
               <span className="font-medium text-green-600">
-                {totalLiquidity && totalLiquidity > 0n ? 'Active' : 'Empty'}
+                {totalLiquidity && typeof totalLiquidity === 'bigint' && totalLiquidity > BigInt(0) ? 'Active' : 'Empty'}
               </span>
             </div>
             <div className="flex justify-between">
               <span>🛡️ Reserve Fund:</span>
               <span className="font-medium">
-                {totalLiquidity ? formatEther(totalLiquidity - availableLiquidity) : '0.0000'} cUSD
+                {totalLiquidity && typeof totalLiquidity === 'bigint' && typeof availableLiquidity === 'bigint' ? formatEther(totalLiquidity - availableLiquidity) : '0.0000'} cUSD
               </span>
             </div>
             <div className="flex justify-between">
