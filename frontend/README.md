@@ -8,6 +8,7 @@ A Next.js 14 frontend for the AgroShield parametric crop insurance protocol on C
 - **Liquidity Pool** - Provide liquidity to earn yield
 - **Admin Panel** - Protocol management and weather data submission
 - **Wallet Integration** - Connect with MetaMask, WalletConnect, and more
+- **MiniPay Compatibility** - Seamless integration with MiniPay mobile wallet
 - **Responsive Design** - Works on desktop and mobile
 
 ## Tech Stack
@@ -16,8 +17,84 @@ A Next.js 14 frontend for the AgroShield parametric crop insurance protocol on C
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS + shadcn/ui
 - **Blockchain**: Wagmi + Viem
-- **Wallet**: RainbowKit
+- **Wallet**: RainbowKit + MiniPay
 - **State**: React Query
+
+## MiniPay Compatibility
+
+AgroShield provides seamless integration with MiniPay, the mobile wallet for Celo ecosystem.
+
+### MiniPay Features
+
+- **Auto-Connection** - MiniPay users connect automatically without wallet selection modal
+- **cUSD Native** - Uses cUSD as default currency for MiniPay users
+- **Mobile Optimized** - MiniPay-branded wallet UI designed for mobile experience
+- **Network Detection** - Automatically detects Celo mainnet (chainId 42220)
+- **Streamlined UX** - Hides wallet selection UI for MiniPay users
+
+### MiniPay vs Regular Wallets
+
+| Feature | MiniPay Users | Regular Wallets |
+|---------|---------------|-----------------|
+| **Connection** | Auto-connects | Manual selection |
+| **UI** | Green "MP" badge | RainbowKit button |
+| **Currency** | cUSD default | CELO default |
+| **Modal** | No wallet modal | RainbowKit modal |
+| **Experience** | Streamlined | Standard flow |
+
+### Testing MiniPay
+
+#### Browser Testing (Simulation)
+
+1. **Open simulator**: `http://localhost:3000/test-minipay.html`
+2. **Click "Simulate MiniPay Browser"**
+3. **Click "Open AgroShield"**
+4. **Verify MiniPay behavior**
+
+#### Console Testing
+
+1. **Open**: `http://localhost:3000`
+2. **Open browser console** (F12)
+3. **Paste** content from `test-minipay-console.js`
+4. **Run**: `testMiniPay.simulate()`
+5. **Reload** page
+6. **Check**: `testMiniPay.checkHook()`
+
+#### Phone Testing (Real MiniPay)
+
+1. **Start dev server**: `npm run dev --hostname 0.0.0.0`
+2. **Find your IP**: Run `ifconfig` (look for `inet 192.168.x.x`)
+3. **Open MiniPay app** on your phone
+4. **Navigate to**: `http://YOUR_IP:3000`
+5. **Verify auto-connection** and MiniPay UI
+
+**Detailed phone testing guide**: See `PHONE_TESTING_GUIDE.md`
+
+### Expected MiniPay Behavior
+
+When using MiniPay, users should see:
+
+- **Auto-connection** without wallet selection modal
+- **Green "MP" badge** in navbar
+- **cUSD balance display**
+- **"Celo Mainnet"** status indicator
+- **Disconnect button** for manual disconnection
+- **No RainbowKit wallet button**
+
+### MiniPay Hook Usage
+
+```typescript
+import { useMiniPay } from '@/hooks'
+
+const {
+  isMiniPay,           // Is MiniPay browser detected?
+  isAutoConnecting,    // Currently auto-connecting?
+  isMiniPayConnected,  // Is MiniPay connected?
+  shouldHideWalletUI,  // Should hide RainbowKit?
+  getDefaultToken,     // Get cUSD token info
+  isCeloMainnet        // Is on Celo mainnet?
+} = useMiniPay()
+```
 
 ## Getting Started
 
