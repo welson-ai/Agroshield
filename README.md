@@ -17,6 +17,7 @@ The protocol consists of three main contracts:
 - **Liquidity Pool**: cUSD-based liquidity provision with reserve management
 - **Transparent Premiums**: Risk-based premium calculation
 - **Celo Native**: Built for Celo with cUSD integration
+- **MiniPay Compatibility**: Seamless mobile wallet integration for Celo users
 
 ## Contract Details
 
@@ -98,6 +99,62 @@ npx hardhat run scripts/deploy.js --network alfajores
 # Deploy to Celo mainnet
 npx hardhat run scripts/deploy.js --network celo
 ```
+
+## MiniPay Integration
+
+AgroShield frontend provides seamless integration with MiniPay, the mobile wallet for Celo ecosystem.
+
+### MiniPay Features
+
+- **Auto-Connection**: MiniPay users connect automatically without wallet selection modal
+- **cUSD Native**: Uses cUSD as default currency for MiniPay users  
+- **Mobile Optimized**: MiniPay-branded wallet UI designed for mobile experience
+- **Network Detection**: Automatically detects Celo mainnet (chainId 42220)
+- **Streamlined UX**: Hides wallet selection UI for MiniPay users
+
+### Testing MiniPay
+
+#### Browser Testing (Simulation)
+
+1. Navigate to frontend directory: `cd frontend`
+2. Start dev server: `npm run dev`
+3. Open simulator: `http://localhost:3000/test-minipay.html`
+4. Click "Simulate MiniPay Browser"
+5. Click "Open AgroShield" 
+6. Verify MiniPay behavior
+
+#### Phone Testing (Real MiniPay)
+
+1. Start dev server for phone access: `npm run dev --hostname 0.0.0.0`
+2. Find your IP address (e.g., `192.168.1.44`)
+3. Open MiniPay app on your phone
+4. Navigate to: `http://YOUR_IP:3000`
+5. Verify auto-connection and MiniPay UI
+
+**Detailed testing guide**: See `frontend/PHONE_TESTING_GUIDE.md`
+
+### Expected MiniPay Behavior
+
+When using MiniPay, users should see:
+
+- **Auto-connection** without wallet selection modal
+- **Green "MP" badge** in navbar
+- **cUSD balance display**
+- **"Celo Mainnet"** status indicator
+- **Disconnect button** for manual disconnection
+- **No RainbowKit wallet button**
+
+### Frontend Setup for MiniPay
+
+The MiniPay integration is implemented in the frontend:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+**Frontend documentation**: See `frontend/README.md` for complete MiniPay implementation details.
 
 ## Contract Addresses
 

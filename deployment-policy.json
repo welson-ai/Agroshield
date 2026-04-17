@@ -1,0 +1,10 @@
+{
+  "contract": "AgroShieldPolicy",
+  "address": "0xd857973f3f5313d0721d539fcbab1395bfc87d78",
+  "network": "celo",
+  "deployedAt": "2026-04-11T22:22:27.287Z",
+  "deployer": "0xEA65d20f0D3B6b77e467CF1FeCE21F7bc3166470",
+  "cusdToken": "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1",
+  "poolContract": "0xef65b6fe2e9de3fa865aa87107db4bcd458115d5",
+  "oracleContract": "0xaa4c5e3c0fe03da8d1a3145ccdf0ef5f8661442b"
+}
