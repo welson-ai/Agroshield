@@ -131,38 +131,38 @@ export default function Home() {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
             <Card className="bg-white/80 backdrop-blur-sm border border-green-200">
-              <CardContent className="text-center py-8">
-                <div className="text-5xl font-bold text-green-600 mb-2">
+              <CardContent className="text-center py-4 md:py-8">
+                <div className="text-3xl md:text-5xl font-bold text-green-600 mb-2">
                   {parseFloat(formatEther(totalInsured || '0')).toFixed(0)}
                 </div>
-                <div className="text-gray-900 font-medium">Total Insured</div>
-                <div className="text-sm text-gray-600 mt-1">cUSD coverage</div>
+                <div className="text-gray-900 font-medium text-sm md:text-base">Total Insured</div>
+                <div className="text-xs md:text-sm text-gray-600 mt-1">cUSD coverage</div>
               </CardContent>
             </Card>
 
             <Card className="bg-white/80 backdrop-blur-sm border border-blue-200">
-              <CardContent className="text-center py-8">
-                <div className="text-5xl font-bold text-blue-600 mb-2">{activePolicies}</div>
-                <div className="text-gray-900 font-medium">Active Policies</div>
-                <div className="text-sm text-gray-600 mt-1">Currently protected</div>
+              <CardContent className="text-center py-4 md:py-8">
+                <div className="text-3xl md:text-5xl font-bold text-blue-600 mb-2">{activePolicies}</div>
+                <div className="text-gray-900 font-medium text-sm md:text-base">Active Policies</div>
+                <div className="text-xs md:text-sm text-gray-600 mt-1">Currently protected</div>
               </CardContent>
             </Card>
 
             <Card className="bg-white/80 backdrop-blur-sm border border-purple-200">
-              <CardContent className="text-center py-8">
-                <div className="text-5xl font-bold text-purple-600 mb-2">0</div>
-                <div className="text-gray-900 font-medium">Payouts Made</div>
-                <div className="text-sm text-gray-600 mt-1">Automatic claims</div>
+              <CardContent className="text-center py-4 md:py-8">
+                <div className="text-3xl md:text-5xl font-bold text-purple-600 mb-2">0</div>
+                <div className="text-gray-900 font-medium text-sm md:text-base">Payouts Made</div>
+                <div className="text-xs md:text-sm text-gray-600 mt-1">Automatic claims</div>
               </CardContent>
             </Card>
 
             <Card className="bg-white/80 backdrop-blur-sm border border-orange-200">
-              <CardContent className="text-center py-8">
-                <div className="text-5xl font-bold text-orange-600 mb-2">{parseFloat(tvl).toFixed(0)}</div>
-                <div className="text-gray-900 font-medium">TVL</div>
-                <div className="text-sm text-gray-600 mt-1">Total Value Locked</div>
+              <CardContent className="text-center py-4 md:py-8">
+                <div className="text-3xl md:text-5xl font-bold text-orange-600 mb-2">{parseFloat(tvl).toFixed(0)}</div>
+                <div className="text-gray-900 font-medium text-sm md:text-base">TVL</div>
+                <div className="text-xs md:text-sm text-gray-600 mt-1">Total Value Locked</div>
               </CardContent>
             </Card>
           </div>
