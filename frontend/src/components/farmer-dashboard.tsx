@@ -7,12 +7,13 @@ import { PolicyCard } from '@/components/policy-card'
 import { WeatherDisplay } from '@/components/weather-display'
 import { WeatherDisplayNew } from '@/components/weather-display-new'
 import { LocationInput } from '@/components/location-input'
+import { DemoDashboard } from '@/components/demo-dashboard'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useAgroShieldPolicy } from '@/hooks'
 
 export function FarmerDashboard() {
   const { userPolicies, activePoliciesCount, payPremium, isWriting } = useAgroShieldPolicy()
-  const [activeTab, setActiveTab] = useState<'policies' | 'weather'>('policies')
+  const [activeTab, setActiveTab] = useState<'policies' | 'weather' | 'demo'>('policies')
   const [location, setLocation] = useState({ lat: 6.5244, lon: 3.3792 }) // Nairobi coordinates
 
   const handlePayPremium = async (policyId: number) => {
