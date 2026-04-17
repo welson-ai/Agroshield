@@ -12,7 +12,7 @@ export const config = createConfig({
     metaMask(),
   ],
   transports: {
-    [celo.id]: http('https://forno.celo.org'),
+    [celo.id]: http('https://celo-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161'),
   },
 })
 
