@@ -34,22 +34,23 @@ export function useMiniPay() {
           // Auto-connect if MiniPay and not already connected
           if (isMiniPayBrowser && !isConnected && !isPending) {
             setState(prev => ({ ...prev, isAutoConnecting: true }))
-            connect({
-              connector: injected(),
-            }).then(() => {
+            try {
+              connect({
+                connector: injected(),
+              })
               setState(prev => ({ 
                 ...prev, 
                 isAutoConnecting: false,
                 isMiniPayConnected: true 
               }))
-            }).catch((error) => {
+            } catch (error) {
               console.error('Auto-connect to MiniPay failed:', error)
               setState(prev => ({ 
                 ...prev, 
                 isAutoConnecting: false,
                 error: 'Failed to auto-connect to MiniPay' 
               }))
-            })
+            }
           }
         }
       } catch (error) {
