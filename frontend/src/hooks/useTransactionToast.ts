@@ -48,25 +48,18 @@ export function useTransactionToast() {
       // Show secondary toast with transaction link if hash provided
       if (txHash) {
         setTimeout(() => {
-          toast(
-            (t) => (
-              <div className="flex items-center space-x-2">
-                <span>View on CeloScan</span>
-                <button 
-                  onClick={() => window.open(`https://celoscan.io/tx/${txHash}`, '_blank')}
-                  className="underline hover:no-underline"
-                >
-                  {txHash.slice(0, 8)}...{txHash.slice(-6)}
-                </button>
-                <button onClick={() => toast.dismiss(t.id)} className="ml-2">
-                  _">_
-                </button>
-              </div>
-            ),
+          toast.success(
+            'Transaction successful! View on CeloScan',
             {
               id: `${txHash}-link`,
               duration: 8000,
               icon: '_">_',
+              style: {
+                background: '#10b981',
+                color: 'white',
+                border: '1px solid #059669',
+              },
+              onClick: () => window.open(`https://celoscan.io/tx/${txHash}`, '_blank')
             }
           )
         }, 1000)
