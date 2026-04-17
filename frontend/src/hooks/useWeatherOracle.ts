@@ -19,13 +19,13 @@ export function useWeatherOracle() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { address } = useAccount()
   const { writeContract } = useWriteContract()
-  const { showTransactionToast } = useTransactionToast()
+  const { showSuccessToast, showErrorToast } = useTransactionToast()
 
   const submitWeatherToOracle = async (
     weatherData: WeatherOracleData
   ): Promise<string | null> => {
     if (!address) {
-      alert('Please connect your wallet first')
+      showErrorToast('Please connect your wallet first')
       return null
     }
 
@@ -46,10 +46,9 @@ export function useWeatherOracle() {
       })
 
       if (txHash) {
-        showTransactionToast(
-          txHash,
+        showSuccessToast(
           'Weather data submitted to oracle',
-          'Weather data successfully recorded on blockchain'
+          txHash
         )
         return txHash
       }
@@ -57,7 +56,7 @@ export function useWeatherOracle() {
       return null
     } catch (error) {
       console.error('Failed to submit weather data:', error)
-      alert('Failed to submit weather data to oracle')
+      showErrorToast('Failed to submit weather data to oracle')
       return null
     } finally {
       setIsSubmitting(false)
@@ -70,7 +69,7 @@ export function useWeatherOracle() {
     const result = await response.json()
 
     if (!result.success) {
-      alert('Failed to fetch weather data')
+      showErrorToast('Failed to fetch weather data')
       return null
     }
 
