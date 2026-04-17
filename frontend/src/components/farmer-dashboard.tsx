@@ -49,10 +49,10 @@ export function FarmerDashboard() {
             {/* Policies and Weather Tabs */}
             <Card>
               <CardHeader>
-                <div className="flex space-x-4">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
                   <button
                     onClick={() => setActiveTab('policies')}
-                    className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                    className={`px-4 py-2 rounded-lg font-medium transition-colors text-sm sm:text-base ${
                       activeTab === 'policies' 
                         ? 'bg-green-600 text-white' 
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -62,7 +62,7 @@ export function FarmerDashboard() {
                   </button>
                   <button
                     onClick={() => setActiveTab('weather')}
-                    className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                    className={`px-4 py-2 rounded-lg font-medium transition-colors text-sm sm:text-base ${
                       activeTab === 'weather' 
                         ? 'bg-green-600 text-white' 
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
