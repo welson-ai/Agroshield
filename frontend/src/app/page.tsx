@@ -29,33 +29,33 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-green-600/20 to-emerald-600/20"></div>
-        <div className="relative container mx-auto px-4 py-24">
+        <div className="relative container mx-auto px-4 py-16 md:py-24">
           <div className="text-center">
-            <div className="mb-8">
-              <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-green-500 to-green-600 rounded-full mb-8 shadow-lg">
-                <span className="text-white font-bold text-3xl">🌾</span>
+            <div className="mb-6 md:mb-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 md:w-24 md:h-24 bg-gradient-to-br from-green-500 to-green-600 rounded-full mb-6 md:mb-8 shadow-lg">
+                <span className="text-white font-bold text-2xl md:text-3xl">🌾</span>
               </div>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-4xl md:text-7xl font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
               AgroShield
             </h1>
-            <p className="text-2xl md:text-3xl text-gray-700 mb-8 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-3xl text-gray-700 mb-6 md:mb-8 max-w-4xl mx-auto leading-relaxed">
               Protect Your Harvest, <span className="text-green-600 font-semibold">Automatically</span>
             </p>
-            <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-gray-600 mb-8 md:mb-12 max-w-2xl mx-auto">
               Parametric crop insurance powered by weather oracles. 
               No claims process, no delays - just protection when you need it most.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
               <Link href="/dashboard">
-                <Button size="lg" className="bg-green-600 hover:bg-green-700 text-lg px-8 py-4 shadow-lg">
+                <Button size="lg" className="bg-green-600 hover:bg-green-700 text-base md:text-lg px-6 md:px-8 py-3 md:py-4 shadow-lg">
                   Launch App
                 </Button>
               </Link>
               <Link href="/pool">
-                <Button size="lg" variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 text-lg px-8 py-4">
+                <Button size="lg" variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 text-base md:text-lg px-6 md:px-8 py-3 md:py-4">
                   Provide Liquidity
                 </Button>
               </Link>
