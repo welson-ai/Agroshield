@@ -1,11 +1,13 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { useAccount, useBalance } from 'wagmi'
 import { useMiniPay } from '@/hooks'
 import { Button } from '@/components/ui/button'
 import { formatEther } from 'viem'
 
 export function MiniPayWallet() {
+  const [isMounted, setIsMounted] = useState(false)
   const { address, isConnected } = useAccount()
   const { 
     isMiniPay, 
@@ -21,6 +23,10 @@ export function MiniPayWallet() {
     address,
     token: getDefaultToken().address as `0x${string}`,
   })
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   // Show MiniPay branding and connection status
   if (!isMiniPay) {
@@ -66,6 +72,24 @@ export function MiniPayWallet() {
   }
 
   // Show connected MiniPay wallet info
+  if (!isMounted) {
+    return (
+      <div className="flex items-center space-x-3 p-3 bg-green-50 rounded-lg border border-green-200">
+        <div className="flex items-center space-x-2">
+          <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
+            <span className="text-white text-xs font-bold">MP</span>
+          </div>
+          <div>
+            <div className="text-xs text-green-600 font-medium">MiniPay Wallet</div>
+            <div className="text-sm font-medium text-gray-900">
+              Loading...
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="flex items-center space-x-3 p-3 bg-green-50 rounded-lg border border-green-200">
       <div className="flex items-center space-x-2">
