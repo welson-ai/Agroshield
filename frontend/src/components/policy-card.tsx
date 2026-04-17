@@ -24,7 +24,7 @@ interface PolicyCardProps {
 }
 
 export function PolicyCard({ policy, onPayPremium, isLoading }: PolicyCardProps) {
-  const [currentTime, setCurrentTime] = useState(Date.now())
+  const [currentTime, setCurrentTime] = useState(() => Date.now())
   
   useEffect(() => {
     const timer = setInterval(() => {
