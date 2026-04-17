@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { DemoPolicyCard } from '@/components/demo-policy-card'
+import { PolicySeeder } from '@/components/policy-seeder'
 import { useDemoData } from '@/hooks'
 import { BarChart3, MapPin, DollarSign, Users, RefreshCw, Filter } from 'lucide-react'
 
