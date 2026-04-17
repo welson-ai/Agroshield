@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { DemoPolicyCard } from '@/components/demo-policy-card'
 import { PolicySeeder } from '@/components/policy-seeder'
+import { DemoStatistics } from '@/components/demo-statistics'
 import { useDemoData } from '@/hooks'
 import { BarChart3, MapPin, DollarSign, Users, RefreshCw, Filter } from 'lucide-react'
 
@@ -13,6 +14,7 @@ export function DemoDashboard() {
   const [selectedCrop, setSelectedCrop] = useState<string>('all')
   const [selectedRegion, setSelectedRegion] = useState<string>('all')
   const [showFullDetails, setShowFullDetails] = useState(false)
+  const [showStatistics, setShowStatistics] = useState(false)
   
   const { 
     demoPolicies, 
