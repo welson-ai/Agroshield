@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { formatEther } from 'viem'
@@ -23,10 +24,20 @@ interface PolicyCardProps {
 }
 
 export function PolicyCard({ policy, onPayPremium, isLoading }: PolicyCardProps) {
+  const [currentTime, setCurrentTime] = useState(Date.now())
+  
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(Date.now())
+    }, 1000)
+    
+    return () => clearInterval(timer)
+  }, [])
+  
   const isActive = policy.active && !policy.paidOut
-  const isExpired = Date.now() / 1000 > policy.endTime
+  const isExpired = currentTime / 1000 > policy.endTime
   const progress = isActive ? 
-    Math.min(((Date.now() / 1000 - policy.startTime) / (policy.endTime - policy.startTime)) * 100, 100) : 0
+    Math.min(((currentTime / 1000 - policy.startTime) / (policy.endTime - policy.startTime)) * 100, 100) : 0
 
   return (
     <Card className="w-full">
