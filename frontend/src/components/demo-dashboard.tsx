@@ -111,6 +111,9 @@ export function DemoDashboard() {
         </Card>
       </div>
 
+      {/* Policy Seeder */}
+      <PolicySeeder />
+
       {/* Filters and Controls */}
       <Card>
         <CardHeader>
