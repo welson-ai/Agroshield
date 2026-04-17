@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { useAgroShieldPolicy } from '@/hooks'
+import { useAgroShieldPolicy, useTransactionToast } from '@/hooks'
 import { useAccount } from 'wagmi'
 
 const CROP_TYPES = [
@@ -19,6 +19,7 @@ const CROP_TYPES = [
 export function CreatePolicyForm() {
   const { address } = useAccount()
   const { createPolicy, isWriting, confirmationReceipt } = useAgroShieldPolicy()
+  const { showSuccessToast, showErrorToast, showInfoToast, showWalletToast } = useTransactionToast()
   
   const [formData, setFormData] = useState({
     cropType: '1',
@@ -34,33 +35,32 @@ export function CreatePolicyForm() {
     e.preventDefault()
     
     if (!address) {
-      alert('Please connect your wallet first')
+      showWalletToast('Please connect your wallet first')
       return
     }
 
     try {
+      showInfoToast('Creating your insurance policy...')
+      
       await createPolicy(
         formData.coverageAmount,
         formData.rainfallThreshold,
-        formData.measurementPeriod,
-        formData.location
+        parseInt(formData.cropType),
+        parseInt(formData.measurementPeriod),
+        parseInt(formData.location)
       )
-      setShowSuccess(true)
       
-      // Reset form after successful creation
+      setShowSuccess(true)
+      if (confirmationReceipt?.transactionHash) {
+        showSuccessToast('Policy created successfully!', confirmationReceipt.transactionHash)
+      }
+      
       setTimeout(() => {
-        setFormData({
-          cropType: '1',
-          coverageAmount: '',
-          rainfallThreshold: '',
-          measurementPeriod: '30',
-          location: '1001'
-        })
         setShowSuccess(false)
       }, 3000)
     } catch (error) {
       console.error('Policy creation failed:', error)
-      alert('Policy creation failed. Please try again.')
+      showErrorToast('Policy creation failed. Please try again.')
     }
   }
 
