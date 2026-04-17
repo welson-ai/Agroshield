@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useAccount, useConnect, useDisconnect } from 'wagmi'
-import { InjectedConnector } from 'wagmi/connectors'
+import { injected } from 'wagmi/connectors'
 
 interface MiniPayState {
   isMiniPay: boolean
@@ -55,7 +55,7 @@ export function useMiniPay() {
 
     try {
       await connect({
-        connector: new InjectedConnector(),
+        connector: injected(),
       })
       
       setState(prev => ({ 
