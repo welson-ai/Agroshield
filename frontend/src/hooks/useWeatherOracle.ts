@@ -32,7 +32,7 @@ export function useWeatherOracle() {
     setIsSubmitting(true)
 
     try {
-      const txHash = await writeContract({
+      await writeContract({
         address: AGROSHIELD_CONTRACTS.CELO.ORACLE as `0x${string}`,
         abi: AGROSHIELD_ABIS.ORACLE,
         functionName: 'submitWeatherData',
@@ -45,15 +45,10 @@ export function useWeatherOracle() {
         ]
       })
 
-      if (txHash) {
-        showSuccessToast(
-          'Weather data submitted to oracle',
-          txHash
-        )
-        return txHash
-      }
-
-      return null
+      showSuccessToast(
+        'Weather data submitted to oracle'
+      )
+      return 'success'
     } catch (error) {
       console.error('Failed to submit weather data:', error)
       showErrorToast('Failed to submit weather data to oracle')
