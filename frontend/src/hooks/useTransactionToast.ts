@@ -17,8 +17,6 @@ export function useTransactionToast() {
 
   // Show success toast when transaction is confirmed
   if (receipt && receipt.status === 'success') {
-    const celoscanUrl = `https://celoscan.io/tx/${receipt.transactionHash}`
-    
     toast.success('Transaction confirmed!', {
       id: receipt.transactionHash,
       duration: 5000,
@@ -34,7 +32,6 @@ export function useTransactionToast() {
 
   return {
     showSuccessToast: (message: string, txHash?: string) => {
-      const celoscanUrl = txHash ? `https://celoscan.io/tx/${txHash}` : undefined
       const displayMessage = txHash ? `${message} - View on CeloScan` : message
       
       toast.success(displayMessage, {

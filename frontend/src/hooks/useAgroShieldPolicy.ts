@@ -1,6 +1,6 @@
 import { useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import { AGROSHIELD_CONTRACTS, AGROSHIELD_ABIS } from '@/constants/contracts'
-import { parseEther, formatEther } from 'viem'
+import { parseEther } from 'viem'
 import { useTransactionToast } from './useTransactionToast'
 
 export function useAgroShieldPolicy() {
