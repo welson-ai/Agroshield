@@ -45,9 +45,8 @@ export function CreatePolicyForm() {
       await createPolicy(
         formData.coverageAmount,
         formData.rainfallThreshold,
-        parseInt(formData.cropType),
-        parseInt(formData.measurementPeriod),
-        parseInt(formData.location)
+        formData.measurementPeriod,
+        formData.location
       )
       
       setShowSuccess(true)
