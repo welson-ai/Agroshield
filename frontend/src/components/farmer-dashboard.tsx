@@ -72,6 +72,16 @@ export function FarmerDashboard() {
                   >
                     Weather Data
                   </button>
+                  <button
+                    onClick={() => setActiveTab('demo')}
+                    className={`px-4 py-2 rounded-lg font-medium transition-colors text-sm sm:text-base ${
+                      activeTab === 'demo' 
+                        ? 'bg-green-600 text-white' 
+                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    }`}
+                  >
+                    Demo Data
+                  </button>
                 </div>
               </CardHeader>
               <CardContent className="p-0">
