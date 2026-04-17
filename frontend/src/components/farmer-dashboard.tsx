@@ -120,6 +120,12 @@ export function FarmerDashboard() {
                     />
                   </div>
                 )}
+                
+                {activeTab === 'demo' && (
+                  <div className="p-4">
+                    <DemoDashboard />
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>
