@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { Button } from '@/components/ui/button'
@@ -7,6 +8,7 @@ import { useAccount, useBalance } from 'wagmi'
 import { formatEther } from 'viem'
 
 export function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { address, isConnected } = useAccount()
   const { data: balance } = useBalance({
     address,
@@ -34,6 +36,22 @@ export function Navbar() {
               Admin
             </Link>
           </div>
+          
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2"
+            >
+              <div className="w-6 h-6 flex flex-col justify-center items-center">
+                <div className={`w-5 h-0.5 bg-gray-600 transition-all ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></div>
+                <div className={`w-5 h-0.5 bg-gray-600 transition-all my-1 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></div>
+                <div className={`w-5 h-0.5 bg-gray-600 transition-all ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></div>
+              </div>
+            </Button>
+          </div>
         </div>
         
         <div className="flex items-center space-x-4">
@@ -54,6 +72,35 @@ export function Navbar() {
           )}
         </div>
       </div>
+      
+      {/* Mobile menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden border-t bg-background/95 backdrop-blur">
+          <div className="container py-4 space-y-2">
+            <Link 
+              href="/dashboard" 
+              className="block px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded-md"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Dashboard
+            </Link>
+            <Link 
+              href="/pool" 
+              className="block px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded-md"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Pool
+            </Link>
+            <Link 
+              href="/admin" 
+              className="block px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded-md"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Admin
+            </Link>
+          </div>
+        </div>
+      )}
     </nav>
   )
 }
