@@ -5,11 +5,9 @@ import { PoolStats } from '@/components/pool-stats'
 import { UserPosition } from '@/components/user-position'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useAgroShieldPool } from '@/hooks'
-import { useAccount } from 'wagmi'
 
 export function LiquidityPool() {
-  const { address } = useAccount()
-  const { totalLiquidity, isLoadingRead, readError } = useAgroShieldPool()
+  const { totalLiquidity } = useAgroShieldPool()
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50">

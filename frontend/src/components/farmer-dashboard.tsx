@@ -7,10 +7,8 @@ import { PolicyCard } from '@/components/policy-card'
 import { WeatherDisplay } from '@/components/weather-display'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useAgroShieldPolicy } from '@/hooks'
-import { useAccount } from 'wagmi'
 
 export function FarmerDashboard() {
-  const { address } = useAccount()
   const { userPolicies, activePoliciesCount, payPremium, isWriting } = useAgroShieldPolicy()
   const [activeTab, setActiveTab] = useState<'policies' | 'weather'>('policies')
 

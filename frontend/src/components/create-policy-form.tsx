@@ -18,7 +18,7 @@ const CROP_TYPES = [
 
 export function CreatePolicyForm() {
   const { address } = useAccount()
-  const { createPolicy, isWriting, isConfirmed, confirmationReceipt } = useAgroShieldPolicy()
+  const { createPolicy, isWriting, confirmationReceipt } = useAgroShieldPolicy()
   
   const [formData, setFormData] = useState({
     cropType: '1',
