@@ -15,7 +15,7 @@ export function Navbar() {
   const { data: balance } = useBalance({
     address,
   })
-  const { shouldHideWalletUI, isMiniPay } = useMiniPay()
+  const { isMiniPay } = useMiniPay()
 
   return (
     <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">

@@ -64,31 +64,6 @@ export function useMiniPay() {
     detectMiniPay()
   }, [isConnected, isPending, connect])
 
-  const handleAutoConnect = async () => {
-    if (!state.isMiniPay || isConnected) return
-
-    setState(prev => ({ ...prev, isAutoConnecting: true }))
-
-    try {
-      await connect({
-        connector: injected(),
-      })
-      
-      setState(prev => ({ 
-        ...prev, 
-        isAutoConnecting: false,
-        isMiniPayConnected: true 
-      }))
-    } catch (error) {
-      console.error('Auto-connect to MiniPay failed:', error)
-      setState(prev => ({ 
-        ...prev, 
-        isAutoConnecting: false,
-        error: 'Failed to auto-connect to MiniPay' 
-      }))
-    }
-  }
-
   // Disconnect MiniPay if needed
   const disconnectMiniPay = () => {
     if (state.isMiniPay && isConnected) {

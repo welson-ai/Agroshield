@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect } from 'react'
 import { useAccount, useBalance } from 'wagmi'
 import { useMiniPay } from '@/hooks'
 import { Button } from '@/components/ui/button'
