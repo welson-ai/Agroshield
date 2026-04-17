@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { Button } from '@/components/ui/button'
@@ -11,11 +11,16 @@ import { formatEther } from 'viem'
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
   const { address, isConnected } = useAccount()
   const { data: balance } = useBalance({
     address,
   })
   const { isMiniPay } = useMiniPay()
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   return (
     <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -64,7 +69,7 @@ export function Navbar() {
           ) : (
             /* Show regular RainbowKit wallet for non-MiniPay browsers */
             <>
-              {isConnected && address ? (
+              {isConnected && address && isMounted ? (
                 <div className="flex items-center space-x-3">
                   <div className="text-sm text-gray-600">
                     <div className="font-medium">
