@@ -96,10 +96,15 @@ export function FarmerDashboard() {
                 )}
                 
                 {activeTab === 'weather' && (
-                  <div className="p-4">
+                  <div className="space-y-4">
+                    <LocationInput 
+                      onLocationChange={(lat, lon) => setLocation({ lat, lon })}
+                      currentLat={location.lat}
+                      currentLon={location.lon}
+                    />
                     <WeatherDisplayNew 
-                      lat={6.5244} // Example: Nairobi coordinates
-                      lon={3.3792}
+                      lat={location.lat}
+                      lon={location.lon}
                       policyThreshold={50} // Example: 50mm threshold
                     />
                   </div>
