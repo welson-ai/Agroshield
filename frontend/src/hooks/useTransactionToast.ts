@@ -59,7 +59,6 @@ export function useTransactionToast() {
                 color: 'white',
                 border: '1px solid #059669',
               },
-              onClick: () => window.open(`https://celoscan.io/tx/${txHash}`, '_blank')
             }
           )
         }, 1000)
