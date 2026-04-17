@@ -56,8 +56,14 @@ export function WeatherDisplay() {
     )
   }
 
-  const weatherData = (latestWeatherData as any) || {}
-  const { rainfall, temperature, humidity, timestamp, verified } = weatherData
+  const weatherData = latestWeatherData as {
+    rainfall?: number
+    temperature?: number
+    humidity?: number
+    timestamp?: number
+    verified?: boolean
+  } || {}
+  const { rainfall = 0, temperature = 0, humidity = 0, timestamp = 0, verified = false } = weatherData
 
   return (
     <Card>
