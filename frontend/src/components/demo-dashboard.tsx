@@ -8,7 +8,7 @@ import { DemoPolicyCard } from '@/components/demo-policy-card'
 import { PolicySeeder } from '@/components/policy-seeder'
 import { DemoStatistics } from '@/components/demo-statistics'
 import { useDemoData } from '@/hooks'
-import { BarChart3, MapPin, DollarSign, Users, RefreshCw, Filter } from 'lucide-react'
+import { BarChart3, MapPin, DollarSign, Users, RefreshCw, Filter, TrendingUp } from 'lucide-react'
 
 export function DemoDashboard() {
   const [selectedCrop, setSelectedCrop] = useState<string>('all')
@@ -135,6 +135,14 @@ export function DemoDashboard() {
               <Button
                 variant="outline"
                 size="sm"
+                onClick={() => setShowStatistics(!showStatistics)}
+              >
+                <TrendingUp className="h-4 w-4 mr-2" />
+                {showStatistics ? 'Hide Stats' : 'Show Stats'}
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
                 onClick={loadDemoData}
               >
                 <RefreshCw className="h-4 w-4 mr-2" />
@@ -194,7 +202,11 @@ export function DemoDashboard() {
         ))}
       </div>
 
-      {filteredPolicies.length === 0 && (
+      {showStatistics && (
+        <DemoStatistics />
+      )}
+
+      {filteredPolicies.length === 0 && !showStatistics && (
         <Card>
           <CardContent className="text-center py-8">
             <p className="text-gray-600">No policies found matching the selected filters.</p>
