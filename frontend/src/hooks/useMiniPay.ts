@@ -28,12 +28,28 @@ export function useMiniPay() {
     const detectMiniPay = () => {
       try {
         if (typeof window !== 'undefined' && window.ethereum) {
-          const isMiniPayBrowser = (window.ethereum as any).isMiniPay === true
+          const isMiniPayBrowser = (window.ethereum as { isMiniPay?: boolean }).isMiniPay === true
           setState(prev => ({ ...prev, isMiniPay: isMiniPayBrowser }))
           
           // Auto-connect if MiniPay and not already connected
           if (isMiniPayBrowser && !isConnected && !isPending) {
-            handleAutoConnect()
+            setState(prev => ({ ...prev, isAutoConnecting: true }))
+            connect({
+              connector: injected(),
+            }).then(() => {
+              setState(prev => ({ 
+                ...prev, 
+                isAutoConnecting: false,
+                isMiniPayConnected: true 
+              }))
+            }).catch((error) => {
+              console.error('Auto-connect to MiniPay failed:', error)
+              setState(prev => ({ 
+                ...prev, 
+                isAutoConnecting: false,
+                error: 'Failed to auto-connect to MiniPay' 
+              }))
+            })
           }
         }
       } catch (error) {
@@ -46,7 +62,7 @@ export function useMiniPay() {
     }
 
     detectMiniPay()
-  }, [isConnected, isPending])
+  }, [isConnected, isPending, connect])
 
   const handleAutoConnect = async () => {
     if (!state.isMiniPay || isConnected) return
@@ -103,8 +119,8 @@ export function useMiniPay() {
     // Helper to check if on Celo mainnet
     isCeloMainnet: () => {
       if (typeof window !== 'undefined' && window.ethereum) {
-        return (window.ethereum as any).chainId === '0xa4ec' || // 42220 in hex
-               (window.ethereum as any).networkVersion === '42220'
+        return (window.ethereum as { chainId?: string; networkVersion?: string }).chainId === '0xa4ec' || // 42220 in hex
+               (window.ethereum as { chainId?: string; networkVersion?: string }).networkVersion === '42220'
       }
       return false
     }
@@ -114,11 +130,11 @@ export function useMiniPay() {
 // Type declaration for window.ethereum extension
 declare global {
   interface Window {
-    ethereum?: any & {
+    ethereum?: Record<string, unknown> & {
       isMiniPay?: boolean
       chainId?: string
       networkVersion?: string
-      request?: (args: { method: string; params?: any[] }) => Promise<any>
+      request?: (args: { method: string; params?: unknown[] }) => Promise<unknown>
     }
   }
 }
