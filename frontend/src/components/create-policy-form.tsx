@@ -96,6 +96,37 @@ export function CreatePolicyForm() {
     )
   }
 
+  // Show transaction progress
+  if (isWriting) {
+    return (
+      <Card className="border-blue-200 bg-blue-50">
+        <CardContent className="text-center py-8">
+          <div className="relative mb-6">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="h-8 w-8 bg-blue-600 rounded-full flex items-center justify-center">
+                <span className="text-white text-sm">🔄</span>
+              </div>
+            </div>
+          </div>
+          <div className="space-y-2">
+            <div className="text-lg font-medium text-blue-800">
+              Creating your insurance policy...
+            </div>
+            <div className="text-sm text-blue-600">
+              Please confirm the transaction in your wallet
+            </div>
+            <div className="flex items-center justify-center space-x-2 mt-4">
+              <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+              <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-75"></div>
+              <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-150"></div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    )
+  }
+
   return (
     <Card>
       <CardHeader>
@@ -202,9 +233,16 @@ export function CreatePolicyForm() {
           <Button 
             type="submit" 
             disabled={isWriting || !address}
-            className="w-full bg-green-600 hover:bg-green-700"
+            className="w-full bg-green-600 hover:bg-green-700 relative"
           >
-            {isWriting ? 'Creating Policy...' : 'Create Policy'}
+            {isWriting && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+              </div>
+            )}
+            <span className={isWriting ? 'opacity-0' : ''}>
+              {isWriting ? 'Creating Policy...' : 'Create Policy'}
+            </span>
           </Button>
 
           {!address && (
