@@ -114,7 +114,7 @@ export function useMiniPay() {
 // Type declaration for window.ethereum extension
 declare global {
   interface Window {
-    ethereum?: {
+    ethereum?: any & {
       isMiniPay?: boolean
       chainId?: string
       networkVersion?: string
