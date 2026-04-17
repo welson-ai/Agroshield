@@ -1,8 +1,9 @@
 'use client'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { useWeatherData } from '@/hooks'
-import { Cloud, CloudRain, AlertTriangle, Droplets } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { useWeatherData, useWeatherOracle } from '@/hooks'
+import { Cloud, CloudRain, AlertTriangle, Droplets, Database } from 'lucide-react'
 
 interface WeatherDisplayProps {
   lat: number
@@ -12,6 +13,7 @@ interface WeatherDisplayProps {
 
 export function WeatherDisplayNew({ lat, lon, policyThreshold }: WeatherDisplayProps) {
   const { data, loading, error, refetch } = useWeatherData(lat, lon)
+  const { submitCurrentWeather, isSubmitting } = useWeatherOracle()
 
   if (loading) {
     return (
@@ -138,13 +140,28 @@ export function WeatherDisplayNew({ lat, lon, policyThreshold }: WeatherDisplayP
             </p>
           </div>
 
-          {/* Refresh Button */}
-          <button 
-            onClick={() => refetch(lat, lon)}
-            className="w-full px-4 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700"
-          >
-            Refresh Weather Data
-          </button>
+          {/* Action Buttons */}
+          <div className="flex gap-2">
+            <button 
+              onClick={() => refetch(lat, lon)}
+              className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700"
+            >
+              Refresh
+            </button>
+            
+            <button 
+              onClick={() => submitCurrentWeather(lat, lon)}
+              disabled={isSubmitting}
+              className="flex-1 px-4 py-2 bg-green-600 text-white rounded-md text-sm hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            >
+              {isSubmitting ? (
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+              ) : (
+                <Database className="h-4 w-4" />
+              )}
+              {isSubmitting ? 'Submitting...' : 'Submit to Oracle'}
+            </button>
+          </div>
         </div>
       </CardContent>
     </Card>
