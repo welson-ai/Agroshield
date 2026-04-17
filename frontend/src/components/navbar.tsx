@@ -4,7 +4,9 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { Button } from '@/components/ui/button'
+import { MiniPayWallet } from '@/components/minipay-wallet'
 import { useAccount, useBalance } from 'wagmi'
+import { useMiniPay } from '@/hooks'
 import { formatEther } from 'viem'
 
 export function Navbar() {
@@ -13,6 +15,7 @@ export function Navbar() {
   const { data: balance } = useBalance({
     address,
   })
+  const { shouldHideWalletUI, isMiniPay } = useMiniPay()
 
   return (
     <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -55,20 +58,28 @@ export function Navbar() {
         </div>
         
         <div className="flex items-center space-x-4">
-          {isConnected && address ? (
-            <div className="flex items-center space-x-3">
-              <div className="text-sm text-gray-600">
-                <div className="font-medium">
-                  {balance ? `${parseFloat(formatEther(balance.value)).toFixed(4)} CELO` : '0.0000 CELO'}
-                </div>
-                <div className="text-xs">
-                  {address.slice(0, 6)}...{address.slice(-4)}
-                </div>
-              </div>
-              <ConnectButton />
-            </div>
+          {/* Show MiniPay wallet if MiniPay browser */}
+          {isMiniPay ? (
+            <MiniPayWallet />
           ) : (
-            <ConnectButton />
+            /* Show regular RainbowKit wallet for non-MiniPay browsers */
+            <>
+              {isConnected && address ? (
+                <div className="flex items-center space-x-3">
+                  <div className="text-sm text-gray-600">
+                    <div className="font-medium">
+                      {balance ? `${parseFloat(formatEther(balance.value)).toFixed(4)} CELO` : '0.0000 CELO'}
+                    </div>
+                    <div className="text-xs">
+                      {address.slice(0, 6)}...{address.slice(-4)}
+                    </div>
+                  </div>
+                  <ConnectButton />
+                </div>
+              ) : (
+                <ConnectButton />
+              )}
+            </>
           )}
         </div>
       </div>
