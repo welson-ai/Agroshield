@@ -5,6 +5,7 @@ import { WalletInfo } from '@/components/wallet-info'
 import { CreatePolicyForm } from '@/components/create-policy-form'
 import { PolicyCard } from '@/components/policy-card'
 import { WeatherDisplay } from '@/components/weather-display'
+import { WeatherDisplayNew } from '@/components/weather-display-new'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useAgroShieldPolicy } from '@/hooks'
 
