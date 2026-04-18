@@ -40,6 +40,21 @@ export function Navbar() {
             <Link href="/pool" className="text-sm font-medium hover:text-primary">
               Pool
             </Link>
+            <Link href="/marketplace" className="text-sm font-medium hover:text-primary">
+              Marketplace
+            </Link>
+            <Link href="/premium-calculator" className="text-sm font-medium hover:text-primary">
+              Premium Calculator
+            </Link>
+            <Link href="/multi-crop" className="text-sm font-medium hover:text-primary">
+              Multi-Crop
+            </Link>
+            <Link href="/weather-prediction" className="text-sm font-medium hover:text-primary">
+              Weather
+            </Link>
+            <Link href="/staking" className="text-sm font-medium hover:text-primary">
+              Staking
+            </Link>
             <Link href="/admin" className="text-sm font-medium hover:text-primary">
               Admin
             </Link>
@@ -106,6 +121,41 @@ export function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Pool
+            </Link>
+            <Link 
+              href="/marketplace" 
+              className="block px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded-md"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Marketplace
+            </Link>
+            <Link 
+              href="/premium-calculator" 
+              className="block px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded-md"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Premium Calculator
+            </Link>
+            <Link 
+              href="/multi-crop" 
+              className="block px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded-md"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Multi-Crop
+            </Link>
+            <Link 
+              href="/weather-prediction" 
+              className="block px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded-md"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Weather
+            </Link>
+            <Link 
+              href="/staking" 
+              className="block px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded-md"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Staking
             </Link>
             <Link 
               href="/admin" 
