@@ -55,6 +55,9 @@ export function Navbar() {
             <Link href="/staking" className="text-sm font-medium hover:text-primary">
               Staking
             </Link>
+            <Link href="/transaction-spinning" className="text-sm font-medium hover:text-primary text-yellow-600">
+              ⚡ Spinning
+            </Link>
             <Link href="/admin" className="text-sm font-medium hover:text-primary">
               Admin
             </Link>
@@ -156,6 +159,13 @@ export function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Staking
+            </Link>
+            <Link 
+              href="/transaction-spinning" 
+              className="block px-3 py-2 text-sm font-medium hover:bg-gray-100 rounded-md text-yellow-600"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              ⚡ Spinning
             </Link>
             <Link 
               href="/admin" 
