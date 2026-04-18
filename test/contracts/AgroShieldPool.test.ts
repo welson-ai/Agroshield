@@ -95,4 +95,91 @@ describe("AgroShieldPool", function () {
         .to.be.reverted;
     });
   });
+
+  describe("Withdrawals", function () {
+    beforeEach(async function () {
+      // Setup: Deposit some liquidity for withdrawal tests
+      const depositAmount = ethers.utils.parseEther("1000");
+      await contracts.agroShieldPool.connect(users.investor1).deposit(depositAmount);
+    });
+
+    it("Should allow investors to withdraw their liquidity", async function () {
+      const withdrawAmount = ethers.utils.parseEther("500");
+      const initialBalance = await contracts.cUSDToken.balanceOf(users.investor1.address);
+      
+      await expect(contracts.agroShieldPool.connect(users.investor1).withdraw(withdrawAmount))
+        .to.emit(contracts.agroShieldPool, "LiquidityWithdrawn")
+        .withArgs(users.investor1.address, withdrawAmount);
+      
+      const finalBalance = await contracts.cUSDToken.balanceOf(users.investor1.address);
+      expect(finalBalance.sub(initialBalance)).to.equal(withdrawAmount);
+      
+      const remainingLiquidity = await contracts.agroShieldPool.getLiquidity(users.investor1.address);
+      expect(remainingLiquidity).to.equal(ethers.utils.parseEther("500"));
+    });
+
+    it("Should reject zero withdrawals", async function () {
+      await expect(contracts.agroShieldPool.connect(users.investor1).withdraw(0))
+        .to.be.revertedWith("Amount must be greater than 0");
+    });
+
+    it("Should reject withdrawals exceeding deposited amount", async function () {
+      const hugeAmount = ethers.utils.parseEther("2000"); // More than deposited
+      
+      await expect(contracts.agroShieldPool.connect(users.investor1).withdraw(hugeAmount))
+        .to.be.revertedWith("Insufficient liquidity");
+    });
+
+    it("Should allow partial withdrawals", async function () {
+      const firstWithdrawal = ethers.utils.parseEther("200");
+      const secondWithdrawal = ethers.utils.parseEther("300");
+      
+      await contracts.agroShieldPool.connect(users.investor1).withdraw(firstWithdrawal);
+      await contracts.agroShieldPool.connect(users.investor1).withdraw(secondWithdrawal);
+      
+      const remainingLiquidity = await contracts.agroShieldPool.getLiquidity(users.investor1.address);
+      expect(remainingLiquidity).to.equal(ethers.utils.parseEther("500"));
+    });
+
+    it("Should allow full withdrawal of all liquidity", async function () {
+      const fullAmount = ethers.utils.parseEther("1000");
+      
+      await contracts.agroShieldPool.connect(users.investor1).withdraw(fullAmount);
+      
+      expect(await contracts.agroShieldPool.getLiquidity(users.investor1.address)).to.equal(0);
+      expect(await contracts.agroShieldPool.totalLiquidity()).to.equal(0);
+    });
+
+    it("Should fail when withdrawing from empty account", async function () {
+      await expect(contracts.agroShieldPool.connect(users.investor2).withdraw(ethers.utils.parseEther("100")))
+        .to.be.revertedWith("Insufficient liquidity");
+    });
+
+    it("Should update total liquidity correctly on withdrawal", async function () {
+      const withdrawAmount = ethers.utils.parseEther("300");
+      const initialTotalLiquidity = await contracts.agroShieldPool.totalLiquidity();
+      
+      await contracts.agroShieldPool.connect(users.investor1).withdraw(withdrawAmount);
+      
+      const finalTotalLiquidity = await contracts.agroShieldPool.totalLiquidity();
+      expect(finalTotalLiquidity).to.equal(initialTotalLiquidity.sub(withdrawAmount));
+    });
+
+    it("Should handle multiple investors withdrawals correctly", async function () {
+      // Add second investor
+      await contracts.agroShieldPool.connect(users.investor2).deposit(ethers.utils.parseEther("2000"));
+      
+      const withdrawAmount1 = ethers.utils.parseEther("200");
+      const withdrawAmount2 = ethers.utils.parseEther("500");
+      
+      await contracts.agroShieldPool.connect(users.investor1).withdraw(withdrawAmount1);
+      await contracts.agroShieldPool.connect(users.investor2).withdraw(withdrawAmount2);
+      
+      expect(await contracts.agroShieldPool.getLiquidity(users.investor1.address)).to.equal(ethers.utils.parseEther("800"));
+      expect(await contracts.agroShieldPool.getLiquidity(users.investor2.address)).to.equal(ethers.utils.parseEther("1500"));
+      
+      const expectedTotal = ethers.utils.parseEther("2300");
+      expect(await contracts.agroShieldPool.totalLiquidity()).to.equal(expectedTotal);
+    });
+  });
 });
