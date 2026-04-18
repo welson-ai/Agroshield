@@ -186,4 +186,112 @@ describe("AgroShieldPolicy", function () {
         .to.be.reverted;
     });
   });
+
+  describe("Premium Payment", function () {
+    beforeEach(async function () {
+      // Setup: Create a policy for premium payment tests
+      await contracts.agroShieldPolicy.connect(users.farmer1).createPolicy(
+        DEFAULT_POLICY_PARAMS.coverageAmount,
+        DEFAULT_POLICY_PARAMS.rainfallThreshold,
+        DEFAULT_POLICY_PARAMS.measurementPeriod,
+        DEFAULT_POLICY_PARAMS.location,
+        DEFAULT_POLICY_PARAMS.description
+      );
+    });
+
+    it("Should allow farmers to pay premiums", async function () {
+      const premiumAmount = ethers.utils.parseEther("100"); // 10% of coverage
+      const initialBalance = await contracts.cUSDToken.balanceOf(users.farmer1.address);
+      
+      await expect(contracts.agroShieldPolicy.connect(users.farmer1).payPremium(1, { value: premiumAmount }))
+        .to.emit(contracts.agroShieldPolicy, "PremiumPaid")
+        .withArgs(1, users.farmer1.address, premiumAmount);
+      
+      const finalBalance = await contracts.cUSDToken.balanceOf(users.farmer1.address);
+      expect(initialBalance.sub(finalBalance)).to.equal(premiumAmount);
+      
+      const policy = await contracts.agroShieldPolicy.getPolicy(1);
+      expect(policy.isPaid).to.be.true;
+    });
+
+    it("Should reject premium payment for non-existent policy", async function () {
+      const premiumAmount = ethers.utils.parseEther("100");
+      
+      await expect(contracts.agroShieldPolicy.connect(users.farmer1).payPremium(999, { value: premiumAmount }))
+        .to.be.revertedWith("Policy does not exist");
+    });
+
+    it("Should reject premium payment from wrong farmer", async function () {
+      const premiumAmount = ethers.utils.parseEther("100");
+      
+      await expect(contracts.agroShieldPolicy.connect(users.farmer2).payPremium(1, { value: premiumAmount }))
+        .to.be.revertedWith("Not the policy owner");
+    });
+
+    it("Should reject zero premium payment", async function () {
+      await expect(contracts.agroShieldPolicy.connect(users.farmer1).payPremium(1, { value: 0 }))
+        .to.be.revertedWith("Premium must be greater than 0");
+    });
+
+    it("Should reject duplicate premium payments", async function () {
+      const premiumAmount = ethers.utils.parseEther("100");
+      
+      // First payment
+      await contracts.agroShieldPolicy.connect(users.farmer1).payPremium(1, { value: premiumAmount });
+      
+      // Second payment should fail
+      await expect(contracts.agroShieldPolicy.connect(users.farmer1).payPremium(1, { value: premiumAmount }))
+        .to.be.revertedWith("Premium already paid");
+    });
+
+    it("Should reject premium payment for inactive policy", async function () {
+      // Deactivate the policy
+      await contracts.agroShieldPolicy.connect(users.owner).deactivatePolicy(1);
+      
+      const premiumAmount = ethers.utils.parseEther("100");
+      
+      await expect(contracts.agroShieldPolicy.connect(users.farmer1).payPremium(1, { value: premiumAmount }))
+        .to.be.revertedWith("Policy is not active");
+    });
+
+    it("Should track premium payment timestamp", async function () {
+      const premiumAmount = ethers.utils.parseEther("100");
+      const beforeTimestamp = await ethers.provider.getBlock("latest").then(block => block.timestamp);
+      
+      await contracts.agroShieldPolicy.connect(users.farmer1).payPremium(1, { value: premiumAmount });
+      
+      const policy = await contracts.agroShieldPolicy.getPolicy(1);
+      expect(policy.premiumPaidAt).to.be.gt(beforeTimestamp);
+    });
+
+    it("Should handle multiple policies premium payments", async function () {
+      // Create second policy
+      await contracts.agroShieldPolicy.connect(users.farmer2).createPolicy(
+        DEFAULT_POLICY_PARAMS.coverageAmount,
+        DEFAULT_POLICY_PARAMS.rainfallThreshold,
+        DEFAULT_POLICY_PARAMS.measurementPeriod,
+        DEFAULT_POLICY_PARAMS.location,
+        "Second policy"
+      );
+      
+      const premiumAmount1 = ethers.utils.parseEther("100");
+      const premiumAmount2 = ethers.utils.parseEther("150");
+      
+      await contracts.agroShieldPolicy.connect(users.farmer1).payPremium(1, { value: premiumAmount1 });
+      await contracts.agroShieldPolicy.connect(users.farmer2).payPremium(2, { value: premiumAmount2 });
+      
+      const policy1 = await contracts.agroShieldPolicy.getPolicy(1);
+      const policy2 = await contracts.agroShieldPolicy.getPolicy(2);
+      
+      expect(policy1.isPaid).to.be.true;
+      expect(policy2.isPaid).to.be.true;
+    });
+
+    it("Should fail when farmer has insufficient cUSD balance", async function () {
+      const hugePremium = ethers.utils.parseEther("1000000"); // More than minted
+      
+      await expect(contracts.agroShieldPolicy.connect(users.farmer1).payPremium(1, { value: hugePremium }))
+        .to.be.reverted;
+    });
+  });
 });
