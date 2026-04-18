@@ -355,4 +355,239 @@ describe("AgroShieldOracle", function () {
       expect(policy.payoutTriggeredAt).to.be.gt(beforeTimestamp);
     });
   });
+
+  describe("Automatic Payout", function () {
+    beforeEach(async function () {
+      // Setup: Add liquidity to pool for payout tests
+      await contracts.agroShieldPool.connect(users.investor1).deposit(ethers.utils.parseEther("10000"));
+    });
+
+    it("Should automatically payout when rainfall exceeds threshold", async function () {
+      // Create a policy with low threshold
+      await contracts.agroShieldPolicy.connect(users.farmer1).createPolicy(
+        ethers.utils.parseEther("1000"),
+        "30", // Low threshold
+        "90",
+        DEFAULT_ORACLE_DATA.location,
+        "Test policy"
+      );
+      
+      // Pay premium
+      await contracts.agroShieldPolicy.connect(users.farmer1).payPremium(1, { value: ethers.utils.parseEther("100") });
+      
+      // Submit weather data with rainfall above threshold
+      await contracts.agroShieldOracle.connect(users.oracle).submitWeatherData(
+        DEFAULT_ORACLE_DATA.location,
+        DEFAULT_ORACLE_DATA.timestamp,
+        "75", // Above threshold
+        DEFAULT_ORACLE_DATA.temperature,
+        DEFAULT_ORACLE_DATA.humidity
+      );
+      
+      // Trigger payout
+      await expect(contracts.agroShieldOracle.connect(users.oracle).triggerPolicyPayout(1))
+        .to.emit(contracts.agroShieldOracle, "PolicyPayoutTriggered")
+        .withArgs(1, "75", "30");
+      
+      // Check if automatic payout was processed
+      const policy = await contracts.agroShieldPolicy.getPolicy(1);
+      expect(policy.payoutTriggered).to.be.true;
+      expect(policy.shouldPayout).to.be.true;
+      expect(policy.payoutProcessed).to.be.true;
+    });
+
+    it("Should not payout when rainfall is below threshold", async function () {
+      // Create a policy with high threshold
+      await contracts.agroShieldPolicy.connect(users.farmer1).createPolicy(
+        ethers.utils.parseEther("1000"),
+        "100", // High threshold
+        "90",
+        DEFAULT_ORACLE_DATA.location,
+        "Test policy"
+      );
+      
+      // Pay premium
+      await contracts.agroShieldPolicy.connect(users.farmer1).payPremium(1, { value: ethers.utils.parseEther("100") });
+      
+      // Submit weather data with rainfall below threshold
+      await contracts.agroShieldOracle.connect(users.oracle).submitWeatherData(
+        DEFAULT_ORACLE_DATA.location,
+        DEFAULT_ORACLE_DATA.timestamp,
+        "50", // Below threshold
+        DEFAULT_ORACLE_DATA.temperature,
+        DEFAULT_ORACLE_DATA.humidity
+      );
+      
+      // Trigger payout
+      await contracts.agroShieldOracle.connect(users.oracle).triggerPolicyPayout(1))
+        .to.emit(contracts.agroShieldOracle, "PolicyPayoutTriggered")
+        .withArgs(1, "50", "100");
+      
+      // Check that no payout was processed
+      const policy = await contracts.agroShieldPolicy.getPolicy(1);
+      expect(policy.payoutTriggered).to.be.true;
+      expect(policy.shouldPayout).to.be.false;
+      expect(policy.payoutProcessed).to.be.false;
+    });
+
+    it("Should transfer funds from pool to farmer on payout", async function () {
+      const initialFarmerBalance = await contracts.cUSDToken.balanceOf(users.farmer1.address);
+      const initialPoolBalance = await contracts.cUSDToken.balanceOf(contracts.agroShieldPool.address);
+      
+      // Create a policy
+      await contracts.agroShieldPolicy.connect(users.farmer1).createPolicy(
+        ethers.utils.parseEther("1000"),
+        "30",
+        "90",
+        DEFAULT_ORACLE_DATA.location,
+        "Test policy"
+      );
+      
+      // Pay premium
+      await contracts.agroShieldPolicy.connect(users.farmer1).payPremium(1, { value: ethers.utils.parseEther("100") });
+      
+      // Submit weather data and trigger payout
+      await contracts.agroShieldOracle.connect(users.oracle).submitWeatherData(
+        DEFAULT_ORACLE_DATA.location,
+        DEFAULT_ORACLE_DATA.timestamp,
+        "75",
+        DEFAULT_ORACLE_DATA.temperature,
+        DEFAULT_ORACLE_DATA.humidity
+      );
+      
+      await contracts.agroShieldOracle.connect(users.oracle).triggerPolicyPayout(1);
+      
+      // Check fund transfers
+      const finalFarmerBalance = await contracts.cUSDToken.balanceOf(users.farmer1.address);
+      const finalPoolBalance = await contracts.cUSDToken.balanceOf(contracts.agroShieldPool.address);
+      
+      expect(finalFarmerBalance.sub(initialFarmerBalance)).to.equal(ethers.utils.parseEther("1000"));
+      expect(initialPoolBalance.sub(finalPoolBalance)).to.equal(ethers.utils.parseEther("1000"));
+    });
+
+    it("Should emit payout event", async function () {
+      // Create a policy
+      await contracts.agroShieldPolicy.connect(users.farmer1).createPolicy(
+        ethers.utils.parseEther("1000"),
+        "30",
+        "90",
+        DEFAULT_ORACLE_DATA.location,
+        "Test policy"
+      );
+      
+      // Pay premium
+      await contracts.agroShieldPolicy.connect(users.farmer1).payPremium(1, { value: ethers.utils.parseEther("100") });
+      
+      // Submit weather data and trigger payout
+      await contracts.agroShieldOracle.connect(users.oracle).submitWeatherData(
+        DEFAULT_ORACLE_DATA.location,
+        DEFAULT_ORACLE_DATA.timestamp,
+        "75",
+        DEFAULT_ORACLE_DATA.temperature,
+        DEFAULT_ORACLE_DATA.humidity
+      );
+      
+      await expect(contracts.agroShieldOracle.connect(users.oracle).triggerPolicyPayout(1))
+        .to.emit(contracts.agroShieldOracle, "PolicyPayoutProcessed")
+        .withArgs(1, users.farmer1.address, ethers.utils.parseEther("1000"));
+    });
+
+    it("Should handle multiple policy payouts", async function () {
+      // Create two policies
+      await contracts.agroShieldPolicy.connect(users.farmer1).createPolicy(
+        ethers.utils.parseEther("1000"),
+        "30",
+        "90",
+        DEFAULT_ORACLE_DATA.location,
+        "Policy 1"
+      );
+      
+      await contracts.agroShieldPolicy.connect(users.farmer2).createPolicy(
+        ethers.utils.parseEther("1500"),
+        "40",
+        "90",
+        DEFAULT_ORACLE_DATA.location,
+        "Policy 2"
+      );
+      
+      // Pay premiums
+      await contracts.agroShieldPolicy.connect(users.farmer1).payPremium(1, { value: ethers.utils.parseEther("100") });
+      await contracts.agroShieldPolicy.connect(users.farmer2).payPremium(2, { value: ethers.utils.parseEther("150") });
+      
+      // Submit weather data and trigger payouts
+      await contracts.agroShieldOracle.connect(users.oracle).submitWeatherData(
+        DEFAULT_ORACLE_DATA.location,
+        DEFAULT_ORACLE_DATA.timestamp,
+        "75",
+        DEFAULT_ORACLE_DATA.temperature,
+        DEFAULT_ORACLE_DATA.humidity
+      );
+      
+      await contracts.agroShieldOracle.connect(users.oracle).triggerPolicyPayout(1);
+      await contracts.agroShieldOracle.connect(users.oracle).triggerPolicyPayout(2);
+      
+      // Check both policies were processed
+      const policy1 = await contracts.agroShieldPolicy.getPolicy(1);
+      const policy2 = await contracts.agroShieldPolicy.getPolicy(2);
+      
+      expect(policy1.payoutProcessed).to.be.true;
+      expect(policy2.payoutProcessed).to.be.true;
+    });
+
+    it("Should fail when pool has insufficient liquidity", async function () {
+      // Create a policy with huge coverage
+      await contracts.agroShieldPolicy.connect(users.farmer1).createPolicy(
+        ethers.utils.parseEther("50000"), // More than pool liquidity
+        "30",
+        "90",
+        DEFAULT_ORACLE_DATA.location,
+        "Test policy"
+      );
+      
+      // Pay premium
+      await contracts.agroShieldPolicy.connect(users.farmer1).payPremium(1, { value: ethers.utils.parseEther("5000") });
+      
+      // Submit weather data and trigger payout
+      await contracts.agroShieldOracle.connect(users.oracle).submitWeatherData(
+        DEFAULT_ORACLE_DATA.location,
+        DEFAULT_ORACLE_DATA.timestamp,
+        "75",
+        DEFAULT_ORACLE_DATA.temperature,
+        DEFAULT_ORACLE_DATA.humidity
+      );
+      
+      await expect(contracts.agroShieldOracle.connect(users.oracle).triggerPolicyPayout(1))
+        .to.be.revertedWith("Insufficient liquidity in pool");
+    });
+
+    it("Should track payout timestamp correctly", async function () {
+      // Create a policy
+      await contracts.agroShieldPolicy.connect(users.farmer1).createPolicy(
+        ethers.utils.parseEther("1000"),
+        "30",
+        "90",
+        DEFAULT_ORACLE_DATA.location,
+        "Test policy"
+      );
+      
+      // Pay premium
+      await contracts.agroShieldPolicy.connect(users.farmer1).payPremium(1, { value: ethers.utils.parseEther("100") });
+      
+      const beforeTimestamp = await ethers.provider.getBlock("latest").then(block => block.timestamp);
+      
+      // Submit weather data and trigger payout
+      await contracts.agroShieldOracle.connect(users.oracle).submitWeatherData(
+        DEFAULT_ORACLE_DATA.location,
+        DEFAULT_ORACLE_DATA.timestamp,
+        "75",
+        DEFAULT_ORACLE_DATA.temperature,
+        DEFAULT_ORACLE_DATA.humidity
+      );
+      
+      await contracts.agroShieldOracle.connect(users.oracle).triggerPolicyPayout(1);
+      
+      const policy = await contracts.agroShieldPolicy.getPolicy(1);
+      expect(policy.payoutProcessedAt).to.be.gt(beforeTimestamp);
+    });
+  });
 });
