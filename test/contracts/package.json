@@ -1,0 +1,28 @@
+{
+  "name": "agroshield-contracts-tests",
+  "version": "1.0.0",
+  "description": "Hardhat tests for AgroShield smart contracts",
+  "scripts": {
+    "test": "hardhat test test/contracts/**/*.ts",
+    "test:pool": "hardhat test test/contracts/AgroShieldPool.test.ts",
+    "test:policy": "hardhat test test/contracts/AgroShieldPolicy.test.ts",
+    "test:oracle": "hardhat test test/contracts/AgroShieldOracle.test.ts",
+    "test:integration": "hardhat test test/contracts/Integration.test.ts",
+    "test:coverage": "hardhat coverage --testfiles 'test/contracts/**/*.ts'",
+    "compile": "hardhat compile",
+    "clean": "hardhat clean"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-waffle": "^2.0.6",
+    "@nomiclabs/hardhat-chai": "^2.0.6",
+    "@types/chai": "^4.3.6",
+    "@types/mocha": "^10.0.1",
+    "chai": "^4.3.7",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.17.1",
+    "hardhat-gas-reporter": "^1.0.9",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  }
+}
