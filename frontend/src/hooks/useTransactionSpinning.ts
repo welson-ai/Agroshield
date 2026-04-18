@@ -39,19 +39,51 @@ export function useTransactionSpinning() {
   const intervalRefs = useRef<Map<string, NodeJS.Timeout>>(new Map())
 
   const getContractAddress = (contract: string) => {
-    switch (contract) {
-      case 'POOL': return AGROSHIELD_CONTRACTS.CELO.POOL
-      case 'POLICY': return AGROSHIELD_CONTRACTS.CELO.POLICY
-      case 'MARKETPLACE': return AGROSHIELD_CONTRACTS.CELO.MARKETPLACE
-      case 'STAKING': return AGROSHIELD_CONTRACTS.CELO.INSURANCE_POOL_STAKING
-      default: return AGROSHIELD_CONTRACTS.CELO.POOL
+    try {
+      const contracts = AGROSHIELD_CONTRACTS.CELO
+      if (!contracts) {
+        console.error('Contracts not available')
+        return '0x0000000000000000000000000000000000000000000'
+      }
+      
+      switch (contract) {
+        case 'POOL': return contracts.POOL || '0x0000000000000000000000000000000000000000000'
+        case 'POLICY': return contracts.POLICY || '0x0000000000000000000000000000000000000000000'
+        case 'MARKETPLACE': return contracts.MARKETPLACE || '0x0000000000000000000000000000000000000000000'
+        case 'STAKING': return contracts.INSURANCE_POOL_STAKING || '0x0000000000000000000000000000000000000000000'
+        default: return contracts.POOL || '0x0000000000000000000000000000000000000000000000'
+      }
+    } catch (error) {
+      console.error('Error getting contract address:', error)
+      return '0x0000000000000000000000000000000000000000000'
+    }
+  }
+
+  const getContractAbi = (contract: string) => {
+    try {
+      const abis = AGROSHIELD_ABIS
+      if (!abis) {
+        console.error('ABIs not available')
+        return []
+      }
+      
+      switch (contract) {
+        case 'POOL': return abis.POOL || []
+        case 'POLICY': return abis.POLICY || []
+        case 'MARKETPLACE': return abis.MARKETPLACE || []
+        case 'STAKING': return abis.INSURANCE_POOL_STAKING || []
+        default: return abis.POOL || []
+      }
+    } catch (error) {
+      console.error('Error getting contract ABI:', error)
+      return []
     }
   }
 
   const executeTransaction = async (config: TransactionConfig) => {
     try {
       const contractAddress = getContractAddress(config.contract)
-      const contractAbi = AGROSHIELD_ABIS[config.contract]
+      const contractAbi = getContractAbi(config.contract)
       
       const txArgs = {
         address: contractAddress,
@@ -165,17 +197,18 @@ export function useTransactionSpinning() {
       
       // Auto-withdraw logic based on contract type
       if (config.contract === 'POOL') {
-        // Withdraw liquidity
         const transactions = activeTransactions.get(config.id) || []
         const successfulTxs = transactions.filter(tx => tx.status === 'success')
         
         if (successfulTxs.length > 0) {
-          // Withdraw a portion of the accumulated value
           const withdrawAmount = (parseFloat(config.value || '0') * successfulTxs.length * 0.8).toString()
           
+          const contractAddress = getContractAddress('POOL')
+          const contractAbi = getContractAbi('POOL')
+          
           await writeContract({
-            address: getContractAddress('POOL'),
-            abi: AGROSHIELD_ABIS.POOL,
+            address: contractAddress,
+            abi: contractAbi,
             functionName: 'withdrawLiquidity',
             args: [parseEther(withdrawAmount)]
           })
@@ -185,12 +218,14 @@ export function useTransactionSpinning() {
       }
 
       if (config.contract === 'STAKING') {
-        // Claim rewards and withdraw stake
+        const contractAddress = getContractAddress('STAKING')
+        const contractAbi = getContractAbi('STAKING')
+        
         await writeContract({
-          address: getContractAddress('STAKING'),
-          abi: AGROSHIELD_ABIS.INSURANCE_POOL_STAKING,
+          address: contractAddress,
+          abi: contractAbi,
           functionName: 'claimRewards',
-          args: [1] // Assuming position ID 1
+          args: [1]
         })
         
         showSuccessToast('Auto-claimed staking rewards')
