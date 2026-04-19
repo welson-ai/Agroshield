@@ -12,11 +12,13 @@ import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
  */
 contract AgroShieldPolicy is Ownable, ReentrancyGuard {
     
-    // cUSD token on Celo Alfajores testnet
+    // cUSD token on Celo mainnet
     IERC20 public immutable cusdToken;
     
     // Pool contract for liquidity management
     address public poolContract;
+    
+    constructor(address _cusdToken, address _poolContract, address _oracle) Ownable(msg.sender) {
     
     // Oracle contract for weather data
     address public oracleContract;
