@@ -1,0 +1,8 @@
+{
+  "contract": "AgroShieldPool",
+  "address": "0x0e40c31eb5e729af7f417dcbe6f2cecb826c5ba6",
+  "network": "celo-mainnet",
+  "deployedAt": "2026-04-19T15:58:30.927Z",
+  "deployer": "0xEA65d20f0D3B6b77e467CF1FeCE21F7bc3166470",
+  "cusdToken": "0x765DE816845861e75A25fCA122bb6898B8B1282a"
+}
