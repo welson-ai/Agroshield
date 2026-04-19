@@ -14,6 +14,8 @@ contract AgroShieldOracle is Ownable, ReentrancyGuard {
     // Policy contract address
     address public policyContract;
     
+    constructor() Ownable(msg.sender) {
+    
     // Authorized data providers
     mapping(address => bool) public authorizedProviders;
     
