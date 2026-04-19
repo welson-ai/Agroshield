@@ -8,6 +8,9 @@ import "./AgroShieldPool.sol";
 import "./AgroShieldPolicy.sol";
 
 contract InsurancePoolStaking is ReentrancyGuard, Ownable {
+    IERC20 public immutable cusdToken;
+    
+    constructor(address _cusdToken) Ownable(msg.sender) {
     IERC20 public cUSDToken;
     AgroShieldPool public poolContract;
     AgroShieldPolicy public policyContract;
@@ -262,7 +265,7 @@ contract InsurancePoolStaking is ReentrancyGuard, Ownable {
     }
     
     function getStakerStats(address _staker) external view returns (
-        uint256 totalStaked,
+        uint256 contractTotalStaked,
         uint256 totalRewards,
         uint256 activePositions,
         uint256 averageTier
