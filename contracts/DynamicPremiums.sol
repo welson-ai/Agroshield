@@ -8,6 +8,8 @@ import "./AgroShieldOracle.sol";
 contract DynamicPremiums is Ownable, ReentrancyGuard {
     AgroShieldOracle public oracleContract;
     
+    constructor(address _oracle) Ownable(msg.sender) {
+    
     struct RiskFactor {
         string location;
         uint256 baseRiskScore;
@@ -130,11 +132,11 @@ contract DynamicPremiums is Ownable, ReentrancyGuard {
         
         // Calculate final premium
         uint256 finalPremium = basePremium
-            .mul(locationFactor)
-            .mul(cropFactor)
-            .mul(seasonalFactor)
-            .div(1000000) // Normalize for multiple factors
-            .add(riskAdjustment);
+            * locationFactor
+            * cropFactor
+            * seasonalFactor
+            / 1000000 // Normalize for multiple factors
+            + riskAdjustment;
         
         // Ensure premium is within bounds
         if (finalPremium < (_coverageAmount * minPremiumRate) / 10000) {
