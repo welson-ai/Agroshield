@@ -9,6 +9,9 @@ import "./AgroShieldOracle.sol";
 import "./DynamicPremiums.sol";
 
 contract MultiCropPolicy is ReentrancyGuard, Ownable {
+    IERC20 public immutable cusdToken;
+    
+    constructor(address _cusdToken, address _policyContract, address _oracle, address _dynamicPremiums) Ownable(msg.sender) {
     IERC20 public cUSDToken;
     AgroShieldPolicy public policyContract;
     AgroShieldOracle public oracleContract;

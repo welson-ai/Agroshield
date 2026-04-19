@@ -8,6 +8,9 @@ import "./AgroShieldPolicy.sol";
 import "./AgroShieldOracle.sol";
 
 contract PolicyMarketplace is ReentrancyGuard, Ownable {
+    IERC20 public immutable cusdToken;
+    
+    constructor(address _cusdToken) Ownable(msg.sender) {
     IERC20 public cUSDToken;
     AgroShieldPolicy public policyContract;
     AgroShieldOracle public oracleContract;
