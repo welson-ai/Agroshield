@@ -8,19 +8,22 @@ This directory contains scripts for automated transaction execution on AgroShiel
 The `spin-transactions.js` script performs automated transactions on the AgroShieldPool contract on Celo mainnet. It's designed to test contract functionality and generate transaction volume.
 
 ### What It Does
-For each iteration (10 total), the script performs:
+For each iteration (25 total), script performs:
 1. **Check Pool Stats** - Read current pool statistics
-2. **Deposit Liquidity** - Provide 0.01 CELO to the pool
-3. **Withdraw Liquidity** - Withdraw 0.005 CELO from the pool
+2. **Approve cUSD** - Approve pool to spend cUSD tokens
+3. **Deposit Liquidity** - Provide 0.01 cUSD to pool
+4. **Withdraw Liquidity** - Withdraw 0.01 cUSD from pool
 
 ### Configuration
-- **Contract**: AgroShieldPool at `0x369b50a492e9de0e4989910bd3594aebd89b5d21`
+- **Contracts**: 
+  - AgroShieldPool at `0x369b50a492e9de0e4989910bd3594aebd89b5d21`
+  - cUSD Token at `0x765DE816845861e75A25fCA122bb6898B8B1282a`
 - **Network**: Celo Mainnet (Chain ID: 42220)
 - **RPC**: https://forno.celo.org
-- **Iterations**: 10
-- **Deposit Amount**: 0.01 CELO per iteration
-- **Withdraw Amount**: 0.005 CELO per iteration
-- **Delay**: 3 seconds between iterations
+- **Iterations**: 25
+- **Transaction Amount**: 0.01 cUSD per iteration
+- **Total cUSD Needed**: 0.25 cUSD (0.01 × 25)
+- **Delay**: 2 seconds between iterations
 
 ## 🛠️ Prerequisites
 
@@ -36,7 +39,9 @@ For each iteration (10 total), the script performs:
    ```
 
 3. **Fund Your Account**:
-   Ensure your account has at least 0.1 CELO for gas fees.
+   Ensure your account has:
+   - At least 0.1 CELO for gas fees
+   - At least 0.25 cUSD for transactions (0.01 × 25 iterations)
 
 ## 🚀 Running the Script
 
@@ -75,14 +80,20 @@ npx hardhat run scripts/spin-transactions.js --network celo-mainnet
       Total Payouts: 75.5 CELO
       Active Policies: 12
 
-💰 2. Depositing liquidity...
-   📤 Deposit TX: https://celoscan.io/tx/0xabc123...
-   ✅ Deposit confirmed in block 12345
+� 2. Approving cUSD...
+   📋 Current Allowance: 0.00 cUSD
+   📤 Approve TX: https://celoscan.io/tx/0xabc123...
+   ✅ Approval confirmed in block 12345
    ⛽ Gas Used: 45000
 
-🏧 3. Withdrawing liquidity...
-   📥 Withdraw TX: https://celoscan.io/tx/0xdef456...
-   ✅ Withdraw confirmed in block 12346
+💰 3. Depositing cUSD into pool...
+   📤 Deposit TX: https://celoscan.io/tx/0xdef456...
+   ✅ Deposit confirmed in block 12346
+   ⛽ Gas Used: 42000
+
+🏧 4. Withdrawing cUSD from pool...
+   📥 Withdraw TX: https://celoscan.io/tx/0xghi789...
+   ✅ Withdraw confirmed in block 12347
    ⛽ Gas Used: 38000
 
 🎉 Spin 1 completed successfully!
@@ -91,14 +102,16 @@ npx hardhat run scripts/spin-transactions.js --network celo-mainnet
 ==================================================
 📊 TRANSACTION SPINNING SUMMARY
 ==================================================
-✅ Successful Spins: 10/10
-❌ Failed Spins: 0/10
+✅ Successful Spins: 25/25
+❌ Failed Spins: 0/25
 📈 Success Rate: 100.0%
-⛽ Total Gas Used: 830000
-💸 Total Deposited: 0.1 CELO
-🏧 Total Withdrawn: 0.05 CELO
-💰 Final Balance: 1.45 CELO
-📉 Balance Change: -0.05 CELO
+⛽ Total Gas Used: 2500000
+💸 Total cUSD Deposited: 0.25 cUSD
+🏧 Total cUSD Withdrawn: 0.25 cUSD
+💰 Final CELO Balance: 1.45 CELO
+� Final cUSD Balance: 10.00 cUSD
+📉 CELO Change: -0.05 CELO
+📉 cUSD Change: 0.00 cUSD
 
 🎊 ALL TRANSACTIONS COMPLETED SUCCESSFULLY!
 ```
@@ -111,8 +124,8 @@ npx hardhat run scripts/spin-transactions.js --network celo-mainnet
 - Double-check the contract address before running
 
 ### Gas Costs
-- Each spin consumes approximately 83,000 gas
-- Total cost for 10 spins: ~0.05 CELO in gas fees
+- Each spin consumes approximately 100,000 gas (3 transactions)
+- Total cost for 25 spins: ~0.125 CELO in gas fees
 - Gas price is set to 20 gwei (adjustable in hardhat.config.ts)
 
 ### Network Considerations
@@ -125,14 +138,10 @@ npx hardhat run scripts/spin-transactions.js --network celo-mainnet
 ### Modify Transaction Parameters
 Edit these variables in `spin-transactions.js`:
 ```javascript
-const SPIN_COUNT = 10;              // Number of iterations
-const DEPOSIT_AMOUNT = parseEther("0.01");  // Deposit amount
-const WITHDRAW_AMOUNT = parseEther("0.005"); // Withdraw amount
-```
-
-### Change Contract Address
-```javascript
+const SPIN_COUNT = 25;                           // Number of iterations
+const SPIN_AMOUNT = parseEther("0.01");          // cUSD amount per transaction
 const POOL_ADDRESS = "0x369b50a492e9de0e4989910bd3594aebd89b5d21";
+const CUSD_TOKEN_ADDRESS = "0x765DE816845861e75A25fCA122bb6898B8B1282a";
 ```
 
 ### Adjust Network Settings
