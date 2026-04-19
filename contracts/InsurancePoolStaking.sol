@@ -125,7 +125,7 @@ contract InsurancePoolStaking is ReentrancyGuard, Ownable {
             timeStaked = _position.lockPeriod;
         }
         
-        return (_position.amount * _position.rewardRate * timeStaked) / (365 days * 10000);
+        return (_position.amount * _position.rewardRate * timeStaked) / (365 * 10000);
     }
     
     function _calculateTotalRewards(address _staker) internal view returns (uint256) {
@@ -150,7 +150,7 @@ contract InsurancePoolStaking is ReentrancyGuard, Ownable {
         } else if (_lockPeriod >= 180 days) {
             return baseRate * 2; // 10% APY
         } else if (_lockPeriod >= 90 days) {
-            return baseRate * 1.5; // 7.5% APY
+            return baseRate * 3 / 2; // 7.5% APY
         } else {
             return baseRate; // 5% APY
         }
