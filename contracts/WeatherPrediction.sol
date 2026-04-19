@@ -10,6 +10,8 @@ contract WeatherPrediction is Ownable, ReentrancyGuard {
     AgroShieldOracle public oracleContract;
     DynamicPremiums public dynamicPremiums;
     
+    constructor(address _oracle, address _dynamicPremiums) Ownable(msg.sender) {
+    
     struct WeatherPrediction {
         string location;
         uint256 timestamp;
