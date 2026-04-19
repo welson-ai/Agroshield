@@ -7,7 +7,11 @@
     "test": "hardhat test",
     "deploy": "hardhat run scripts/deploy-pool.js --network celo-sepolia",
     "spin": "hardhat run scripts/spin-transactions.js --network celo-mainnet",
-    "spin-simple": "hardhat run scripts/spin-transactions-simple.js --network celo-mainnet"
+    "spin-simple": "hardhat run scripts/spin-transactions-simple.js --network celo-mainnet",
+    "spin-standalone": "node scripts/spin-standalone.cjs",
+    "spin-working": "node scripts/spin-working.cjs",
+    "spin-final": "node scripts/spin-final.cjs",
+    "spin-standard": "node scripts/spin-standard-cusd.cjs"
   },
   "keywords": [],
   "author": "",
