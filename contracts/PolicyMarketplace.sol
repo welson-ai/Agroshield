@@ -160,8 +160,7 @@ contract PolicyMarketplace is ReentrancyGuard, Ownable {
         emit PolicyDelisted(_listingId, policyId, msg.sender);
     }
     
-    function makeOffer(uint256 _listingId, uint256 _amount) external nonReentrant {
-        _validListing(_listingId)();
+    function makeOffer(uint256 _listingId, uint256 _amount) external nonReentrant validListing(_listingId) {
         
         require(_amount >= listings[_listingId].price, "Amount below listing price");
         require(_amount > 0, "Amount must be greater than 0");
@@ -188,8 +187,7 @@ contract PolicyMarketplace is ReentrancyGuard, Ownable {
         emit OfferMade(_listingId, offerId, msg.sender, _amount);
     }
     
-    function acceptOffer(uint256 _listingId, uint256 _offerId) external nonReentrant {
-        _validListing(_listingId)();
+    function acceptOffer(uint256 _listingId, uint256 _offerId) external nonReentrant validListing(_listingId) {
         
         require(
             listings[_listingId].seller == msg.sender,
@@ -234,8 +232,7 @@ contract PolicyMarketplace is ReentrancyGuard, Ownable {
         emit PolicyTransferred(policyId, msg.sender, offer.buyer, offer.amount);
     }
     
-    function buyPolicy(uint256 _listingId) external nonReentrant {
-        _validListing(_listingId)();
+    function buyPolicy(uint256 _listingId) external nonReentrant validListing(_listingId) {
         
         Listing storage listing = listings[_listingId];
         uint256 price = listing.price;
