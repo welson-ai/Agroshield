@@ -11,7 +11,7 @@ import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
  * Accepts cUSD deposits from liquidity providers and manages funds for policies
  */
 contract AgroShieldPool is Ownable, ReentrancyGuard {
-    // cUSD token on Celo Alfajores testnet
+    // cUSD token
     IERC20 public immutable cusdToken;
     
     // Pool statistics
