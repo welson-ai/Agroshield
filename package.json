@@ -11,7 +11,12 @@
     "spin-standalone": "node scripts/spin-standalone.cjs",
     "spin-working": "node scripts/spin-working.cjs",
     "spin-final": "node scripts/spin-final.cjs",
-    "spin-standard": "node scripts/spin-standard-cusd.cjs"
+    "spin-standard": "node scripts/spin-standard-cusd.cjs",
+    "deploy-new": "node scripts/deploy-standalone.cjs",
+    "spin-full": "node scripts/spin-full.cjs",
+    "spin-simple-working": "node scripts/spin-simple-working.cjs",
+    "spin-celo": "node scripts/spin-celo-working.cjs",
+    "update-token": "node scripts/update-contract-token.cjs"
   },
   "keywords": [],
   "author": "",

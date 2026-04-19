@@ -6,7 +6,7 @@ import fs from "fs";
 async function main() {
   console.log("Deploying AgroShieldPool to Celo mainnet...");
 
-  const CUSD_ADDRESS = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1";
+  const CUSD_ADDRESS = "0x765DE816845861e75A25fCA122bb6898B8B1282a";
 
   let PRIVATE_KEY = process.env.PRIVATE_KEY;
   if (!PRIVATE_KEY) {

@@ -70,7 +70,7 @@ const STANDARD_CUSD_ABI = [
 ];
 
 // Use standard cUSD token address
-const POOL_ADDRESS = "0xef65b6fe2e9de3fa865aa87107db4bcd458115d5";
+const POOL_ADDRESS = "0x5e96ea0e2527f451221fe7efc786d70df316b8c5";
 const STANDARD_CUSD_ADDRESS = "0x765DE816845861e75A25fCA122bb6898B8B1282a";
 const RPC_URL = "https://forno.celo.org";
 const CHAIN_ID = 42220;
