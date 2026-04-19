@@ -6,7 +6,8 @@
   "scripts": {
     "test": "hardhat test",
     "deploy": "hardhat run scripts/deploy-pool.js --network celo-sepolia",
-    "spin": "hardhat run scripts/spin-transactions.js --network celo-mainnet"
+    "spin": "hardhat run scripts/spin-transactions.js --network celo-mainnet",
+    "spin-simple": "hardhat run scripts/spin-transactions-simple.js --network celo-mainnet"
   },
   "keywords": [],
   "author": "",
