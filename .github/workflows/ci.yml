@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Compile contracts
+      run: npx hardhat compile
+
+    - name: Run tests
+      run: npx hardhat test
+
+    - name: Check formatting
+      run: npm run lint
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+    - name: Run security scan
+      run: |
+        npm install -g slither
+        slither contracts/ --filter-paths "contracts/*.sol" --json slither-results.json
+
+    - name: Upload security results
+      uses: actions/upload-artifact@v3
+      with:
+        name: security-scan
+        path: slither-results.json
