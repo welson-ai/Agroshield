@@ -45,6 +45,16 @@ export default defineConfig({
       gasPrice: 20000000000, // 20 gwei
       gas: 2100000,
     },
+    // Celo Mainnet (alias for script)
+    "celo-mainnet": {
+      type: "http",
+      chainType: "l1",
+      url: "https://forno.celo.org",
+      chainId: 42220,
+      accounts: [configVariable("PRIVATE_KEY")],
+      gasPrice: 20000000000, // 20 gwei
+      gas: 2100000,
+    },
   },
   paths: {
     sources: "./contracts",
