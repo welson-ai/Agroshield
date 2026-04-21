@@ -2,7 +2,7 @@
 
 ## 🔒 Security Overview
 
-AgroShield implements multiple layers of security to protect user funds and ensure contract integrity.
+AgroShield implements enterprise-grade multiple layers of security to protect user funds and ensure contract integrity.
 
 ## 🛡️ Security Measures
 
