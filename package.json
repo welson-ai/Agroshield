@@ -13,13 +13,13 @@
     "spin-final": "node scripts/spin-final.cjs",
     "spin-standard": "node scripts/spin-standard-cusd.cjs",
     "deploy-new": "node scripts/deploy-standalone.cjs",
-    "spin-full": "node scripts/spin-full.cjs",
+    "spin-full": "node scripts/spin-full-working.cjs",
     "spin-simple-working": "node scripts/spin-simple-working.cjs",
     "spin-celo": "node scripts/spin-celo-working.cjs",
     "update-token": "node scripts/update-contract-token.cjs",
     "debug-contract": "node scripts/debug-contract.cjs",
     "deploy-simple": "hardhat run scripts/deploy-simple-pool.js --network celo",
-    "spin-full": "node scripts/spin-full-working.cjs"
+    "spin-fixed": "node scripts/spin-fixed.cjs"
   },
   "keywords": [],
   "author": "",
