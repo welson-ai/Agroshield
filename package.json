@@ -19,7 +19,8 @@
     "update-token": "node scripts/update-contract-token.cjs",
     "debug-contract": "node scripts/debug-contract.cjs",
     "deploy-simple": "hardhat run scripts/deploy-simple-pool.js --network celo",
-    "spin-fixed": "node scripts/spin-fixed.cjs"
+    "spin-fixed": "node scripts/spin-fixed.cjs",
+    "check-balance": "node scripts/add-celo.cjs"
   },
   "keywords": [],
   "author": "",
