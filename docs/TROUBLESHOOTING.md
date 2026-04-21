@@ -1,4 +1,4 @@
-# Troubleshooting Guide
+# AgroShield Troubleshooting Guide
 
 ## Common Issues
 
