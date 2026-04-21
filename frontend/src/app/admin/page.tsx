@@ -9,7 +9,7 @@ import { Label } from '@/components/ui/label'
 import { useAgroShieldOracle } from '@/hooks'
 import { useAccount } from 'wagmi'
 
-export default function Admin() {
+export default function AdminPage() {
   const { address } = useAccount()
   const { submitWeatherData, isWriting } = useAgroShieldOracle()
   const [location, setLocation] = useState('')
