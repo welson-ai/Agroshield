@@ -20,10 +20,10 @@ AgroShield implements enterprise-grade multiple layers of security to protect us
 - **Safe Transfers**: Return value checking with error handling
 
 ### Oracle Security
-- **Authorized Providers**: Only approved data sources
-- **Data Validation**: Weather data format checks
-- **Timestamp Verification**: Prevents manipulation
-- **Rate Limiting**: Controls update frequency
+- **Authorized Providers**: Only approved data sources with verification
+- **Data Validation**: Weather data format checks with validation
+- **Timestamp Verification**: Prevents manipulation with cryptographic checks
+- **Rate Limiting**: Controls update frequency with throttling
 
 ## 🔍 Vulnerability Prevention
 
