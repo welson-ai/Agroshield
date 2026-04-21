@@ -2,5 +2,9 @@ import { FarmerDashboard } from '@/components/farmer-dashboard'
 
 // Dashboard page component for farmer overview
 export default function DashboardPage() {
-  return <FarmerDashboard />
+  return (
+    <div className="p-4">
+      <FarmerDashboard />
+    </div>
+  )
 }
