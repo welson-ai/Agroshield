@@ -6,7 +6,7 @@ AgroShield is a cutting-edge decentralized parametric crop insurance protocol bu
 
 The protocol consists of three core smart contracts:
 
-1. **AgroShieldPool** - Manages liquidity from providers and handles payouts
+1. **AgroShieldPool** - Manages liquidity from providers and handles automated payouts
 2. **AgroShieldPolicy** - Allows farmers to create and manage insurance policies
 3. **AgroShieldOracle** - Collects weather data and triggers automatic payouts
 
