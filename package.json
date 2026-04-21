@@ -21,6 +21,7 @@
     "deploy-simple": "hardhat run scripts/deploy-simple-pool.js --network celo",
     "spin-fixed": "node scripts/spin-fixed.cjs",
     "spin-minimal": "node scripts/spin-minimal.cjs",
+    "analyze-gas": "node scripts/gas-analyzer.cjs",
     "check-balance": "node scripts/add-celo.cjs"
   },
   "keywords": [],
