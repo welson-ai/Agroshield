@@ -1,4 +1,4 @@
-# Contributing to AgroShield
+# Contributing to AgroShield Protocol
 
 Thank you for your interest in contributing to AgroShield! This document provides guidelines and information for contributors.
 
