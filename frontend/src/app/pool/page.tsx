@@ -1,5 +1,5 @@
 import { LiquidityPool } from '@/components/liquidity-pool'
 
-export default function Pool() {
+export default function PoolPage() {
   return <LiquidityPool />
 }
