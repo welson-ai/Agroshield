@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label'
 import { useAgroShieldOracle } from '@/hooks'
 import { useAccount } from 'wagmi'
 
+// Admin page component for protocol management
 export default function AdminPage() {
   const { address } = useAccount()
   const { submitWeatherData, isWriting } = useAgroShieldOracle()
