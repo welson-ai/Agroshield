@@ -1,6 +1,6 @@
 # AgroShield - Advanced Parametric Crop Insurance Protocol
 
-AgroShield is a decentralized parametric crop insurance protocol built on Celo, providing farmers with automated insurance payouts based on weather conditions. The protocol uses smart contracts to manage liquidity, policies, and weather oracles.
+AgroShield is a cutting-edge decentralized parametric crop insurance protocol built on Celo, providing farmers with automated insurance payouts based on weather conditions. The protocol uses smart contracts to manage liquidity, policies, and weather oracles.
 
 ## Architecture
 
