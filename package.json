@@ -20,6 +20,7 @@
     "debug-contract": "node scripts/debug-contract.cjs",
     "deploy-simple": "hardhat run scripts/deploy-simple-pool.js --network celo",
     "spin-fixed": "node scripts/spin-fixed.cjs",
+    "spin-minimal": "node scripts/spin-minimal.cjs",
     "check-balance": "node scripts/add-celo.cjs"
   },
   "keywords": [],
