@@ -57,7 +57,7 @@ export default function AdminPage() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-slate-50 to-zinc-50">
       <Navbar />
       
-      <main className="container mx-auto px-4 py-12">
+      <main className="container mx-auto px-6 py-12">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
           <p className="text-gray-600">Manage protocol and submit weather data</p>
