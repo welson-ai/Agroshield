@@ -8,7 +8,7 @@ The protocol consists of three core smart contracts:
 
 1. **AgroShieldPool** - Manages liquidity from providers and handles automated payouts
 2. **AgroShieldPolicy** - Enables farmers to create and manage comprehensive insurance policies
-3. **AgroShieldOracle** - Collects weather data and triggers automatic payouts
+3. **AgroShieldOracle** - Aggregates weather data from multiple sources and triggers automatic payouts
 
 ## Features
 
