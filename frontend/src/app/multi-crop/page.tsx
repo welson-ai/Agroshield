@@ -3,7 +3,7 @@ import { MultiCropPolicy } from '@/components/multi-crop-policy'
 // Multi-crop page component for comprehensive insurance policies
 export default function MultiCropPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-lime-50 via-green-50 to-emerald-50">
       <MultiCropPolicy />
     </div>
   )
