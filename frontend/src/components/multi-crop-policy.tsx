@@ -26,6 +26,15 @@ const DEFAULT_CROPS = [
   { id: 'Wheat', name: 'Wheat' }
 ]
 
+/**
+ * MultiCropPolicy component - Interface for creating and managing multi-crop insurance policies
+ * Allows farmers to bundle multiple crops under a single insurance policy
+ * 
+ * @returns JSX.Element - Multi-crop policy management interface with bundling features
+ * 
+ * @example
+ * <MultiCropPolicy />
+ */
 export function MultiCropPolicy() {
   const { 
     createMultiCropPolicy,
