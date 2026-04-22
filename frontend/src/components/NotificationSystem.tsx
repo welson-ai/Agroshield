@@ -30,6 +30,13 @@ export const useNotifications = () => {
   return context;
 };
 
+/**
+ * NotificationProvider component - Context provider for notification system
+ * Manages toast notifications with auto-dismiss functionality
+ * 
+ * @param children - React nodes to wrap with notification context
+ * @returns JSX.Element - Notification provider with context
+ */
 export const NotificationProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
 
