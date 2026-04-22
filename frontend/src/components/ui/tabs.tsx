@@ -32,7 +32,11 @@ const Tabs: React.FC<TabsProps> = ({ defaultValue, value, onValueChange, childre
 
   return (
     <TabsContext.Provider value={{ activeTab, setActiveTab: handleTabChange }}>
-      <div className={className}>
+      <div 
+        className={className}
+        role="tablist"
+        aria-orientation="horizontal"
+      >
         {children}
       </div>
     </TabsContext.Provider>
@@ -75,6 +79,11 @@ const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
           isActive && "bg-background text-foreground shadow-sm",
           className
         )}
+        role="tab"
+        aria-selected={isActive}
+        aria-controls={`tabpanel-${value}`}
+        id={`tab-${value}`}
+        tabIndex={isActive ? 0 : -1}
         onClick={() => setActiveTab(value)}
         {...props}
       />
@@ -104,6 +113,10 @@ const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
           "mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
           className
         )}
+        role="tabpanel"
+        aria-labelledby={`tab-${value}`}
+        id={`tabpanel-${value}`}
+        tabIndex={0}
         {...props}
       >
         {children}
