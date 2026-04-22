@@ -23,6 +23,15 @@ interface Policy {
   isActive: boolean;
 }
 
+/**
+ * PolicyMarketplace component - Secondary market for policy trading
+ * Allows users to buy/sell insurance policies on the open market
+ * 
+ * @returns JSX.Element - Marketplace interface with listings and trading
+ * 
+ * @example
+ * <PolicyMarketplace />
+ */
 export const PolicyMarketplace: React.FC = () => {
   const { address, isConnected } = useAccount();
   const { data: signer } = useSigner();
