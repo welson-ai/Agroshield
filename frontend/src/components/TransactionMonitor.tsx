@@ -21,6 +21,15 @@ interface PoolStats {
   activeUsers: number;
 }
 
+/**
+ * TransactionMonitor component - Real-time transaction monitoring interface
+ * Displays transaction history, pool statistics, and filtering options
+ * 
+ * @returns JSX.Element - Transaction monitoring dashboard with filters
+ * 
+ * @example
+ * <TransactionMonitor />
+ */
 export const TransactionMonitor: React.FC = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [poolStats, setPoolStats] = useState<PoolStats>({
