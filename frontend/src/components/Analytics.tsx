@@ -34,6 +34,15 @@ interface ChartData {
   }>;
 }
 
+/**
+ * Analytics component - Comprehensive analytics dashboard with charts
+ * Displays protocol metrics, user growth, and transaction analytics
+ * 
+ * @returns JSX.Element - Analytics dashboard with interactive charts
+ * 
+ * @example
+ * <Analytics />
+ */
 export const Analytics: React.FC = () => {
   const [analyticsData, setAnalyticsData] = useState<AnalyticsData>({
     totalVolume: '0',
