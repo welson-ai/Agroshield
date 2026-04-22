@@ -8,6 +8,17 @@ import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
  * @title AgroShieldOracle
  * @dev Oracle contract for weather data and automatic payout triggering
  * Manages weather data feeds and triggers policy payouts based on rainfall thresholds
+ * 
+ * Features:
+ * - Decentralized weather data aggregation
+ * - Multi-provider data verification
+ * - Automatic payout triggering
+ * - Historical weather data storage
+ * - Location-based data management
+ * 
+ * @author AgroShield Team
+ * @notice Use this contract for weather data management and payout automation
+ * @dev Implements decentralized oracle architecture for reliable weather data
  */
 contract AgroShieldOracle is Ownable, ReentrancyGuard {
     
