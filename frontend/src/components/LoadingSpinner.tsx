@@ -7,6 +7,19 @@ interface LoadingSpinnerProps {
   className?: string;
 }
 
+/**
+ * LoadingSpinner component - Customizable loading spinner with text
+ * Displays animated spinner with configurable size and color
+ * 
+ * @param size - Spinner size: 'sm' | 'md' | 'lg' | 'xl' (default: 'md')
+ * @param color - Spinner color: 'primary' | 'secondary' | 'white' | 'gray' (default: 'primary')
+ * @param text - Optional text to display below spinner
+ * @param className - Additional CSS classes
+ * @returns JSX.Element - Loading spinner component
+ * 
+ * @example
+ * <LoadingSpinner size="lg" color="primary" text="Loading..." />
+ */
 export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   size = 'md',
   color = 'primary',
