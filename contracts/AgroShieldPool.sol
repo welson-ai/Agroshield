@@ -9,6 +9,16 @@ import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
  * @title AgroShieldPool
  * @dev Liquidity pool for AgroShield parametric crop insurance
  * Accepts cUSD deposits from liquidity providers and manages funds for policies
+ * 
+ * Features:
+ * - Liquidity provision with share-based accounting
+ * - Reserve management for risk mitigation
+ * - Policy authorization system
+ * - Emergency withdrawal capabilities
+ * 
+ * @author AgroShield Team
+ * @notice Use this contract to provide liquidity and manage insurance pool funds
+ * @dev Implements OpenZeppelin standards for security and gas optimization
  */
 contract AgroShieldPool is Ownable, ReentrancyGuard {
     // cUSD token
