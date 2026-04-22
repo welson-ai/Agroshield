@@ -12,6 +12,15 @@ interface WalletInfo {
   };
 }
 
+/**
+ * WalletConnect component - Wallet connection interface for AgroShield
+ * Handles wallet connection, disconnection, and chain switching on Celo
+ * 
+ * @returns JSX.Element - Wallet connect button with dropdown and account info
+ * 
+ * @example
+ * <WalletConnect />
+ */
 export const WalletConnect: React.FC = () => {
   const { address, isConnected } = useAccount();
   const { connect, connectors, isPending } = useConnect();
