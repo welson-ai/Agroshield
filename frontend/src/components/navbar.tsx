@@ -9,6 +9,15 @@ import { useAccount, useBalance } from 'wagmi'
 import { useMiniPay } from '@/hooks'
 import { formatEther } from 'viem'
 
+/**
+ * Navbar component - Main navigation header for AgroShield application
+ * Includes wallet connection, balance display, and navigation links
+ * 
+ * @returns JSX.Element - Responsive navigation header with wallet integration
+ * 
+ * @example
+ * <Navbar />
+ */
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
