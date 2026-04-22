@@ -22,6 +22,15 @@ interface PolicyFormData {
   location: string;
 }
 
+/**
+ * PolicyManager component - Policy creation and management interface
+ * Allows users to create new insurance policies and manage existing ones
+ * 
+ * @returns JSX.Element - Policy management interface with form and list
+ * 
+ * @example
+ * <PolicyManager />
+ */
 export const PolicyManager: React.FC = () => {
   const { address, isConnected } = useAccount();
   const { data: signer } = useSigner();
