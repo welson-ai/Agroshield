@@ -21,6 +21,15 @@ interface WeatherPrediction {
   isActive: boolean;
 }
 
+/**
+ * WeatherDashboard component - Weather data and prediction interface
+ * Displays current weather conditions and AI-powered predictions
+ * 
+ * @returns JSX.Element - Weather dashboard with real-time data and forecasts
+ * 
+ * @example
+ * <WeatherDashboard />
+ */
 export const WeatherDashboard: React.FC = () => {
   const [weatherData, setWeatherData] = useState<WeatherData[]>([]);
   const [predictions, setPredictions] = useState<WeatherPrediction[]>([]);
