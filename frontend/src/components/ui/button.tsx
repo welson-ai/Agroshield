@@ -59,6 +59,11 @@ function Button({
       data-variant={variant}
       data-size={size}
       className={cn(buttonVariants({ variant, size, className }))}
+      role="button"
+      aria-pressed={props['aria-pressed']}
+      aria-expanded={props['aria-expanded']}
+      aria-describedby={props['aria-describedby']}
+      aria-labelledby={props['aria-labelledby']}
       {...props}
     />
   )
