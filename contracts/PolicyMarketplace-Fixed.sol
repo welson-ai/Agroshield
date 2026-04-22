@@ -7,6 +7,22 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "./AgroShieldPolicy.sol";
 import "./AgroShieldOracle.sol";
 
+/**
+ * @title PolicyMarketplace
+ * @dev Secondary marketplace for trading insurance policies
+ * Allows policy holders to sell their policies to other users
+ * 
+ * Features:
+ * - Policy listing and trading
+ * - Escrow system for secure transactions
+ * - Time-based listings with expiration
+ * - Commission system for marketplace fees
+ * - Integration with AgroShield ecosystem
+ * 
+ * @author AgroShield Team
+ * @notice Use this contract to buy and sell insurance policies on secondary market
+ * @dev Implements secure escrow and automated policy transfer mechanisms
+ */
 contract PolicyMarketplace is ReentrancyGuard, Ownable {
     IERC20 public immutable cusdToken;
     AgroShieldPolicy public policyContract;
