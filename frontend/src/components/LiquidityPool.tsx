@@ -10,6 +10,15 @@ interface PoolStats {
   sharePercentage: string;
 }
 
+/**
+ * LiquidityPool component - Pool management interface for AgroShield
+ * Allows users to deposit/withdraw liquidity and view pool statistics
+ * 
+ * @returns JSX.Element - Liquidity pool interface with deposit/withdraw forms
+ * 
+ * @example
+ * <LiquidityPool />
+ */
 export const LiquidityPool: React.FC = () => {
   const { address, isConnected } = useAccount();
   const { data: signer } = useSigner();
