@@ -11,6 +11,15 @@ import { DemoDashboard } from '@/components/demo-dashboard'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useAgroShieldPolicy } from '@/hooks'
 
+/**
+ * FarmerDashboard component - Main dashboard for farmers to manage insurance policies
+ * Provides policy creation, management, and weather monitoring capabilities
+ * 
+ * @returns JSX.Element - Comprehensive farmer dashboard with policy management
+ * 
+ * @example
+ * <FarmerDashboard />
+ */
 export function FarmerDashboard() {
   const { userPolicies, activePoliciesCount, payPremium, isWriting } = useAgroShieldPolicy()
   const [activeTab, setActiveTab] = useState<'policies' | 'weather' | 'demo'>('policies')
