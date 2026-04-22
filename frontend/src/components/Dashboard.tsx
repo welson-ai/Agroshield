@@ -23,6 +23,12 @@ interface RecentActivity {
   status: 'pending' | 'completed' | 'failed';
 }
 
+/**
+ * Dashboard component - Main dashboard for AgroShield protocol
+ * Displays user statistics, portfolio health, and recent activity
+ * 
+ * @returns JSX.Element - The dashboard interface
+ */
 export const Dashboard: React.FC = () => {
   const { address, isConnected } = useAccount();
   const [stats, setStats] = useState<DashboardStats>({
