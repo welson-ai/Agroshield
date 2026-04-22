@@ -23,6 +23,22 @@ interface PolicyCardProps {
   isLoading?: boolean
 }
 
+/**
+ * PolicyCard component - Display card for insurance policy information
+ * Shows policy details, status, and action buttons for premium payment
+ * 
+ * @param policy - Policy object with all policy details
+ * @param onPayPremium - Callback function for premium payment
+ * @param isLoading - Loading state for button interactions
+ * @returns JSX.Element - Policy information card with interactive elements
+ * 
+ * @example
+ * <PolicyCard 
+ *   policy={policyData} 
+ *   onPayPremium={handlePayment} 
+ *   isLoading={false} 
+ * />
+ */
 export function PolicyCard({ policy, onPayPremium, isLoading }: PolicyCardProps) {
   const [currentTime, setCurrentTime] = useState(() => Date.now())
   
