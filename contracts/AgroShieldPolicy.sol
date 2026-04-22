@@ -9,6 +9,17 @@ import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
  * @title AgroShieldPolicy
  * @dev Policy contract for farmers to purchase crop insurance policies
  * Manages policy creation, premium payments, and payout coordination
+ * 
+ * Features:
+ * - Parametric weather-based insurance
+ * - Dynamic premium calculation
+ * - Automated payout triggers
+ * - Multi-crop support
+ * - Oracle integration for weather data
+ * 
+ * @author AgroShield Team
+ * @notice Use this contract to create and manage crop insurance policies
+ * @dev Integrates with AgroShieldPool for liquidity and AgroShieldOracle for data
  */
 contract AgroShieldPolicy is Ownable, ReentrancyGuard {
     
