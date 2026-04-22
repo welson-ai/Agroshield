@@ -7,6 +7,22 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "./AgroShieldPool.sol";
 import "./AgroShieldPolicy.sol";
 
+/**
+ * @title InsurancePoolStaking
+ * @dev Staking contract for liquidity providers to earn additional rewards
+ * Allows users to stake their pool shares for enhanced returns
+ * 
+ * Features:
+ * - Flexible staking periods
+ * - Dynamic reward rates
+ * - Multi-position staking
+ * - Early unstaking penalties
+ * - Reward compounding
+ * 
+ * @author AgroShield Team
+ * @notice Use this contract to stake pool shares and earn staking rewards
+ * @dev Integrates with AgroShieldPool for share management and rewards
+ */
 contract InsurancePoolStaking is ReentrancyGuard, Ownable {
     IERC20 public immutable cusdToken;
     AgroShieldPool public poolContract;
