@@ -22,6 +22,17 @@ interface NotificationContextType {
 
 const NotificationContext = createContext<NotificationContextType | undefined>(undefined);
 
+/**
+ * useNotifications hook - Custom hook for accessing notification context
+ * Provides methods to manage notifications throughout the app
+ * 
+ * @returns {NotificationContextType} - Notification context with add/remove/clear methods
+ * @throws {Error} - When used outside NotificationProvider
+ * 
+ * @example
+ * const { addNotification, removeNotification } = useNotifications();
+ * addNotification({ type: 'success', title: 'Success', message: 'Operation completed' });
+ */
 export const useNotifications = () => {
   const context = useContext(NotificationContext);
   if (!context) {
