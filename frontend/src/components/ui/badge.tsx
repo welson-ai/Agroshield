@@ -21,6 +21,9 @@ function Badge({ className, variant = 'default', ...props }: BadgeProps) {
         variantClasses[variant],
         className
       )} 
+      role="status"
+      aria-label={props['aria-label']}
+      aria-live="polite"
       {...props} 
     />
   )
