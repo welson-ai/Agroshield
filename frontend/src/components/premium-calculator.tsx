@@ -28,6 +28,15 @@ const DEFAULT_CROPS = [
   { id: 'Wheat', name: 'Wheat' }
 ]
 
+/**
+ * PremiumCalculator component - Dynamic insurance premium calculation interface
+ * Calculates premiums based on location risk, crop type, and coverage amount
+ * 
+ * @returns JSX.Element - Interactive premium calculator with risk analysis
+ * 
+ * @example
+ * <PremiumCalculator />
+ */
 export function PremiumCalculator() {
   const { 
     calculateDynamicPremium,
