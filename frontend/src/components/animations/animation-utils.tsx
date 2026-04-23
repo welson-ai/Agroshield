@@ -28,7 +28,7 @@ export function useAnimation({
 }: UseAnimationProps = {}) {
   const [isAnimating, setIsAnimating] = useState(false)
   const [hasAnimated, setHasAnimated] = useState(false)
-  const timeoutRef = useRef<NodeJS.Timeout>()
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const startAnimation = useCallback(() => {
     if (timeoutRef.current) {
@@ -158,8 +158,8 @@ export function useSpringAnimation(config: SpringConfig = {}) {
   const [value, setValue] = useState(0)
   const [targetValue, setTargetValue] = useState(0)
   const [velocity, setVelocity] = useState(0)
-  const animationRef = useRef<number>()
-  const lastTimeRef = useRef<number>()
+  const animationRef = useRef<number | null>(null)
+  const lastTimeRef = useRef<number | null>(null)
 
   const animateTo = useCallback((newTarget: number) => {
     setTargetValue(newTarget)
