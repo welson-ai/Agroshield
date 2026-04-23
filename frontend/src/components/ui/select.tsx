@@ -6,7 +6,7 @@ interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
 }
 
 const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
-  ({ className, children, ...props }, ref) => (
+  ({ className, children, disabled, ...props }, ref) => (
     <select
       ref={ref}
       className={cn(
@@ -17,6 +17,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       aria-invalid={props['aria-invalid']}
       aria-describedby={props['aria-describedby']}
       aria-labelledby={props['aria-labelledby']}
+      disabled={disabled}
       {...props}
     >
       {children}
