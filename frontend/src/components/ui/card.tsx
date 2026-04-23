@@ -18,6 +18,7 @@ function Card({
       role="article"
       aria-labelledby={props['aria-labelledby']}
       aria-describedby={props['aria-describedby']}
+      tabIndex={props.tabIndex ?? 0}
       {...props}
     />
   )
