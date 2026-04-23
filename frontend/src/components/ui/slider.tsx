@@ -89,6 +89,35 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       updateValue(e.clientX)
     }
 
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+      if (disabled) return
+      
+      let newValue = currentValue
+      switch (e.key) {
+        case 'ArrowLeft':
+        case 'ArrowDown':
+          newValue = Math.max(min, currentValue - step)
+          break
+        case 'ArrowRight':
+        case 'ArrowUp':
+          newValue = Math.min(max, currentValue + step)
+          break
+        case 'Home':
+          newValue = min
+          break
+        case 'End':
+          newValue = max
+          break
+        default:
+          return
+      }
+      
+      e.preventDefault()
+      setCurrentValue(newValue)
+      onValueChange?.(newValue)
+    }
+    }
+
     const handleTouchStart = (e: React.TouchEvent) => {
       if (disabled) return
       setIsDragging(true)
