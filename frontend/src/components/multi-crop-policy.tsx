@@ -68,6 +68,7 @@ export function MultiCropPolicy() {
   }
 
   const removeCrop = (index: number) => {
+    // Remove crop entry (minimum 1 crop required)
     if (crops.length > 1) {
       setCrops(crops.filter((_, i) => i !== index))
     }
