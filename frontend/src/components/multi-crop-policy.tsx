@@ -75,6 +75,7 @@ export function MultiCropPolicy() {
   }
 
   const updateCrop = (index: number, field: keyof CropEntry, value: string | number) => {
+    // Update specific field of a crop entry
     const updatedCrops = [...crops]
     updatedCrops[index] = { ...updatedCrops[index], [field]: value }
     setCrops(updatedCrops)
