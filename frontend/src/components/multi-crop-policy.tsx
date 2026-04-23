@@ -131,6 +131,7 @@ export function MultiCropPolicy() {
   }
 
   const loadUserPolicies = async () => {
+    // Load all multi-crop policies for the current farmer
     try {
       const policies = await getFarmerMultiCropPolicies('0x') // Replace with actual user address
       if (policies) {
