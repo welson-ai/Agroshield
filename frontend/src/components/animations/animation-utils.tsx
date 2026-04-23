@@ -405,14 +405,14 @@ export function AnimatedProgress({
  *   <AnimatedContent />
  * </AnimationController>
  */
-interface AnimationConfig {
+export interface AnimationConfig {
   name: string
   duration: number
   delay: number
   onComplete?: () => void
 }
 
-interface AnimationControllerProps {
+export interface AnimationControllerProps {
   children: React.ReactNode
   animations: AnimationConfig[]
   trigger?: boolean
