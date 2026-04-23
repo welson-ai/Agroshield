@@ -15,7 +15,7 @@ import { cn } from '@/lib/utils'
  * @example
  * const { isAnimating, startAnimation, stopAnimation } = useAnimation(true, 500)
  */
-interface UseAnimationProps {
+export interface UseAnimationProps {
   trigger?: boolean
   duration?: number
   delay?: number
