@@ -19,7 +19,7 @@ import { cn } from '@/lib/utils'
  *   <PageContent />
  * </PageTransition>
  */
-interface PageTransitionProps {
+export interface PageTransitionProps {
   children: React.ReactNode
   className?: string
   type?: 'fade' | 'slide' | 'scale' | 'flip'
