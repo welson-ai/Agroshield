@@ -104,6 +104,7 @@ export function MultiCropPolicy() {
   }
 
   const handleCreatePolicy = async () => {
+    // Create new multi-crop policy with validated crop data
     const validCrops = crops.filter(crop => 
       crop.cropType && crop.coverageAmount && crop.rainfallThreshold
     )
