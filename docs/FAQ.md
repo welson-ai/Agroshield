@@ -1,5 +1,7 @@
 # Frequently Asked Questions
 
+*Last updated: April 23, 2026*
+
 ## General Questions
 
 ### What is AgroShield?
