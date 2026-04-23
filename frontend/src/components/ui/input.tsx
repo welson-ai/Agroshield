@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
-function Input({ className, type, ...props }: React.ComponentProps<"input">) {
+function Input({ className, type, disabled, ...props }: React.ComponentProps<"input">) {
   return (
     <input
       type={type}
@@ -16,6 +16,7 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
       aria-describedby={props['aria-describedby']}
       aria-labelledby={props['aria-labelledby']}
       autoComplete={props.autoComplete}
+      disabled={disabled}
       {...props}
     />
   )
