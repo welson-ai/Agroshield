@@ -1,5 +1,7 @@
 # AgroShield Roadmap
 
+*Last updated: April 23, 2026*
+
 ## Vision
 
 Our vision is to create the world's most accessible, transparent, and efficient agricultural insurance platform, protecting farmers globally through decentralized technology.
