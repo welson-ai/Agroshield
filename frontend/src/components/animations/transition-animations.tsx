@@ -19,7 +19,7 @@ import { cn } from '@/lib/utils'
  *   <div>Fading content</div>
  * </FadeIn>
  */
-interface FadeInProps {
+export interface FadeInProps {
   children: React.ReactNode
   className?: string
   duration?: number
