@@ -5,6 +5,7 @@ interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   children: React.ReactNode
 }
 
+// Custom select component with consistent styling and accessibility
 const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
   ({ className, children, disabled, ...props }, ref) => (
     <select
