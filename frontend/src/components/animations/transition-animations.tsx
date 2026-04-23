@@ -341,7 +341,7 @@ export function BounceIn({
  *   ))}
  * </StaggeredAnimation>
  */
-interface StaggeredAnimationProps {
+export interface StaggeredAnimationProps {
   children: React.ReactNode[]
   className?: string
   staggerDelay?: number
