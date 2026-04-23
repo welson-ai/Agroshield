@@ -203,7 +203,7 @@ export function RouteTransition({
  *   <ProfileContent />
  * </TabTransition>
  */
-interface TabTransitionProps {
+export interface TabTransitionProps {
   children: React.ReactNode
   isActive: boolean
   className?: string
