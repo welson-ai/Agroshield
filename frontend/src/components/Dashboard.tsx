@@ -57,7 +57,7 @@ export const Dashboard: React.FC = () => {
       const mockStats: DashboardStats = {
         totalLiquidity: '1,234,567.89',
         userLiquidity: '123.45',
-        totalPolicies: 1,234,
+        totalPolicies: 1234,
         activePolicies: 856,
         totalClaims: 234,
         pendingClaims: 12,
