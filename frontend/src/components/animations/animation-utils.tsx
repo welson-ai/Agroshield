@@ -82,7 +82,7 @@ export function useAnimation({
  * @example
  * const { isIntersecting, ref } = useIntersectionAnimation({ threshold: 0.1 })
  */
-interface UseIntersectionAnimationOptions {
+export interface UseIntersectionAnimationOptions {
   threshold?: number | number[]
   rootMargin?: string
   triggerOnce?: boolean
