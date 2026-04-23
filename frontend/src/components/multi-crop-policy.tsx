@@ -61,6 +61,7 @@ export function MultiCropPolicy() {
   })
 
   const addCrop = () => {
+    // Add new crop entry (maximum 5 crops per policy)
     if (crops.length < 5) {
       setCrops([...crops, { cropType: '', coverageAmount: '', rainfallThreshold: 80, weight: 5000 }])
     }
