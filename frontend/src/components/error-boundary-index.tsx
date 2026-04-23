@@ -206,7 +206,7 @@ export function useErrorBoundaryConfig(): ErrorBoundaryConfig {
  * ErrorBoundaryLogger.logError(error, errorInfo, 'TransactionComponent')
  */
 export class ErrorBoundaryLogger {
-  static logError(error: Error, errorInfo?: ErrorInfo, context?: string) {
+  static logError(error: Error, errorInfo?: React.ErrorInfo, context?: string) {
     const config = useErrorBoundaryConfig()
     
     if (!config.enableLogging) return
