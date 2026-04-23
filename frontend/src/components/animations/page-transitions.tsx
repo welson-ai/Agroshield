@@ -354,7 +354,7 @@ export function ModalTransition({
  *   ))}
  * </ListTransition>
  */
-interface ListTransitionProps {
+export interface ListTransitionProps {
   children: React.ReactNode[]
   className?: string
   staggerDelay?: number
