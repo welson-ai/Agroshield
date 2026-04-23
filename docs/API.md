@@ -1,5 +1,7 @@
 # AgroShield API Documentation
 
+*Last updated: April 23, 2026*
+
 ## Overview
 
 The AgroShield API provides access to insurance policies, claims, liquidity data, and weather information.
