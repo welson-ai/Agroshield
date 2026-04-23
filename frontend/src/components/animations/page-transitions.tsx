@@ -122,7 +122,7 @@ export function PageTransition({
  *   <DashboardPage />
  * </RouteTransition>
  */
-interface RouteTransitionProps {
+export interface RouteTransitionProps {
   children: React.ReactNode
   className?: string
   routeName?: string
