@@ -207,7 +207,7 @@ function MobileNavItem({
                 'w-full justify-start h-10 px-4',
                 activeItem === child.id && 'bg-primary/10 text-primary border-l-2 border-primary'
               )}
-              onClick={() => onClick?.()}
+              onClick={() => onItemClick?.(child)}
             >
               <div className="flex items-center flex-1">
                 <span className="mr-3">{child.icon}</span>
