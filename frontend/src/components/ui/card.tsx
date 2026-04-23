@@ -2,6 +2,7 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
+// Card component with size variants for content containers
 function Card({
   className,
   size = "default",
