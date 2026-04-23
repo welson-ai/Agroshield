@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useAccount, useContract, useSigner } from 'wagmi';
+import { useAccount, useReadContract, useWriteContract } from 'wagmi';
 import { parseEther, formatEther } from 'viem';
-import { AgroShieldPool } from '../../contracts/AgroShieldPool';
+import { AGROSHIELD_CONTRACTS, AGROSHIELD_ABIS } from '@/constants/contracts';
 
 interface PoolStats {
   totalLiquidity: string;
