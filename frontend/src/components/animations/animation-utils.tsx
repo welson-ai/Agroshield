@@ -171,7 +171,7 @@ export function useSpringAnimation(config: SpringConfig = {}) {
         lastTimeRef.current = currentTime
       }
 
-      const deltaTime = Math.min((currentTime - lastTimeRef.current) / 1000, 0.1)
+      const deltaTime = Math.min((currentTime - (lastTimeRef.current || 0)) / 1000, 0.1)
       lastTimeRef.current = currentTime
 
       const displacement = targetValue - value
