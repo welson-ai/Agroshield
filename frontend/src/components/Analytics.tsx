@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useContract } from 'wagmi';
+import { useReadContract, useAccount } from 'wagmi';
 import { formatEther } from 'viem';
 import { AgroShieldPool } from '../../contracts/AgroShieldPool';
 
@@ -59,10 +59,7 @@ export const Analytics: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [chartType, setChartType] = useState<'volume' | 'transactions' | 'users'>('volume');
 
-  const pool = useContract({
-    address: '0x0e40c31eb5e729af7f417dcbe6f2cecb826c5ba6',
-    abi: AgroShieldPool.abi
-  });
+  const { address } = useAccount();
 
   useEffect(() => {
     fetchAnalyticsData();
