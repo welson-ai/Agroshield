@@ -1,5 +1,7 @@
 # 🎨 AgroShield Component Guide
 
+*Last updated: April 23, 2026*
+
 This comprehensive guide covers all components in the AgroShield component system, including usage examples, best practices, and implementation details.
 
 ## 📚 Table of Contents
