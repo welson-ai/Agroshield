@@ -220,7 +220,7 @@ export function SkeletonLoader({
  * @example
  * <ProgressBar value={75} variant="animated" color="success" showLabel />
  */
-interface ProgressBarProps {
+export interface ProgressBarProps {
   value: number
   variant?: 'default' | 'striped' | 'animated' | 'indeterminate'
   color?: 'primary' | 'secondary' | 'success' | 'warning' | 'destructive'
