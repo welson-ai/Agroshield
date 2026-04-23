@@ -2,6 +2,7 @@ import { expect } from "chai";
 import { ethers } from "hardhat";
 import { AgroShieldPool } from "../../typechain-types";
 
+// Enhanced test suite for AgroShieldPool contract functionality
 describe("AgroShieldPool - Enhanced Tests", function () {
   let pool: AgroShieldPool;
   let owner: any;
