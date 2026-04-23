@@ -43,7 +43,7 @@ class TransactionErrorBoundary extends Component<Props, State> {
   }
 
   static getDerivedStateFromError(error: Error): State {
-    const errorType = TransactionErrorBoundary categorizeError(error)
+    const errorType = TransactionErrorBoundary.categorizeError(error)
     
     return { 
       hasError: true, 
