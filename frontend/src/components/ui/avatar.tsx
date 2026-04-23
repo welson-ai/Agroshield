@@ -47,6 +47,11 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
     const [imageLoaded, setImageLoaded] = React.useState(false)
     const [imageError, setImageError] = React.useState(false)
 
+    React.useEffect(() => {
+      setImageError(false)
+      setImageLoaded(false)
+    }, [src])
+
     const sizeClasses = {
       sm: 'h-8 w-8 text-sm',
       md: 'h-10 w-10 text-base',
