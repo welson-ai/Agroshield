@@ -419,7 +419,7 @@ export function StaggeredAnimation({
  *   0
  * </AnimatedCounter>
  */
-interface AnimatedCounterProps {
+export interface AnimatedCounterProps {
   value: number
   duration?: number
   delay?: number
