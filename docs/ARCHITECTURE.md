@@ -1,5 +1,7 @@
 # AgroShield Architecture
 
+*Last updated: April 23, 2026*
+
 ## Overview
 
 AgroShield is a decentralized parametric crop insurance protocol built on the Celo blockchain. The architecture consists of smart contracts, frontend components, and oracle systems working together to provide automated insurance services.
