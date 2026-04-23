@@ -1,5 +1,7 @@
 # Deployment Guide
 
+*Last updated: April 23, 2026*
+
 ## Overview
 
 This guide covers deploying AgroShield smart contracts to various networks.
