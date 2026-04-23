@@ -279,7 +279,7 @@ export function HoverShake({
  *   <Card>Sliding card</Card>
  * </HoverSlide>
  */
-interface HoverSlideProps {
+export interface HoverSlideProps {
   children: React.ReactNode
   className?: string
   direction?: 'up' | 'down' | 'left' | 'right'
