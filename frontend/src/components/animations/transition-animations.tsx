@@ -280,7 +280,7 @@ export function RotateIn({
  *   <div>Bouncing content</div>
  * </BounceIn>
  */
-interface BounceInProps {
+export interface BounceInProps {
   children: React.ReactNode
   className?: string
   duration?: number
