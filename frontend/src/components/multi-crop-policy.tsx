@@ -121,7 +121,7 @@ export function MultiCropPolicy() {
         form.description
       )
       
-      // Reset form
+      // Reset form after successful policy creation
       setCrops([{ cropType: '', coverageAmount: '', rainfallThreshold: 80, weight: 5000 }])
       setForm({ location: '', measurementPeriod: '90', description: '' })
       setBundlePremium(null)
