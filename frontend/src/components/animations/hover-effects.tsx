@@ -343,7 +343,7 @@ export function HoverSlide({
  *   <Card>Bordered card</Card>
  * </HoverBorder>
  */
-interface HoverBorderProps {
+export interface HoverBorderProps {
   children: React.ReactNode
   className?: string
   borderColor?: 'primary' | 'secondary' | 'destructive' | 'success' | 'warning'
