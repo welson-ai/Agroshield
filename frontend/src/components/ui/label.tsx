@@ -5,6 +5,7 @@ import { Label as LabelPrimitive } from "@radix-ui/react-label"
 
 import { cn } from "@/lib/utils"
 
+// Accessible label component built on Radix UI Label primitive
 function Label({
   className,
   ...props
