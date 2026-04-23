@@ -195,10 +195,12 @@ export function MultiCropPolicy() {
   }
 
   const getTotalWeight = () => {
+    // Calculate total weight across all crops
     return crops.reduce((total, crop) => total + crop.weight, 0)
   }
 
   const isValidForm = () => {
+    // Validate form has complete crop data and required fields
     const validCrops = crops.filter(crop => 
       crop.cropType && crop.coverageAmount && crop.rainfallThreshold
     )
