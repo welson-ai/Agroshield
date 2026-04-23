@@ -138,7 +138,7 @@ export function HoverGlow({
  *   <Card>Floating card</Card>
  * </HoverFloat>
  */
-interface HoverFloatProps {
+export interface HoverFloatProps {
   children: React.ReactNode
   className?: string
   distance?: 'sm' | 'md' | 'lg'
