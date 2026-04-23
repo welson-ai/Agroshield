@@ -3,6 +3,7 @@ import { ethers } from "hardhat";
 import { Contract } from "ethers";
 import { deployContracts, getTestUsers, setupUsersWithTokens, DEFAULT_POLICY_PARAMS, DEFAULT_ORACLE_DATA } from "./helpers";
 
+// Test suite for contract upgrade functionality and compatibility
 describe("Upgrade Tests", function () {
   let contracts: any;
   let users: any;
