@@ -272,7 +272,7 @@ export function TabTransition({
  *   <ModalContent />
  * </ModalTransition>
  */
-interface ModalTransitionProps {
+export interface ModalTransitionProps {
   children: React.ReactNode
   isOpen: boolean
   className?: string
