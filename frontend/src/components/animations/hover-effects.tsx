@@ -20,7 +20,7 @@ import { Card, CardContent } from '@/components/ui/card'
  *   <Button>Hover me</Button>
  * </HoverScale>
  */
-interface HoverScaleProps {
+export interface HoverScaleProps {
   children: React.ReactNode
   className?: string
   scale?: 'sm' | 'md' | 'lg' | 'xl'
