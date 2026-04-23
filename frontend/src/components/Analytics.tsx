@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useReadContract, useAccount } from 'wagmi';
 import { formatEther } from 'viem';
-import { AgroShieldPool } from '../../contracts/AgroShieldPool';
+import { AGROSHIELD_CONTRACTS, AGROSHIELD_ABIS } from '@/constants/contracts';
 
 interface AnalyticsData {
   totalVolume: string;
