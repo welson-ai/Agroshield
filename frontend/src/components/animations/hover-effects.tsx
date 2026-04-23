@@ -412,7 +412,7 @@ export function HoverBorder({
  *   <Card>Gradient card</Card>
  * </HoverGradient>
  */
-interface HoverGradientProps {
+export interface HoverGradientProps {
   children: React.ReactNode
   className?: string
   gradient?: 'primary' | 'secondary' | 'rainbow' | 'sunset'
