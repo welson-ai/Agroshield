@@ -1,5 +1,7 @@
 'use client'
 
+import React from 'react'
+
 // Export all animation components
 export { default as HoverScale, HoverGlow, HoverFloat, HoverRotate, HoverShake, HoverSlide, HoverBorder, HoverGradient } from './hover-effects'
 export { default as FadeIn, SlideIn, ScaleIn, RotateIn, BounceIn, StaggeredAnimation, AnimatedCounter } from './transition-animations'
@@ -30,127 +32,6 @@ export type {
  * 
  * <HoverScale>
  *   <FadeIn>
- *     <LoadingSpinner />
- *   </FadeIn>
- * </HoverScale>
- */
-export const AnimationLibrary = {
-  // Hover Effects
-  HoverScale,
-  HoverGlow,
-  HoverFloat,
-  HoverRotate,
-  HoverShake,
-  HoverSlide,
-  HoverBorder,
-  HoverGradient,
-  
-  // Transition Animations
-  FadeIn,
-  SlideIn,
-  ScaleIn,
-  RotateIn,
-  BounceIn,
-  StaggeredAnimation,
-  AnimatedCounter,
-  
-  // Page Transitions
-  PageTransition,
-  RouteTransition,
-  TabTransition,
-  ModalTransition,
-  ListTransition,
-  
-  // Loading Animations
-  LoadingSpinner,
-  SkeletonLoader,
-  ProgressBar,
-  PulseLoader,
-  WaveLoader,
-  
-  // Animation Utils
-  useAnimation,
-  useIntersectionAnimation,
-  useSpringAnimation,
-  AnimatedNumber,
-  AnimatedProgress,
-  AnimationController
-}
-
-/**
- * AnimationPresets component - Predefined animation combinations
- * Provides common animation presets for quick implementation
- * 
- * @example
- * <AnimationPresets.CardEntrance>
- *   <CardContent>Card with entrance animation</CardContent>
- * </AnimationPresets.CardEntrance>
- */
-export const AnimationPresets = {
-  /**
-   * CardEntrance - Combined scale and fade animation for cards
-   */
-  CardEntrance: ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => (
-    <ScaleIn delay={delay} duration={400} initialScale="md">
-      <FadeIn delay={delay} duration={400}>
-        {children}
-      </FadeIn>
-    </ScaleIn>
-  ),
-  
-  /**
-   * ListEntrance - Staggered fade-in animation for lists
-   */
-  ListEntrance: ({ children, staggerDelay = 100 }: { 
-    children: React.ReactNode[]; 
-    staggerDelay?: number 
-  }) => (
-    <StaggeredAnimation 
-      staggerDelay={staggerDelay} 
-      animationType="fadeIn" 
-      direction="up"
-    >
-      {children}
-    </StaggeredAnimation>
-  ),
-  
-  /**
-   * ModalEntrance - Scale and fade animation for modals
-   */
-  ModalEntrance: ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => (
-    <ScaleIn delay={delay} duration={300} initialScale="sm">
-      <FadeIn delay={delay} duration={300}>
-        {children}
-      </FadeIn>
-    </ScaleIn>
-  ),
-  
-  /**
-   * ButtonHover - Combined scale and glow hover effect
-   */
-  ButtonHover: ({ children }: { children: React.ReactNode }) => (
-    <HoverScale scale="sm" duration={200}>
-      <HoverGlow glowColor="primary" intensity="sm">
-        {children}
-      </HoverGlow>
-    </HoverScale>
-  ),
-  
-  /**
-   * PageLoad - Staggered entrance for page content
-   */
-  PageLoad: ({ children }: { children: React.ReactNode }) => (
-    <div className="space-y-4">
-      {React.Children.map(children, (child, index) => (
-        <FadeIn key={index} delay={index * 100} direction="up" duration={500}>
-          {child}
-        </FadeIn>
-      ))}
-    </div>
-  )
-}
-
-/**
  * AnimationConfig component - Global animation configuration
  * Provides centralized animation settings
  * 
@@ -289,4 +170,4 @@ export function AnimationDebugger() {
   )
 }
 
-export default AnimationLibrary
+// Remove default export since AnimationLibrary was removed
