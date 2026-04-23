@@ -234,7 +234,7 @@ export function HoverRotate({
  *   <Button>Shake on hover</Button>
  * </HoverShake>
  */
-interface HoverShakeProps {
+export interface HoverShakeProps {
   children: React.ReactNode
   className?: string
   intensity?: 'sm' | 'md' | 'lg'
