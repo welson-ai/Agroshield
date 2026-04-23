@@ -79,6 +79,7 @@ export function MultiCropPolicy() {
   }
 
   const calculateBundle = async () => {
+    // Calculate bundle premium for valid crops with complete data
     const validCrops = crops.filter(crop => 
       crop.cropType && crop.coverageAmount && crop.rainfallThreshold
     )
