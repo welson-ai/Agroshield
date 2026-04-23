@@ -46,6 +46,7 @@ function Button({
   variant = "default",
   size = "default",
   asChild = false,
+  disabled,
   ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
@@ -64,6 +65,8 @@ function Button({
       aria-expanded={props['aria-expanded']}
       aria-describedby={props['aria-describedby']}
       aria-labelledby={props['aria-labelledby']}
+      aria-disabled={disabled}
+      disabled={disabled}
       {...props}
     />
   )
