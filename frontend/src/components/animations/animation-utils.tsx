@@ -225,7 +225,7 @@ export function useSpringAnimation(config: SpringConfig = {}) {
  * @example
  * <AnimatedNumber value={1000} duration={2000} prefix="$" decimals={2} />
  */
-interface AnimatedNumberProps {
+export interface AnimatedNumberProps {
   value: number
   duration?: number
   delay?: number
