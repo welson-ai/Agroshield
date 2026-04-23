@@ -16,7 +16,7 @@ import { cn } from '@/lib/utils'
  * @example
  * <LoadingSpinner size="md" variant="dots" color="primary" />
  */
-interface LoadingSpinnerProps {
+export interface LoadingSpinnerProps {
   size?: 'sm' | 'md' | 'lg' | 'xl'
   variant?: 'default' | 'dots' | 'pulse' | 'bounce' | 'wave'
   color?: 'primary' | 'secondary' | 'success' | 'warning' | 'destructive'
