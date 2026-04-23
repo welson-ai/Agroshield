@@ -116,7 +116,6 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       setCurrentValue(newValue)
       onValueChange?.(newValue)
     }
-    }
 
     const handleTouchStart = (e: React.TouchEvent) => {
       if (disabled) return
