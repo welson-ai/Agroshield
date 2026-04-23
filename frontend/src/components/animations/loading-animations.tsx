@@ -369,7 +369,7 @@ export function PulseLoader({
  * @example
  * <WaveLoader bars={5} size="md" color="primary" />
  */
-interface WaveLoaderProps {
+export interface WaveLoaderProps {
   bars?: number
   size?: 'sm' | 'md' | 'lg'
   color?: 'primary' | 'secondary' | 'success' | 'warning' | 'destructive'
