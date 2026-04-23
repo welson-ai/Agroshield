@@ -38,6 +38,11 @@ const Accordion = React.forwardRef<
     Array.isArray(defaultValue) ? defaultValue : defaultValue ? [defaultValue] : []
   )
 
+  React.useEffect(() => {
+    const newDefaultValue = Array.isArray(defaultValue) ? defaultValue : defaultValue ? [defaultValue] : []
+    setOpenItems(newDefaultValue)
+  }, [defaultValue])
+
   const handleToggle = (value: string) => {
     setOpenItems(prev => {
       if (type === 'single') {
