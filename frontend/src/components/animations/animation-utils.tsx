@@ -142,7 +142,7 @@ export function useIntersectionAnimation({
  * @example
  * const { value, animateTo } = useSpringAnimation({ tension: 300, friction: 10 })
  */
-interface SpringConfig {
+export interface SpringConfig {
   tension?: number
   friction?: number
   mass?: number
