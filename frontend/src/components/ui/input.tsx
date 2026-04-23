@@ -2,6 +2,7 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
+// Reusable input component with consistent styling and accessibility
 function Input({ className, type, disabled, ...props }: React.ComponentProps<"input">) {
   return (
     <input
