@@ -6,6 +6,7 @@ interface TabsContextValue {
   setActiveTab: (value: string) => void
 }
 
+// Context for managing active tab state across tab components
 const TabsContext = React.createContext<TabsContextValue | undefined>(undefined)
 
 interface TabsProps {
