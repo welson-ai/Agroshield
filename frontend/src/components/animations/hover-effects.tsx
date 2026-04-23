@@ -186,7 +186,7 @@ export function HoverFloat({
  *   <div>Rotating element</div>
  * </HoverRotate>
  */
-interface HoverRotateProps {
+export interface HoverRotateProps {
   children: React.ReactNode
   className?: string
   angle?: 'sm' | 'md' | 'lg' | 'xl'
