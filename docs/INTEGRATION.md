@@ -4,6 +4,8 @@
 
 This guide helps developers integrate AgroShield into their applications and services.
 
+*Last updated: April 23, 2026*
+
 ## API Integration
 
 ### Authentication
