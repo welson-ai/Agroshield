@@ -311,7 +311,7 @@ export function ProgressBar({
  * @example
  * <PulseLoader size="md" color="primary" />
  */
-interface PulseLoaderProps {
+export interface PulseLoaderProps {
   size?: 'sm' | 'md' | 'lg'
   color?: 'primary' | 'secondary' | 'success' | 'warning' | 'destructive'
   className?: string
