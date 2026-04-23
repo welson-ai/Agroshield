@@ -5,8 +5,9 @@ import { cn } from "@/lib/utils"
 import { Upload, X, FileText, Image, Film } from "lucide-react"
 
 /**
- * FileUpload component - Drag and drop file uploader
- * Provides accessible file upload with preview
+ * FileUpload component - Drag and drop file uploader with preview
+ * Provides accessible file upload with drag-and-drop functionality
+ * Supports multiple file types and size validation
  * 
  * @param accept - Accepted file types
  * @param multiple - Whether multiple files can be uploaded
