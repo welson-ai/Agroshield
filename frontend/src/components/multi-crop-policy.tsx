@@ -183,10 +183,12 @@ export function MultiCropPolicy() {
   }, []) // Load policies on component mount
 
   const formatPrice = (price: bigint) => {
+    // Format wei price to cUSD with 2 decimal places
     return `${parseFloat(formatEther(price)).toFixed(2)} cUSD`
   }
 
   const getTotalCoverage = () => {
+    // Calculate total coverage amount across all crops
     return crops.reduce((total, crop) => {
       return total + (parseFloat(crop.coverageAmount) || 0)
     }, 0)
