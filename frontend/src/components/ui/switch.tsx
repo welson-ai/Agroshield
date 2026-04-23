@@ -53,6 +53,7 @@ const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
     }, [checked])
 
     const handleToggle = () => {
+      if (disabled) return
       const newChecked = !isChecked
       setIsChecked(newChecked)
       onCheckedChange?.(newChecked)
