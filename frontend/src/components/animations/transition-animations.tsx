@@ -150,7 +150,7 @@ export function SlideIn({
  *   <div>Scaling content</div>
  * </ScaleIn>
  */
-interface ScaleInProps {
+export interface ScaleInProps {
   children: React.ReactNode
   className?: string
   duration?: number
