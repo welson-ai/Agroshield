@@ -19,6 +19,7 @@ function Label({
       aria-required={props['aria-required']}
       aria-invalid={props['aria-invalid']}
       aria-describedby={props['aria-describedby']}
+      htmlFor={props.htmlFor}
       {...props}
     />
   )
