@@ -155,6 +155,7 @@ export function MultiCropPolicy() {
   }
 
   const handlePayPremium = async (policyId: number) => {
+    // Pay premium for a specific policy and refresh policy list
     try {
       await payMultiCropPremium(policyId)
       loadUserPolicies()
