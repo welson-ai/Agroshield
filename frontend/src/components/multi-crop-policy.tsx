@@ -143,6 +143,7 @@ export function MultiCropPolicy() {
   }
 
   const loadPolicySummary = async (policyId: number) => {
+    // Load detailed summary for a specific policy
     try {
       const summary = await getMultiCropPolicySummary(policyId)
       if (summary) {
