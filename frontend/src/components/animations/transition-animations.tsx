@@ -215,7 +215,7 @@ export function ScaleIn({
  *   <div>Rotating content</div>
  * </RotateIn>
  */
-interface RotateInProps {
+export interface RotateInProps {
   children: React.ReactNode
   className?: string
   duration?: number
