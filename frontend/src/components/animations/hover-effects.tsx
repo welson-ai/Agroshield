@@ -69,7 +69,7 @@ export function HoverScale({
  *   <Card>Glowing card</Card>
  * </HoverGlow>
  */
-interface HoverGlowProps {
+export interface HoverGlowProps {
   children: React.ReactNode
   className?: string
   glowColor?: 'primary' | 'secondary' | 'destructive' | 'success' | 'warning'
