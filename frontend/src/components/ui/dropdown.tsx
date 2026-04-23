@@ -38,7 +38,7 @@ const DropdownMenuContext = React.createContext<{
   setActiveIndex: () => {}
 })
 
-const DropdownMenu: React.forwardRef<HTMLDivElement, DropdownMenuProps>(
+const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
   ({ children, className, ...props }, ref) => {
     const [isOpen, setIsOpen] = React.useState(false)
     const [activeIndex, setActiveIndex] = React.useState(-1)
