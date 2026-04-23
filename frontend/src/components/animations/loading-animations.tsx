@@ -144,7 +144,7 @@ export function LoadingSpinner({
  * @example
  * <SkeletonLoader lines={3} variant="text" animated />
  */
-interface SkeletonLoaderProps {
+export interface SkeletonLoaderProps {
   lines?: number
   className?: string
   variant?: 'text' | 'card' | 'avatar' | 'custom'
