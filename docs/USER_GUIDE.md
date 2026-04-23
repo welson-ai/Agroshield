@@ -1,5 +1,7 @@
 # AgroShield User Guide
 
+*Last updated: April 23, 2026*
+
 ## Getting Started
 
 Welcome to AgroShield! This guide will help you navigate our decentralized crop insurance platform.
