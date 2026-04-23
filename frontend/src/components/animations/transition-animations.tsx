@@ -85,7 +85,7 @@ export function FadeIn({
  *   <div>Sliding content</div>
  * </SlideIn>
  */
-interface SlideInProps {
+export interface SlideInProps {
   children: React.ReactNode
   className?: string
   duration?: number
