@@ -1,6 +1,6 @@
 {
   "name": "agroshield",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Parametric crop insurance on Celo",
   "main": "index.js",
   "scripts": {
