@@ -176,11 +176,11 @@ export function MultiCropPolicy() {
 
   useEffect(() => {
     calculateBundle()
-  }, [crops, form.location, form.measurementPeriod])
+  }, [crops, form.location, form.measurementPeriod]) // Recalculate when crops or location changes
 
   useEffect(() => {
     loadUserPolicies()
-  }, [])
+  }, []) // Load policies on component mount
 
   const formatPrice = (price: bigint) => {
     return `${parseFloat(formatEther(price)).toFixed(2)} cUSD`
