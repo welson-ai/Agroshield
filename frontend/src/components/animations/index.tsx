@@ -19,41 +19,7 @@ export type {
   HoverGradientProps
 } from './hover-effects'
 
-export type {
-  FadeInProps,
-  SlideInProps,
-  ScaleInProps,
-  RotateInProps,
-  BounceInProps,
-  StaggeredAnimationProps,
-  AnimatedCounterProps
-} from './transition-animations'
-
-export type {
-  PageTransitionProps,
-  RouteTransitionProps,
-  TabTransitionProps,
-  ModalTransitionProps,
-  ListTransitionProps
-} from './page-transitions'
-
-export type {
-  LoadingSpinnerProps,
-  SkeletonLoaderProps,
-  ProgressBarProps,
-  PulseLoaderProps,
-  WaveLoaderProps
-} from './loading-animations'
-
-export type {
-  UseAnimationProps,
-  UseIntersectionAnimationOptions,
-  SpringConfig,
-  AnimatedNumberProps,
-  AnimatedProgressProps,
-  AnimationConfig,
-  AnimationControllerProps
-} from './animation-utils'
+// Remove duplicate type exports since they're now exported from their respective files
 
 /**
  * AnimationLibrary component - Complete animation system
