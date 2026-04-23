@@ -301,7 +301,7 @@ export function AnimatedNumber({
  * @example
  * <AnimatedProgress value={75} duration={1500} showLabel color="primary" />
  */
-interface AnimatedProgressProps {
+export interface AnimatedProgressProps {
   value: number
   duration?: number
   delay?: number
