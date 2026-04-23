@@ -165,6 +165,7 @@ export function MultiCropPolicy() {
   }
 
   const handleProcessPayouts = async (policyId: number) => {
+    // Process all eligible payouts for a policy and refresh policy list
     try {
       await processAllCropPayouts(policyId)
       loadUserPolicies()
