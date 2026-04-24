@@ -156,6 +156,12 @@ export function useMultiCropPolicy() {
 
   const getFarmerMultiCropPolicies = async (farmerAddress: string) => {
     try {
+      // Validate farmer address
+      if (!farmerAddress || farmerAddress.trim().length === 0) {
+        console.warn('Invalid farmer address provided:', farmerAddress)
+        return []
+      }
+      
       const result = await useReadContract({
         address: contractAddress,
         abi: contractAbi,
