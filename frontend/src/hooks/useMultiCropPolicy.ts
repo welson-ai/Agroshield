@@ -62,6 +62,10 @@ export function useMultiCropPolicy() {
 
   const payMultiCropPremium = async (policyId: number) => {
     try {
+      // Validate policy ID
+      if (!policyId || policyId <= 0) {
+        throw new Error('Valid policy ID is required')
+      }
       showLoadingToast('Paying multi-crop premium...')
       const hash = await writeContract({
         address: contractAddress,
