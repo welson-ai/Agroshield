@@ -247,9 +247,13 @@ export function useMultiCropPolicy() {
   if (receipt && receipt.status === 'success') {
     dismissToast()
     showSuccessToast('Transaction confirmed!', receipt.transactionHash)
+    console.log('Transaction successful:', receipt.transactionHash)
   } else if (receipt && receipt.status === 'reverted') {
     dismissToast()
     showErrorToast('Transaction failed')
+    console.error('Transaction reverted:', receipt.transactionHash)
+  } else if (receipt && receipt.status === 'pending') {
+    console.log('Transaction pending:', receipt.transactionHash)
   }
 
   return {
