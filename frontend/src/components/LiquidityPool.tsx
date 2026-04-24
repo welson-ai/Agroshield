@@ -49,6 +49,14 @@ export const LiquidityPool: React.FC = () => {
 
   const fetchPoolStats = async () => {
     try {
+      if (!address) {
+        throw new Error('User address not available');
+      }
+      
+      if (!contract) {
+        throw new Error('Contract not available');
+      }
+
       const [totalLiquidity, userDeposits, userShares] = await Promise.all([
         contract.totalLiquidity(),
         contract.userDeposits(address),
