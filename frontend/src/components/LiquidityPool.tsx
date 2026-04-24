@@ -75,6 +75,13 @@ export const LiquidityPool: React.FC = () => {
       });
     } catch (error) {
       console.error('Error fetching pool stats:', error);
+      setError('Failed to fetch pool statistics');
+      setPoolStats({
+        totalLiquidity: '0',
+        userDeposits: '0',
+        userShares: '0',
+        sharePercentage: '0'
+      });
     }
   };
 
