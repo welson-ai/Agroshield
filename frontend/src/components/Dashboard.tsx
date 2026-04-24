@@ -57,6 +57,11 @@ export const Dashboard: React.FC = () => {
     setIsLoading(true);
     setError(null);
     try {
+      // Validate user address
+      if (!address) {
+        throw new Error('User address not available');
+      }
+
       // Mock implementation - replace with actual contract calls
       const mockStats: DashboardStats = {
         totalLiquidity: '1,234,567.89',
