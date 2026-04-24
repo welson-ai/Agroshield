@@ -136,9 +136,9 @@ export const PolicyManager: React.FC = () => {
       });
       setShowCreateForm(false);
       await fetchUserPolicies();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Policy creation error:', error);
-      alert('Failed to create policy. Please check your balance and try again.');
+      setError(error.message || 'Failed to create policy. Please check your balance and try again.');
     } finally {
       setIsLoading(false);
     }
