@@ -179,10 +179,23 @@ export function MultiCropPolicy() {
   const handlePayPremium = async (policyId: number) => {
     // Pay premium for a specific policy and refresh policy list
     try {
-      await payMultiCropPremium(policyId)
-      loadUserPolicies()
+      if (!policyId || policyId <= 0) {
+        console.warn('Invalid policy ID for premium payment:', policyId)
+        return
+      }
+      
+      console.log(`Processing premium payment for policy ${policyId}`)
+      const txHash = await payMultiCropPremium(policyId)
+      
+      if (txHash) {
+        console.log(`Premium payment successful for policy ${policyId}, tx: ${txHash}`)
+        // Refresh policies after successful payment
+        await loadUserPolicies()
+      } else {
+        console.warn(`Premium payment failed for policy ${policyId}`)
+      }
     } catch (error) {
-      console.error('Failed to pay premium:', error)
+      console.error(`Failed to pay premium for policy ${policyId}:`, error)
     }
   }
 
