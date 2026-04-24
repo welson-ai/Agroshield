@@ -133,12 +133,23 @@ export function MultiCropPolicy() {
   const loadUserPolicies = async () => {
     // Load all multi-crop policies for the current farmer
     try {
-      const policies = await getFarmerMultiCropPolicies('0x') // Replace with actual user address
-      if (policies) {
+      const userAddress = '0x' // Replace with actual user address from wallet
+      if (!userAddress || userAddress === '0x') {
+        console.warn('Invalid user address for loading policies')
+        return
+      }
+      
+      const policies = await getFarmerMultiCropPolicies(userAddress)
+      if (policies && Array.isArray(policies)) {
         setUserPolicies(policies)
+        console.log(`Loaded ${policies.length} policies for user`)
+      } else {
+        setUserPolicies([])
+        console.log('No policies found for user')
       }
     } catch (error) {
       console.error('Failed to load user policies:', error)
+      setUserPolicies([])
     }
   }
 
