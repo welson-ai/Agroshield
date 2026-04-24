@@ -134,6 +134,12 @@ export function useMultiCropPolicy() {
 
   const getMultiCropPolicy = async (policyId: number) => {
     try {
+      // Validate policy ID
+      if (!policyId || policyId <= 0) {
+        console.warn('Invalid policy ID provided:', policyId)
+        return null
+      }
+      
       const result = await useReadContract({
         address: contractAddress,
         abi: contractAbi,
