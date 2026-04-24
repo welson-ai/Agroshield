@@ -95,9 +95,20 @@ export const PolicyManager: React.FC = () => {
 
   const handleCreatePolicy = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(null);
     
     if (!Object.values(formData).every(value => value && parseFloat(value) > 0)) {
-      alert('Please fill all fields with valid values');
+      setError('Please fill all fields with valid values');
+      return;
+    }
+    
+    if (!address) {
+      setError('Wallet not connected');
+      return;
+    }
+    
+    if (!contract) {
+      setError('Contract not available');
       return;
     }
     
@@ -110,7 +121,11 @@ export const PolicyManager: React.FC = () => {
         parseInt(formData.rainfallThreshold),
         parseInt(formData.measurementPeriod)
       );
+      
+      console.log('Policy creation transaction submitted:', tx.hash);
       await tx.wait();
+      
+      console.log('Policy created successfully');
       
       setFormData({
         coverageAmount: '',
