@@ -76,9 +76,23 @@ export function MultiCropPolicy() {
 
   const updateCrop = (index: number, field: keyof CropEntry, value: string | number) => {
     // Update specific field of a crop entry
-    const updatedCrops = [...crops]
-    updatedCrops[index] = { ...updatedCrops[index], [field]: value }
-    setCrops(updatedCrops)
+    try {
+      if (index < 0 || index >= crops.length) {
+        console.warn('Invalid crop index for update:', index)
+        return
+      }
+      
+      if (!field) {
+        console.warn('Invalid field for crop update')
+        return
+      }
+      
+      const updatedCrops = [...crops]
+      updatedCrops[index] = { ...updatedCrops[index], [field]: value }
+      setCrops(updatedCrops)
+    } catch (error) {
+      console.error('Failed to update crop:', error)
+    }
   }
 
   const calculateBundle = async () => {
