@@ -122,16 +122,36 @@ export const LiquidityPool: React.FC = () => {
   };
 
   const handleWithdraw = async () => {
-    if (!withdrawAmount || parseFloat(withdrawAmount) <= 0) return;
+    if (!withdrawAmount || parseFloat(withdrawAmount) <= 0) {
+      setError('Please enter a valid withdraw amount');
+      return;
+    }
+    
+    if (!address) {
+      setError('Wallet not connected');
+      return;
+    }
+    
+    if (!contract) {
+      setError('Contract not available');
+      return;
+    }
     
     setIsLoading(true);
+    setError(null);
     try {
-      const tx = await contract.withdrawLiquidity(parseEther(withdrawAmount));
+      const amount = parseEther(withdrawAmount);
+      const tx = await contract.withdrawLiquidity(amount);
+      
+      console.log('Withdraw transaction submitted:', tx.hash);
       await tx.wait();
+      
+      console.log('Withdraw confirmed');
       setWithdrawAmount('');
       await fetchPoolStats();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Withdraw error:', error);
+      setError(error.message || 'Withdrawal failed');
     } finally {
       setIsLoading(false);
     }
