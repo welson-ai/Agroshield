@@ -127,26 +127,52 @@ export function MultiCropPolicy() {
 
   const handleCreatePolicy = async () => {
     // Create new multi-crop policy with validated crop data
-    const validCrops = crops.filter(crop => 
-      crop.cropType && crop.coverageAmount && crop.rainfallThreshold
-    )
-
-    if (validCrops.length === 0 || !form.location || !form.description) {
-      return
-    }
-
     try {
-      await createMultiCropPolicy(
+      const validCrops = crops.filter(crop => 
+        crop.cropType && crop.coverageAmount && crop.rainfallThreshold
+      )
+
+      if (validCrops.length === 0) {
+        console.warn('No valid crops provided for policy creation')
+        return
+      }
+
+      if (!form.location) {
+        console.warn('Location is required for policy creation')
+        return
+      }
+
+      if (!form.description || form.description.trim().length === 0) {
+        console.warn('Description is required for policy creation')
+        return
+      }
+
+      const measurementPeriod = Number(form.measurementPeriod)
+      if (!measurementPeriod || measurementPeriod <= 0) {
+        console.warn('Invalid measurement period for policy creation:', form.measurementPeriod)
+        return
+      }
+
+      console.log(`Creating policy with ${validCrops.length} crops`)
+      const txHash = await createMultiCropPolicy(
         validCrops,
         form.location,
-        Number(form.measurementPeriod),
-        form.description
+        measurementPeriod,
+        form.description.trim()
       )
       
-      // Reset form after successful policy creation
-      setCrops([{ cropType: '', coverageAmount: '', rainfallThreshold: 80, weight: 5000 }])
-      setForm({ location: '', measurementPeriod: '90', description: '' })
-      setBundlePremium(null)
+      if (txHash) {
+        console.log(`Policy created successfully, tx: ${txHash}`)
+        // Reset form after successful policy creation
+        setCrops([{ cropType: '', coverageAmount: '', rainfallThreshold: 80, weight: 5000 }])
+        setForm({ location: '', measurementPeriod: '90', description: '' })
+        setBundlePremium(null)
+        
+        // Refresh policies list
+        await loadUserPolicies()
+      } else {
+        console.error('Policy creation failed - no transaction hash returned')
+      }
     } catch (error) {
       console.error('Failed to create multi-crop policy:', error)
     }
