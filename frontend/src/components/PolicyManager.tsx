@@ -61,6 +61,14 @@ export const PolicyManager: React.FC = () => {
 
   const fetchUserPolicies = async () => {
     try {
+      if (!address) {
+        throw new Error('User address not available');
+      }
+      
+      if (!contract) {
+        throw new Error('Contract not available');
+      }
+
       const policyIds = await contract.getFarmerPolicies(address);
       const policyData = await Promise.all(
         policyIds.map(id => contract.getPolicy(id))
