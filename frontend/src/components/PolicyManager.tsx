@@ -88,6 +88,8 @@ export const PolicyManager: React.FC = () => {
       setPolicies(formattedPolicies);
     } catch (error) {
       console.error('Error fetching policies:', error);
+      setError('Failed to fetch user policies');
+      setPolicies([]);
     }
   };
 
