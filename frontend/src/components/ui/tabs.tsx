@@ -27,6 +27,11 @@ const Tabs: React.FC<TabsProps> = ({ defaultValue, value, onValueChange, childre
   }, [value])
 
   const handleTabChange = (newValue: string) => {
+    // Validate tab value
+    if (!newValue || newValue.trim().length === 0) {
+      console.warn('Invalid tab value provided:', newValue)
+      return
+    }
     setActiveTab(newValue)
     onValueChange?.(newValue)
   }
