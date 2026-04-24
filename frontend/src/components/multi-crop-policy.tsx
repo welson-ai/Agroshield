@@ -156,12 +156,23 @@ export function MultiCropPolicy() {
   const loadPolicySummary = async (policyId: number) => {
     // Load detailed summary for a specific policy
     try {
+      if (!policyId || policyId <= 0) {
+        console.warn('Invalid policy ID for loading summary:', policyId)
+        setPolicySummary(null)
+        return
+      }
+      
       const summary = await getMultiCropPolicySummary(policyId)
-      if (summary) {
+      if (summary && typeof summary === 'object') {
         setPolicySummary(summary)
+        console.log(`Loaded summary for policy ${policyId}`)
+      } else {
+        setPolicySummary(null)
+        console.warn(`No summary found for policy ${policyId}`)
       }
     } catch (error) {
-      console.error('Failed to load policy summary:', error)
+      console.error(`Failed to load policy summary for ID ${policyId}:`, error)
+      setPolicySummary(null)
     }
   }
 
