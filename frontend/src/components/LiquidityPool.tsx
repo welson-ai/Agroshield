@@ -86,16 +86,36 @@ export const LiquidityPool: React.FC = () => {
   };
 
   const handleDeposit = async () => {
-    if (!depositAmount || parseFloat(depositAmount) <= 0) return;
+    if (!depositAmount || parseFloat(depositAmount) <= 0) {
+      setError('Please enter a valid deposit amount');
+      return;
+    }
+    
+    if (!address) {
+      setError('Wallet not connected');
+      return;
+    }
+    
+    if (!contract) {
+      setError('Contract not available');
+      return;
+    }
     
     setIsLoading(true);
+    setError(null);
     try {
-      const tx = await contract.provideLiquidity(parseEther(depositAmount));
+      const amount = parseEther(depositAmount);
+      const tx = await contract.provideLiquidity(amount);
+      
+      console.log('Deposit transaction submitted:', tx.hash);
       await tx.wait();
+      
+      console.log('Deposit confirmed');
       setDepositAmount('');
       await fetchPoolStats();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Deposit error:', error);
+      setError(error.message || 'Deposit failed');
     } finally {
       setIsLoading(false);
     }
