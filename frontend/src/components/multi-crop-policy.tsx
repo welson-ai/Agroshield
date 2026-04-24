@@ -62,8 +62,25 @@ export function MultiCropPolicy() {
 
   const addCrop = () => {
     // Add new crop entry (maximum 5 crops per policy)
-    if (crops.length < 5) {
-      setCrops([...crops, { cropType: '', coverageAmount: '', rainfallThreshold: 80, weight: 5000 }])
+    try {
+      const maxCrops = 5
+      
+      if (crops.length >= maxCrops) {
+        console.warn(`Cannot add crop - maximum ${maxCrops} crops allowed`)
+        return
+      }
+      
+      const newCrop = { 
+        cropType: '', 
+        coverageAmount: '', 
+        rainfallThreshold: 80, 
+        weight: 5000 
+      }
+      
+      setCrops([...crops, newCrop])
+      console.log(`Added crop ${crops.length + 1} of ${maxCrops}`)
+    } catch (error) {
+      console.error('Failed to add crop:', error)
     }
   }
 
