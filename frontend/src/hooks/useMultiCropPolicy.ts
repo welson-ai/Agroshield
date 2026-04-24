@@ -18,6 +18,23 @@ export function useMultiCropPolicy() {
     description: string
   ) => {
     try {
+      // Validate inputs
+      if (!crops || crops.length === 0) {
+        throw new Error('At least one crop is required')
+      }
+      
+      if (!location || location.trim().length === 0) {
+        throw new Error('Location is required')
+      }
+      
+      if (!measurementPeriod || measurementPeriod <= 0) {
+        throw new Error('Valid measurement period is required')
+      }
+      
+      if (!description || description.trim().length === 0) {
+        throw new Error('Description is required')
+      }
+      
       showLoadingToast('Creating multi-crop policy...')
       
       // Convert crops to contract format
