@@ -202,10 +202,23 @@ export function MultiCropPolicy() {
   const handleProcessPayouts = async (policyId: number) => {
     // Process all eligible payouts for a policy and refresh policy list
     try {
-      await processAllCropPayouts(policyId)
-      loadUserPolicies()
+      if (!policyId || policyId <= 0) {
+        console.warn('Invalid policy ID for payout processing:', policyId)
+        return
+      }
+      
+      console.log(`Processing payouts for policy ${policyId}`)
+      const txHash = await processAllCropPayouts(policyId)
+      
+      if (txHash) {
+        console.log(`Payout processing successful for policy ${policyId}, tx: ${txHash}`)
+        // Refresh policies after successful payout processing
+        await loadUserPolicies()
+      } else {
+        console.warn(`Payout processing failed for policy ${policyId}`)
+      }
     } catch (error) {
-      console.error('Failed to process payouts:', error)
+      console.error(`Failed to process payouts for policy ${policyId}:`, error)
     }
   }
 
