@@ -43,15 +43,19 @@ export const Dashboard: React.FC = () => {
   });
   const [recentActivity, setRecentActivity] = useState<RecentActivity[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (isConnected) {
       fetchDashboardData();
+    } else {
+      setIsLoading(false);
     }
   }, [isConnected]);
 
   const fetchDashboardData = async () => {
     setIsLoading(true);
+    setError(null);
     try {
       // Mock implementation - replace with actual contract calls
       const mockStats: DashboardStats = {
