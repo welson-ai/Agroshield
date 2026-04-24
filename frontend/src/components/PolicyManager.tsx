@@ -45,6 +45,7 @@ export const PolicyManager: React.FC = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [showCreateForm, setShowCreateForm] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const contract = useContract({
     address: '0x1234567890123456789012345678901234567890', // Policy contract address
