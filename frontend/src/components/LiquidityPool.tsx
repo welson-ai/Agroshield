@@ -33,6 +33,7 @@ export const LiquidityPool: React.FC = () => {
   const [depositAmount, setDepositAmount] = useState('');
   const [withdrawAmount, setWithdrawAmount] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const contract = useContract({
     address: '0x0e40c31eb5e729af7f417dcbe6f2cecb826c5ba6',
