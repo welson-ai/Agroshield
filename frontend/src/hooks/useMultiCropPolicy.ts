@@ -182,6 +182,19 @@ export function useMultiCropPolicy() {
     measurementPeriod: number
   ) => {
     try {
+      // Validate inputs
+      if (!crops || crops.length === 0) {
+        throw new Error('At least one crop is required for premium calculation')
+      }
+      
+      if (!location || location.trim().length === 0) {
+        throw new Error('Location is required for premium calculation')
+      }
+      
+      if (!measurementPeriod || measurementPeriod <= 0) {
+        throw new Error('Valid measurement period is required for premium calculation')
+      }
+      
       // Convert crops to contract format
       const contractCrops = crops.map(crop => ({
         cropType: crop.cropType,
