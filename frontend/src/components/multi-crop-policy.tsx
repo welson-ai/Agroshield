@@ -83,23 +83,45 @@ export function MultiCropPolicy() {
 
   const calculateBundle = async () => {
     // Calculate bundle premium for valid crops with complete data
-    const validCrops = crops.filter(crop => 
-      crop.cropType && crop.coverageAmount && crop.rainfallThreshold
-    )
+    try {
+      const validCrops = crops.filter(crop => 
+        crop.cropType && crop.coverageAmount && crop.rainfallThreshold
+      )
 
-    if (validCrops.length > 0 && form.location) {
-      try {
-        const premium = await calculateBundlePremium(
-          validCrops,
-          form.location,
-          Number(form.measurementPeriod)
-        )
-        if (premium) {
-          setBundlePremium(premium)
-        }
-      } catch (error) {
-        console.error('Failed to calculate bundle premium:', error)
+      if (validCrops.length === 0) {
+        setBundlePremium(null)
+        return
       }
+
+      if (!form.location) {
+        setBundlePremium(null)
+        return
+      }
+
+      const measurementPeriod = Number(form.measurementPeriod)
+      if (!measurementPeriod || measurementPeriod <= 0) {
+        console.warn('Invalid measurement period:', form.measurementPeriod)
+        setBundlePremium(null)
+        return
+      }
+
+      console.log(`Calculating premium for ${validCrops.length} crops`)
+      const premium = await calculateBundlePremium(
+        validCrops,
+        form.location,
+        measurementPeriod
+      )
+      
+      if (premium && premium > 0n) {
+        setBundlePremium(premium)
+        console.log(`Bundle premium calculated: ${premium} wei`)
+      } else {
+        setBundlePremium(null)
+        console.warn('Invalid premium calculated')
+      }
+    } catch (error) {
+      console.error('Failed to calculate bundle premium:', error)
+      setBundlePremium(null)
     }
   }
 
