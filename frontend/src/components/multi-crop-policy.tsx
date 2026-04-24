@@ -201,10 +201,30 @@ export function MultiCropPolicy() {
 
   const isValidForm = () => {
     // Validate form has complete crop data and required fields
-    const validCrops = crops.filter(crop => 
-      crop.cropType && crop.coverageAmount && crop.rainfallThreshold
-    )
-    return validCrops.length > 0 && form.location && form.description && getTotalWeight() === 10000
+    try {
+      const validCrops = crops.filter(crop => 
+        crop.cropType && crop.coverageAmount && crop.rainfallThreshold
+      )
+      const totalWeight = getTotalWeight()
+      const hasRequiredFields = form.location && form.description
+      
+      if (validCrops.length === 0) {
+        return false
+      }
+      
+      if (!hasRequiredFields) {
+        return false
+      }
+      
+      if (totalWeight !== 10000) {
+        return false
+      }
+      
+      return true
+    } catch (error) {
+      console.error('Form validation error:', error)
+      return false
+    }
   }
 
   return (
