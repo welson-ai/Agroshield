@@ -122,7 +122,14 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   );
 };
 
-// Full screen loading component
+/**
+ * FullScreenLoader component - Full screen loading overlay
+ * Displays loading spinner with optional backdrop covering entire viewport
+ * 
+ * @param text - Loading text (default: 'Loading...')
+ * @param backdrop - Show backdrop (default: true)
+ * @returns JSX.Element - Full screen loader component
+ */
 export const FullScreenLoader: React.FC<{
   text?: string;
   backdrop?: boolean;
