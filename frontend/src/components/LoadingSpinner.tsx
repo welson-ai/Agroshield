@@ -154,7 +154,18 @@ export const FullScreenLoader: React.FC<{
   );
 };
 
-// Button loading component
+/**
+ * LoadingButton component - Button with loading state
+ * Displays button with spinner when loading, disabled state
+ * 
+ * @param loading - Whether button is in loading state
+ * @param children - Button content when not loading
+ * @param disabled - Whether button is disabled
+ * @param className - Additional CSS classes
+ * @param loadingText - Text to show when loading
+ * @param onClick - Click handler
+ * @returns JSX.Element - Loading button component
+ */
 export const LoadingButton: React.FC<{
   loading: boolean;
   children: React.ReactNode;
