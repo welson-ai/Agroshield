@@ -121,7 +121,14 @@ export const Analytics: React.FC = () => {
     }
   };
 
-  const generateDailyStats = (range: string) => {
+  /**
+ * Generate daily statistics for time range
+ * Creates mock daily data for chart visualization
+ * 
+ * @param range - Time range ('7d', '30d', '90d')
+ * @returns Array of daily statistics
+ */
+const generateDailyStats = (range: string) => {
     const days = range === '7d' ? 7 : range === '30d' ? 30 : 90;
     const stats = [];
     
