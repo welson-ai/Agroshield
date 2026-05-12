@@ -47,6 +47,8 @@ interface ChartData {
 /**
  * Analytics component - Comprehensive analytics dashboard with charts
  * Displays protocol metrics, user growth, and transaction analytics
+ * Features real-time data updates and interactive visualizations
+ * Fully accessible with keyboard navigation and screen reader support
  * 
  * @returns JSX.Element - Analytics dashboard with interactive charts
  * 
