@@ -69,6 +69,7 @@ export const Analytics: React.FC = () => {
   });
   const [timeRange, setTimeRange] = useState<'7d' | '30d' | '90d'>('30d');
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [chartType, setChartType] = useState<'volume' | 'transactions' | 'users'>('volume');
 
   const { address } = useAccount();
