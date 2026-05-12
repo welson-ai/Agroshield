@@ -215,7 +215,14 @@ const formatAddress = (address: string) => {
     return `${address.slice(0, 6)}...${address.slice(-4)}`;
   };
 
-  const getGrowthColor = (growth: number) => {
+  /**
+ * Get color class based on growth value
+ * Returns green for positive growth, red for negative
+ * 
+ * @param growth - Growth percentage value
+ * @returns CSS class name for color
+ */
+const getGrowthColor = (growth: number) => {
     return growth >= 0 ? 'text-green-600' : 'text-red-600';
   };
 
