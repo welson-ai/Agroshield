@@ -274,14 +274,22 @@ export const TableSkeleton: React.FC<{
   columns?: number;
 }> = ({ rows = 5, columns = 4 }) => {
   return (
-    <div className="bg-white rounded-lg shadow overflow-hidden">
+    <div 
+      className="bg-white rounded-lg shadow overflow-hidden"
+      role="status"
+      aria-busy="true"
+      aria-label="Loading table data"
+    >
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
               {Array.from({ length: columns }).map((_, index) => (
                 <th key={index} className="px-6 py-3 text-left">
-                  <div className="h-4 bg-gray-200 rounded animate-pulse"></div>
+                  <div 
+                    className="h-4 bg-gray-200 rounded animate-pulse"
+                    aria-hidden="true"
+                  ></div>
                 </th>
               ))}
             </tr>
