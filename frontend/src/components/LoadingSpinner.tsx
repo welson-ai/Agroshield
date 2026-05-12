@@ -198,7 +198,7 @@ export const LoadingButton: React.FC<{
       {loading ? (
         <>
           <LoadingSpinner size="sm" color="white" />
-          <span className="ml-2">{loadingText}</span>
+          <span className="ml-2" aria-live="polite">{loadingText}</span>
         </>
       ) : (
         children
