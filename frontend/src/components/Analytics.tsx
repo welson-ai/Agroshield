@@ -15,11 +15,13 @@ interface AnalyticsData {
   userGrowth: number;
   liquidityGrowth: number;
   successRate: number;
+  /** Top users by volume and transactions */
   topUsers: Array<{
     address: string;
     volume: string;
     transactions: number;
   }>;
+  /** Daily statistics for time series analysis */
   dailyStats: Array<{
     date: string;
     volume: string;
