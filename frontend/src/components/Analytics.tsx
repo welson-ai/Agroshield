@@ -3,6 +3,10 @@ import { useReadContract, useAccount } from 'wagmi';
 import { formatEther } from 'viem';
 import { AGROSHIELD_CONTRACTS, AGROSHIELD_ABIS } from '@/constants/contracts';
 
+/**
+ * Analytics data interface for dashboard metrics
+ * Contains key performance indicators for the AgroShield protocol
+ */
 interface AnalyticsData {
   totalVolume: string;
   totalTransactions: number;
