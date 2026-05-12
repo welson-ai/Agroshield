@@ -55,6 +55,8 @@ const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
+      role="tablist"
+      aria-orientation="horizontal"
       className={cn(
         "inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground",
         className
@@ -73,6 +75,12 @@ const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
   ({ value, className, ...props }, ref) => {
     const context = React.useContext(TabsContext)
     if (!context) throw new Error('TabsTrigger must be used within a Tabs component')
+    
+    // Validate trigger value
+    if (!value || value.trim().length === 0) {
+      console.warn('TabsTrigger requires a valid value prop')
+      return null
+    }
     
     const { activeTab, setActiveTab } = context
     const isActive = activeTab === value
