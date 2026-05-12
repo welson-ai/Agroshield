@@ -30,6 +30,10 @@ interface AnalyticsData {
   }>;
 }
 
+/**
+ * Chart data interface for analytics visualizations
+ * Used for rendering various chart types in the analytics dashboard
+ */
 interface ChartData {
   labels: string[];
   datasets: Array<{
