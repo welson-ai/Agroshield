@@ -245,9 +245,13 @@ export const CardSkeleton: React.FC<{
             <div 
               className="h-4 bg-gray-200 rounded animate-pulse"
               style={{ width: `${Math.random() * 40 + 60}%` }}
+              aria-hidden="true"
             ></div>
             {index === 0 && (
-              <div className="h-3 bg-gray-200 rounded animate-pulse w-1/2"></div>
+              <div 
+                className="h-3 bg-gray-200 rounded animate-pulse w-1/2"
+                aria-hidden="true"
+              ></div>
             )}
           </div>
         ))}
