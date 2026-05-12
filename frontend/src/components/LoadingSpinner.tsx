@@ -207,7 +207,14 @@ export const LoadingButton: React.FC<{
   );
 };
 
-// Card loading skeleton
+/**
+ * CardSkeleton component - Skeleton loading state for cards
+ * Displays animated placeholder for card content while loading
+ * 
+ * @param lines - Number of skeleton lines (default: 3)
+ * @param showAvatar - Show avatar skeleton (default: false)
+ * @returns JSX.Element - Card skeleton component
+ */
 export const CardSkeleton: React.FC<{
   lines?: number;
   showAvatar?: boolean;
