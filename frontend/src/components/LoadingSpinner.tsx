@@ -10,6 +10,7 @@ interface LoadingSpinnerProps {
 /**
  * LoadingSpinner component - Customizable loading spinner with text
  * Displays animated spinner with configurable size and color
+ * Fully accessible with ARIA attributes for screen readers
  * 
  * @param size - Spinner size: 'sm' | 'md' | 'lg' | 'xl' (default: 'md')
  * @param color - Spinner color: 'primary' | 'secondary' | 'white' | 'gray' (default: 'primary')
