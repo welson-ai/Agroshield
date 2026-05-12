@@ -201,7 +201,17 @@ const getChartData = (): ChartData => {
     }
   };
 
-  const formatAddress = (address: string) => {
+  /**
+ * Format wallet address for display
+ * Shortens address to show first 6 and last 4 characters
+ * 
+ * @param address - Full wallet address
+ * @returns Formatted address string
+ */
+const formatAddress = (address: string) => {
+    if (!address || address.length < 10) {
+      return address;
+    }
     return `${address.slice(0, 6)}...${address.slice(-4)}`;
   };
 
