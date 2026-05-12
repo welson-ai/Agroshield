@@ -114,6 +114,12 @@ const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
     const context = React.useContext(TabsContext)
     if (!context) throw new Error('TabsContent must be used within a Tabs component')
     
+    // Validate content value
+    if (!value || value.trim().length === 0) {
+      console.warn('TabsContent requires a valid value prop')
+      return null
+    }
+    
     const { activeTab } = context
     const isActive = activeTab === value
 
