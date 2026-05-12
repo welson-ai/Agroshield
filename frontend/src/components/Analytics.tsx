@@ -147,7 +147,13 @@ const generateDailyStats = (range: string) => {
     return stats;
   };
 
-  const getChartData = (): ChartData => {
+  /**
+ * Get chart data based on current chart type
+ * Transforms analytics data into chart-compatible format
+ * 
+ * @returns ChartData - Formatted data for charts
+ */
+const getChartData = (): ChartData => {
     const labels = analyticsData.dailyStats.map(stat => stat.date);
     
     switch (chartType) {
