@@ -27,6 +27,16 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   text,
   className = ''
 }) => {
+  // Validate props
+  if (!['sm', 'md', 'lg', 'xl'].includes(size)) {
+    console.warn('Invalid size prop:', size, 'Using default: md')
+    size = 'md'
+  }
+  
+  if (!['primary', 'secondary', 'white', 'gray'].includes(color)) {
+    console.warn('Invalid color prop:', color, 'Using default: primary')
+    color = 'primary'
+  }
   const getSizeClasses = () => {
     switch (size) {
       case 'sm':
