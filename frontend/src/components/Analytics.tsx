@@ -226,7 +226,14 @@ const getGrowthColor = (growth: number) => {
     return growth >= 0 ? 'text-green-600' : 'text-red-600';
   };
 
-  const getGrowthIcon = (growth: number) => {
+  /**
+ * Get growth icon based on growth value
+ * Returns up arrow for positive growth, down arrow for negative
+ * 
+ * @param growth - Growth percentage value
+ * @returns Growth icon emoji
+ */
+const getGrowthIcon = (growth: number) => {
     return growth >= 0 ? '📈' : '📉';
   };
 
