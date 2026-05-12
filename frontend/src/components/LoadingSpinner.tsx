@@ -185,6 +185,8 @@ export const LoadingButton: React.FC<{
     <button
       onClick={onClick}
       disabled={disabled || loading}
+      aria-busy={loading}
+      aria-disabled={disabled || loading}
       className={`
         relative inline-flex items-center justify-center
         px-4 py-2 bg-blue-600 text-white rounded-lg
