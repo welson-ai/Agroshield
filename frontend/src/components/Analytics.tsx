@@ -104,6 +104,18 @@ export const Analytics: React.FC = () => {
       setAnalyticsData(mockData);
     } catch (error) {
       console.error('Error fetching analytics data:', error);
+      setError('Failed to load analytics data. Please try again.');
+      setAnalyticsData({
+        totalVolume: '0',
+        totalTransactions: 0,
+        averageTransactionSize: '0',
+        gasEfficiency: 0,
+        userGrowth: 0,
+        liquidityGrowth: 0,
+        successRate: 0,
+        topUsers: [],
+        dailyStats: []
+      });
     } finally {
       setIsLoading(false);
     }
