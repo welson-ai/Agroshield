@@ -196,6 +196,7 @@ const getChartData = (): ChartData => {
           }]
         };
       default:
+        console.warn('Invalid chart type:', chartType);
         return { labels: [], datasets: [] };
     }
   };
