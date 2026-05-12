@@ -111,7 +111,10 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
       </div>
       
       {text && (
-        <p className={`mt-3 text-sm ${getColorClasses()}`}>
+        <p 
+          className={`mt-3 text-sm ${getColorClasses()}`}
+          aria-live="polite"
+        >
           {text}
         </p>
       )}
