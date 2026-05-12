@@ -302,6 +302,7 @@ export const TableSkeleton: React.FC<{
                     <div 
                       className="h-4 bg-gray-200 rounded animate-pulse"
                       style={{ width: `${Math.random() * 60 + 40}%` }}
+                      aria-hidden="true"
                     ></div>
                   </td>
                 ))}
