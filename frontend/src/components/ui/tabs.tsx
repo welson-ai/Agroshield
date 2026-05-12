@@ -97,11 +97,6 @@ const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
           isActive && "bg-background text-foreground shadow-sm",
           className
         )}
-        role="tab"
-        aria-selected={isActive}
-        aria-controls={`tabpanel-${value}`}
-        id={`tab-${value}`}
-        tabIndex={isActive ? 0 : -1}
         onClick={() => setActiveTab(value)}
         {...props}
       />
