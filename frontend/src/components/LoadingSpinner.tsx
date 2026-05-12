@@ -220,10 +220,18 @@ export const CardSkeleton: React.FC<{
   showAvatar?: boolean;
 }> = ({ lines = 3, showAvatar = false }) => {
   return (
-    <div className="bg-white rounded-lg shadow p-6">
+    <div 
+      className="bg-white rounded-lg shadow p-6"
+      role="status"
+      aria-busy="true"
+      aria-label="Loading content"
+    >
       {showAvatar && (
         <div className="flex items-center space-x-4 mb-4">
-          <div className="w-12 h-12 bg-gray-200 rounded-full animate-pulse"></div>
+          <div 
+            className="w-12 h-12 bg-gray-200 rounded-full animate-pulse"
+            aria-hidden="true"
+          ></div>
           <div className="flex-1">
             <div className="h-4 bg-gray-200 rounded animate-pulse mb-2"></div>
             <div className="h-3 bg-gray-200 rounded animate-pulse w-3/4"></div>
