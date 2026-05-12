@@ -80,6 +80,7 @@ export const Analytics: React.FC = () => {
 
   const fetchAnalyticsData = async () => {
     setIsLoading(true);
+    setError(null);
     try {
       // Mock implementation - replace with actual analytics calls
       const mockData: AnalyticsData = {
