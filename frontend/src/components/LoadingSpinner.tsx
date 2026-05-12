@@ -83,7 +83,12 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   };
 
   return (
-    <div className={`flex flex-col items-center justify-center ${className}`}>
+    <div 
+      className={`flex flex-col items-center justify-center ${className}`}
+      role="status"
+      aria-live="polite"
+      aria-busy="true"
+    >
       <div className="relative">
         <div
           className={`
@@ -92,6 +97,7 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
             ${getSpinnerSize()}
             border-current border-t-transparent rounded-full animate-spin
           `}
+          aria-hidden="true"
         />
         {/* Inner circle for visual effect */}
         <div
