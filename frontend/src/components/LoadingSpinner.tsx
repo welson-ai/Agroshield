@@ -261,6 +261,14 @@ export const CardSkeleton: React.FC<{
 };
 
 // Table loading skeleton
+/**
+ * TableSkeleton component - Skeleton loading state for tables
+ * Displays animated table placeholder while loading data
+ * 
+ * @param rows - Number of skeleton rows (default: 5)
+ * @param columns - Number of skeleton columns (default: 4)
+ * @returns JSX.Element - Table skeleton component
+ */
 export const TableSkeleton: React.FC<{
   rows?: number;
   columns?: number;
