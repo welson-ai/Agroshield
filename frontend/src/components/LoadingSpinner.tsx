@@ -135,11 +135,19 @@ export const FullScreenLoader: React.FC<{
   backdrop?: boolean;
 }> = ({ text = 'Loading...', backdrop = true }) => {
   return (
-    <div className={`
-      fixed inset-0 z-50 flex items-center justify-center
-      ${backdrop ? 'bg-black bg-opacity-50' : ''}
-    `}>
-      <div className="bg-white rounded-lg p-8 shadow-xl">
+    <div 
+      className={`
+        fixed inset-0 z-50 flex items-center justify-center
+        ${backdrop ? 'bg-black bg-opacity-50' : ''}
+      `}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="loading-text"
+    >
+      <div 
+        className="bg-white rounded-lg p-8 shadow-xl"
+        role="document"
+      >
         <LoadingSpinner size="lg" text={text} />
       </div>
     </div>
