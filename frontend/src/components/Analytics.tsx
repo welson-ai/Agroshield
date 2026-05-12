@@ -241,7 +241,7 @@ const getGrowthIcon = (growth: number) => {
     return (
       <div className="max-w-7xl mx-auto p-6">
         <div className="bg-white rounded-lg shadow-lg p-6">
-          <div className="text-center py-12">
+          <div className="text-center py-12" role="status" aria-busy="true" aria-live="polite">
             <p className="text-gray-600">Loading analytics...</p>
           </div>
         </div>
