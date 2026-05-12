@@ -154,6 +154,14 @@ const generateDailyStats = (range: string) => {
  * @returns ChartData - Formatted data for charts
  */
 const getChartData = (): ChartData => {
+    // Validate analytics data before processing
+    if (!analyticsData.dailyStats || analyticsData.dailyStats.length === 0) {
+      return {
+        labels: [],
+        datasets: []
+      };
+    }
+    
     const labels = analyticsData.dailyStats.map(stat => stat.date);
     
     switch (chartType) {
