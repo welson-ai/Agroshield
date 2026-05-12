@@ -250,10 +250,10 @@ const getGrowthIcon = (growth: number) => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
+    <div className="max-w-7xl mx-auto p-6" role="main" aria-label="Analytics Dashboard">
       <div className="bg-white rounded-lg shadow-lg p-6">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">Analytics Dashboard</h2>
+          <h2 className="text-2xl font-bold" id="analytics-title">Analytics Dashboard</h2>
           <div className="flex space-x-4">
             <select
               value={timeRange}
