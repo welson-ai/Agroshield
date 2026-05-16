@@ -10,6 +10,8 @@
 
 AgroShield is a revolutionary decentralized parametric crop insurance platform built on the CELO blockchain. We provide farmers with affordable, transparent, and instant insurance coverage powered by smart contracts and real-time weather data.
 
+*Last updated: May 2026*
+
 ### 🎯 Mission
 
 Empower farmers worldwide with accessible crop insurance through blockchain technology, eliminating traditional insurance barriers and providing financial protection against climate-related agricultural losses.
