@@ -72,7 +72,7 @@ const CUSD_TOKEN_ABI = [
   {
     "inputs": [
       {"internalType": "address", "name": "owner", "type": "address"},
-      {"internalType": "address", "name": "spender", "type": "uint256"}
+      {"internalType": "address", "name": "spender", "type": "address"}
     ],
     "name": "allowance",
     "outputs": [
