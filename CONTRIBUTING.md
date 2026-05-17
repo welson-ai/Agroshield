@@ -1,5 +1,7 @@
 # Contributing to AgroShield Protocol
 
+Last updated: May 2026
+
 Thank you for your interest in contributing to AgroShield Protocol! This document provides guidelines and information for contributors.
 
 ## Getting Started

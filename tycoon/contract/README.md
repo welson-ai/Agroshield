@@ -1,6 +1,6 @@
-# Tycoon Smart Contracts
+# AgroShield Smart Contracts
 
-Monopoly-style game and reward system implemented in Solidity. The codebase consists of **TycoonRewardSystem** (ERC-1155 vouchers and collectibles) and **Tycoon** (registration, games, stakes, and payouts).
+Agricultural insurance simulation and reward system implemented in Solidity. The codebase consists of **AgroShieldRewardSystem** (ERC-1155 vouchers and collectibles) and **AgroShield** (registration, simulations, stakes, and payouts).
 
 ---
 
@@ -8,8 +8,8 @@ Monopoly-style game and reward system implemented in Solidity. The codebase cons
 
 - [Overview](#overview)
 - [Contracts](#contracts)
-- [TycoonRewardSystem](#tycoonrewardsystem)
-- [Tycoon (Main Game)](#tycoon-main-game)
+- [AgroShieldRewardSystem](#agroshieldrewardsystem)
+- [AgroShield (Main Simulation)](#agroshield-main-simulation)
 - [Deployment & Setup](#deployment--setup)
 - [Backend Integration](#backend-integration)
 - [Development](#development)
@@ -19,9 +19,9 @@ Monopoly-style game and reward system implemented in Solidity. The codebase cons
 ## Overview
 
 - **Chain:** EVM-compatible (e.g. Base, Ethereum).
-- **Tokens:** TYC (ERC-20) for rewards; USDC (ERC-20) for stakes and shop.
-- **Rewards:** ERC-1155 vouchers (redeemable for TYC) and collectibles (burnable for in-game perks).
-- **Game flow:** Register → Create/Join game (optional USDC stake) → Play (off-chain) → Exit or get removed → Payout by rank (USDC + vouchers + collectibles).
+- **Tokens:** AGRO (ERC-20) for rewards; USDC (ERC-20) for stakes and shop.
+- **Rewards:** ERC-1155 vouchers (redeemable for AGRO) and collectibles (burnable for in-simulation perks).
+- **Simulation flow:** Register → Create/Join simulation (optional USDC stake) → Play (off-chain) → Exit or get removed → Payout by rank (USDC + vouchers + collectibles).
 
 ---
 

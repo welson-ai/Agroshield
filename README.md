@@ -27,6 +27,7 @@ Empower farmers worldwide with accessible crop insurance through blockchain tech
 - 🎨 **Beautiful UI** - Modern, responsive design with animations
 - ♿ **Accessible** - WCAG 2.1 AA compliant interface
 - 🚀 **Performant** - Optimized for speed and efficiency
+- 🤝 **Integrated** - Compatible with Tycoon ecosystem
 
 ## 🏗️ Architecture
 

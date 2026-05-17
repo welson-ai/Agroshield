@@ -1,7 +1,7 @@
 {
-  "name": "tycoon-celo-agent",
+  "name": "agroshield-celo-agent",
   "version": "1.0.0",
-  "description": "Celo-backed AI agent for Tycoon (ERC-8004). Uses built-in logic by default; replace with your own or Tycoon's decision engine.",
+  "description": "Celo-backed AI agent for AgroShield (ERC-8004). Uses built-in logic by default; replace with your own or AgroShield's decision engine.",
   "type": "module",
   "main": "src/index.js",
   "scripts": {

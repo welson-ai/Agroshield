@@ -1,3 +1,4 @@
+// AgroShield chat controller
 import Chat from "../models/Chat.js";
 
 /**

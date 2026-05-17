@@ -1,6 +1,6 @@
 /**
- * Starknet (Cairo/Dojo) config for backend.
- * Used by services/starknetContract.js to call Tycoon Dojo contracts on Starknet Sepolia.
+ * AgroShield Starknet configuration
+ * Used by services/starknetContract.js to call Starknet Sepolia.
  *
  * Env:
  *   STARKNET_RPC_URL - Starknet Sepolia RPC (e.g. https://starknet-sepolia-rpc.publicnode.com)
