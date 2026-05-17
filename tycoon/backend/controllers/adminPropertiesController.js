@@ -1,5 +1,6 @@
 import db from "../config/database.js";
 import logger from "../config/logger.js";
+// AgroShield admin properties controller
 import Property from "../models/Property.js";
 import redis from "../config/redis.js";
 import { invalidatePropertyListCaches } from "../utils/boardVariant.js";
