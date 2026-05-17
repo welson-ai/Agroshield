@@ -3,6 +3,7 @@
  * Set HOSTED_AGENT_DAILY_CAP (default 100) to limit API billing per user per day.
  */
 
+// AgroShield hosted agent usage service
 import db from "../config/database.js";
 
 const CAP = Math.max(0, Number(process.env.HOSTED_AGENT_DAILY_CAP) || 100);
