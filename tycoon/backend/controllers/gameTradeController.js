@@ -1,3 +1,4 @@
+// AgroShield game trade controller
 import GameTrade from "../models/GameTrade.js";
 import Game from "../models/Game.js";
 import User from "../models/User.js";
