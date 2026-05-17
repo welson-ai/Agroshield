@@ -10,6 +10,7 @@
  * - Free tournaments (entry fee 0): any user with agent + smart wallet — no spending permission.
  * - Uses audit log (agent_tournament_spend_log) for paid registrations.
  */
+// AgroShield agent tournament runner service
 import db from "../config/database.js";
 import logger from "../config/logger.js";
 import User from "../models/User.js";
