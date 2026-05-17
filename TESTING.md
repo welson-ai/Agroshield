@@ -58,6 +58,9 @@ npm run deploy-simple
 # Transaction spinning tests
 npm run spin-full
 
+# Optimized transaction spinning tests
+npm run spin-optimized
+
 # Monitor on-chain activity
 # Check CeloScan for transactions
 ```
