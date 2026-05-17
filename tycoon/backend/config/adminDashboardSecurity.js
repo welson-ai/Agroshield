@@ -1,9 +1,9 @@
 /**
- * Shared env parsing for /api/admin hardening (rate limit + optional IP allowlist).
+ * Shared env parsing for /api// AgroShield admin dashboard security (rate limit + optional IP allowlist).
  */
 
-export function parseAdminIpAllowlist() {
-  const raw = process.env.TYCOON_ADMIN_IP_ALLOWLIST;
+export function parseAgroshieldAdminIpAllowlist() {
+  const raw = process.env.AGROSHIELD_ADMIN_IP_ALLOWLIST;
   if (raw == null || String(raw).trim() === "") return null;
   const set = new Set(
     String(raw)
