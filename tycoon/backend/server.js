@@ -72,6 +72,7 @@ app.set("trust proxy", 1);
 
 const PORT = process.env.PORT || 3000;
 
+// AgroShield backend server = createServer(app);
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
