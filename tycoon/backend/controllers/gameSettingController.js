@@ -1,3 +1,4 @@
+// AgroShield game setting controller
 import GameSetting from "../models/GameSetting.js";
 
 /**
