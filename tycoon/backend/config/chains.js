@@ -1,7 +1,7 @@
 /**
- * Multi-chain config for Tycoon contract (Celo, Polygon, Base).
- * Each chain can have its own RPC, contract address, and optional backend game controller key.
- * Used by services/tycoonContract.js so the backend can talk to the correct chain's contract.
+ * Multi-chain config for AgroShield contract (Celo, Polygon, Base).
+ * Each chain can have its own RPC, contract address, and optional backend insurance controller key.
+ * Used by services/agroshieldContract.js so the backend can talk to the correct chain's contract.
  */
 
 /**
