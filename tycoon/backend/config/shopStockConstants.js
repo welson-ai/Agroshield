@@ -1,5 +1,5 @@
 /**
- * Mirror of frontend shop/rewards definitions for backend bulk stocking.
+ * Mirror of frontend shop/rewards definitions for AgroShield shop stock constants.
  * Keep in sync with:
  * - frontend/components/rewards/rewardsConstants.tsx (INITIAL_COLLECTIBLES)
  * - frontend/app/rewards/useRewardsAdmin.ts (BUNDLE_DEFS_FOR_STOCK)
