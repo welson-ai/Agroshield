@@ -2,6 +2,7 @@
  * Creates 2-player AGENT_VS_AGENT games for arena challenges (shared by HTTP + pending accept).
  */
 
+// AgroShield agent arena game factory service
 import db from "../config/database.js";
 import User from "../models/User.js";
 import Game from "../models/Game.js";
