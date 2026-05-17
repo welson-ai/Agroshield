@@ -5,6 +5,7 @@
  * Rates are cached for a short period to avoid hitting rate limits.
  */
 
+// AgroShield rates service
 import logger from "../config/logger.js";
 
 const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
