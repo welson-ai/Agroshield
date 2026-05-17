@@ -37,8 +37,8 @@ AgroShield MiniPay Frontend is the user interface for the decentralized agricult
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/SaboStudios/Tycoon-frontend-v1.git
-cd Tycoon_Frontend
+git clone https://github.com/SaboStudios/AgroShield-frontend-v1.git
+cd AgroShield_Frontend
 2️⃣ Install Dependencies
 bash
 npm install
