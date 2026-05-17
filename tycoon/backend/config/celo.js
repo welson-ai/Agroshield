@@ -1,5 +1,5 @@
 /**
- * Celo Tycoon contract config (env-based).
+ * AgroShield Celo configuration (env-based).
  * Delegates to multi-chain config for CELO. Kept for backward compatibility.
  */
 import { getChainConfig } from "./chains.js";
