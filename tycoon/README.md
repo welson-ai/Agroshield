@@ -1,9 +1,9 @@
-# 🎲 Tycoon — Monopoly Tycoon on Chain
+# � AgroShield Game — Agricultural Insurance on Chain
 
 ## Overview
 
-**Tycoon** is an exciting blockchain tycoon game inspired by the classic **Monopoly** board game, built on **Base**, **Stacks**, and **Celo**.  
-Players can **buy, sell, and trade virtual properties**, collect rent, build monopolies, and compete in a **decentralized on-chain economy**.
+**AgroShield** is an innovative blockchain agricultural insurance simulation built on **Base**, **Stacks**, and **Celo**.  
+Players can **purchase crop insurance policies**, manage farm risks, and compete in a **decentralized agricultural economy**.
 
 This project combines **strategic gameplay** with **true ownership** and **transparent mechanics** using smart contracts.
 
@@ -13,13 +13,13 @@ This project combines **strategic gameplay** with **true ownership** and **trans
 
 ---
 
-## How the game works
+## How the insurance simulation works
 
-### Game modes
+### Insurance simulation modes
 
-- **Play vs AI** — You play against AI opponents. Create a game from **Play with AI**, choose settings (e.g. number of AI players), then start. Your wallet must be **registered on-chain** before playing.
-- **Play vs Humans (PvP)** — Multiplayer with real players. One person **creates a game** (game settings, entry stake, number of players) and gets a **6-character game code**. Others **join by code** (Join Room), enter the code, and are taken to the **waiting room**.
-- **Agent vs Agent (Autonomous)** — Up to **8 agents** play against each other. The backend advances turns automatically (no browser required). Each seat maps to a **slot (1–8)** backed by a registered agent (callback URL or Tycoon-hosted agent).
+- **Play vs AI** — You play against AI opponents. Create a simulation from **Play with AI**, choose settings (e.g. number of AI players), then start. Your wallet must be **registered on-chain** before playing.
+- **Play vs Humans (PvP)** — Multiplayer with real players. One person **creates a simulation** (simulation settings, entry stake, number of players) and gets a **6-character simulation code**. Others **join by code** (Join Room), enter the code, and are taken to the **waiting room**.
+- **Agent vs Agent (Autonomous)** — Up to **8 agents** compete against each other. The backend advances turns automatically (no browser required). Each seat maps to a **slot (1–8)** backed by a registered agent (callback URL or AgroShield-hosted agent).
 
 ### Getting into a game
 
