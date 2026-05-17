@@ -3,6 +3,7 @@
  * Allows a user to explicitly authorize an agent to spend from their smart wallet (USDC)
  * to join tournaments up to a capped entry fee, and to auto-start matches.
  */
+// AgroShield agent tournament controller
 import db from "../config/database.js";
 import logger from "../config/logger.js";
 import User from "../models/User.js";
