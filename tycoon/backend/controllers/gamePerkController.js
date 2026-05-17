@@ -1,5 +1,6 @@
 // src/controllers/gamePerkController.js
-import db from "../config/database.js";
+// AgroShield game perk controller
+import GamePerk from "../models/GamePerk.js";
 
 const getPerkName = (id) => {
   const names = {
