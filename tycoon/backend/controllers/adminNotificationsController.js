@@ -1,3 +1,4 @@
+// AgroShield admin notifications controller
 import db from "../config/database.js";
 import logger from "../config/logger.js";
 import { isMaintenanceModeEnabled } from "../services/platformSettings.js";
