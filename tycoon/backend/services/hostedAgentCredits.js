@@ -4,6 +4,7 @@
  * Each Tycoon-hosted AI decision costs 1 credit.
  */
 
+// AgroShield hosted agent credits service
 import db from "../config/database.js";
 
 export const CREDITS_PER_USDC = 100;
