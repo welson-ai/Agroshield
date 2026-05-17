@@ -1,9 +1,9 @@
-# Tycoon Celo Agent
+# AgroShield Celo Agent
 
-A small server that implements the decision API Tycoon expects (`POST /decision`). Uses **Claude (Anthropic)** for LLM-based decisions when `ANTHROPIC_API_KEY` is set; otherwise falls back to rule-based logic.
+A small server that implements the decision API AgroShield expects (`POST /decision`). Uses **Claude (Anthropic)** for LLM-based decisions when `ANTHROPIC_API_KEY` is set; otherwise falls back to rule-based logic.
 
-- **Main default in Tycoon:** The built-in rule-based logic (in the app) is the primary behavior — no API costs, no external service. That stays as-is.
-- **This project:** Hybrid LLM + rules. Set `ANTHROPIC_API_KEY` for Claude-powered buy/skip, trade, and build decisions. On timeout or API failure, falls back to `src/decisionLogic.js` so the game never stalls. Compatible with **Build Agents for the Real World** (Celo hackathon) and **ERC-8004**.
+- **Main default in AgroShield:** The built-in rule-based logic (in the app) is the primary behavior — no API costs, no external service. That stays as-is.
+- **This project:** Hybrid LLM + rules. Set `ANTHROPIC_API_KEY` for Claude-powered insurance decisions. On timeout or API failure, falls back to `src/decisionLogic.js` so the simulation never stalls. Compatible with **Build Agents for the Real World** (Celo hackathon) and **ERC-8004**.
 
 ## Quick start
 
