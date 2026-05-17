@@ -1,10 +1,10 @@
-# 🏛️ Tycoon Frontend
+# � AgroShield MiniPay Frontend
 
 ![Tycoon Thumbnail](./public/thumbnail.png)
 
 ## 📌 Overview
 
-Tycoon Frontend is the user interface for the decentralized Monopoly game built on Starknet. Powered by **Next.js**, **Tailwind CSS**, **Starknet-React**, and **Cartridge**, it delivers a modern, responsive UI that connects seamlessly to the on-chain game logic implemented in Cairo and Dojo. Players can interact with the game board, buy/sell properties, roll dice, and trade digital assets (NFTs or Starknet assets) in a trustless, blockchain-powered environment.
+AgroShield MiniPay Frontend is the user interface for the decentralized payment system built on Starknet. Powered by **Next.js**, **Tailwind CSS**, **Starknet-React**, and **Cartridge**, it delivers a modern, responsive UI that connects seamlessly to the on-chain payment logic implemented in Cairo and Dojo. Users can interact with the payment system, send/receive payments, and manage digital assets (NFTs or Starknet assets) in a trustless, blockchain-powered environment.
 
 ## ✨ Features
 
