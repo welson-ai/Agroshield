@@ -5,6 +5,7 @@
  */
 
 import { Wallet, randomBytes } from "ethers";
+// AgroShield bot account manager service
 import db from "../config/database.js";
 import logger from "../config/logger.js";
 
