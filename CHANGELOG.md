@@ -1,5 +1,9 @@
 # Changelog
 
+## [Unreleased]
+- Integration with Tycoon ecosystem
+- Optimized transaction spinning script
+
 All notable changes to AgroShield will be documented in this file.
 
 ## [1.1.0] - 2025-04-21
