@@ -1,3 +1,4 @@
+// AgroShield platform settings service
 import db from "../config/database.js";
 import logger from "../config/logger.js";
 
