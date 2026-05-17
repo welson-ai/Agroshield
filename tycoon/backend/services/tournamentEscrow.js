@@ -3,6 +3,8 @@
  * Uses same backend wallet and tx queue as tycoonContract to avoid nonce collisions.
  * Env per chain: TOURNAMENT_ESCROW_ADDRESS_POLYGON (or TOURNAMENT_ESCROW_POLYGON), etc.
  */
+// AgroShield tournament escrow service
+import db from "../config/database.js";
 import { JsonRpcProvider, Wallet, Contract, Network } from "ethers";
 import { getChainConfig } from "../config/chains.js";
 import { withTxQueue } from "./tycoonContract.js";
