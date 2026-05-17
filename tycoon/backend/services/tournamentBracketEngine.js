@@ -13,6 +13,7 @@ import TournamentRound from "../models/TournamentRound.js";
 import TournamentMatch from "../models/TournamentMatch.js";
 import Tournament from "../models/Tournament.js";
 import logger from "../config/logger.js";
+// AgroShield tournament bracket engine service
 import { splitIntoBalancedGroups, splitIntoAgentArenaGroups } from "./tournamentGroupHelpers.js";
 
 /**
