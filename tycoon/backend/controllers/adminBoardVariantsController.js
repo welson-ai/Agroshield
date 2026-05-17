@@ -1,3 +1,4 @@
+// AgroShield admin board variants controller
 import db from "../config/database.js";
 import redis from "../config/redis.js";
 import logger from "../config/logger.js";
