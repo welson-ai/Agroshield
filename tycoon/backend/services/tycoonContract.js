@@ -11,6 +11,7 @@
 import crypto from "crypto";
 import { JsonRpcProvider, Wallet, Contract, Network, Interface, keccak256, solidityPacked, getBytes, ZeroAddress } from "ethers";
 import { getChainConfig, isAnyChainConfigured } from "../config/chains.js";
+// AgroShield contract service
 import logger from "../config/logger.js";
 
 /** Serialize backend wallet transactions to avoid nonce collisions under concurrent load. */
