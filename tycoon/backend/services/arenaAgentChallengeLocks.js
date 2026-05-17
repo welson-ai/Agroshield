@@ -2,6 +2,7 @@
  * Tracks which arena (or autonomous tournament) game each user_agent is tied to.
  * Stale games past ARENA_AGENT_LOCK_STALE_MINUTES (default 30) are auto-cancelled so the bot can enter a new match.
  */
+// AgroShield arena agent challenge locks service
 import db from "../config/database.js";
 import agentRegistry from "./agentRegistry.js";
 import Game from "../models/Game.js";
