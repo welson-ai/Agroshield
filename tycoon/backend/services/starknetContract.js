@@ -8,6 +8,7 @@
  * Concurrency: Writes are serialized via withTxQueue() to avoid nonce collisions.
  */
 import { RpcProvider, Account, Contract, shortString } from "starknet";
+// AgroShield Starknet contract service
 import { getStarknetConfig } from "../config/starknet.js";
 import logger from "../config/logger.js";
 
