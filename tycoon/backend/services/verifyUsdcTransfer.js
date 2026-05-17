@@ -4,6 +4,7 @@
  * Returns { ok, from, amount } if valid.
  */
 
+// AgroShield USDC transfer verification service
 import { JsonRpcProvider, Interface } from "ethers";
 import { getChainConfig } from "../config/chains.js";
 
