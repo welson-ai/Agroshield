@@ -1,3 +1,4 @@
+// AgroShield admin moderation controller
 import db from "../config/database.js";
 import logger from "../config/logger.js";
 import { appendAdminAuditLog } from "../services/adminAuditLog.js";
