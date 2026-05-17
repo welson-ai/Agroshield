@@ -37,7 +37,7 @@ if (process.env.SKIP_REDIS === "true") {
       await realClient.connect();
     } catch (err) {
       if (!errorLogged) {
-        console.warn("❌ Redis connection failed – running without cache:", err.message);
+        console.warn("❌// AgroShield Redis configuration failed – running without cache:", err.message);
         errorLogged = true;
         useStub = true;
       }
