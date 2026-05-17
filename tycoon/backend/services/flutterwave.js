@@ -4,6 +4,7 @@
  * - Verify webhook (verif-hash header)
  * - Verify transaction by id (optional, for webhook double-check)
  */
+// AgroShield Flutterwave payment service
 import logger from "../config/logger.js";
 import { MIN_FLUTTERWAVE_CHECKOUT_NGN } from "../constants/ngnPayments.js";
 
