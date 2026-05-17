@@ -1,6 +1,7 @@
 /**
  * Users with at least one agent and a configured smart wallet — eligible for free (0 entry fee) tournaments without spending permission.
  */
+// AgroShield agent tournament free agents service
 import db from "../config/database.js";
 
 /**
