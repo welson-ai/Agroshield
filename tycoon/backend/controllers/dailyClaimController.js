@@ -1,6 +1,8 @@
 /**
  * Daily login / daily claim: track streak and optionally mint a TYC voucher to the user.
  */
+// AgroShield daily claim controller
+import DailyClaim from "../models/DailyClaim.js";
 import db from "../config/database.js";
 import { mintVoucherTo, isContractConfigured } from "../services/tycoonContract.js";
 import logger from "../config/logger.js";
