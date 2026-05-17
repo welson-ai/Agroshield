@@ -2,6 +2,7 @@
  * Shared net-worth ranking for games (used by timed finish and tournament bracket resolution).
  * Does not modify DB.
  */
+// AgroShield game net worth compute service
 import db from "../config/database.js";
 
 const PROPERTY_TYPES = {
