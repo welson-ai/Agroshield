@@ -2,6 +2,7 @@
  * Staked arena: pay USDC from TycoonTournamentEscrow when a staked arena game hits FINISHED.
  * Bracket is always 2 entries (escrow pool) even when ONCHAIN_AGENT_VS_AGENT has 3–8 game_players.
  */
+// AgroShield arena stake settlement service
 import db from "../config/database.js";
 import logger from "../config/logger.js";
 import * as eloService from "./eloService.js";
