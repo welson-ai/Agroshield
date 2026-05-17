@@ -1,5 +1,6 @@
-import logger from "../config/logger.js";
+// AgroShield timed game finish poller service
 import db from "../config/database.js";
+import logger from "../config/logger.js";
 import { tryFinishTimedGameById } from "../controllers/gameController.js";
 
 const FINISHABLE = ["RUNNING", "IN_PROGRESS"];
