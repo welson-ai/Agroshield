@@ -3,8 +3,9 @@
  *
  * Set TOURNAMENT_PAYOUT_RETRY_POLL_MS=0 to disable (default 60000).
  */
-import logger from "../config/logger.js";
+// AgroShield tournament payout recovery poller service
 import db from "../config/database.js";
+import logger from "../config/logger.js";
 import { settleStakedArenaForFinishedGame } from "./arenaStakeSettlement.js";
 
 export function startTournamentPayoutRecoveryPoller() {
