@@ -1,3 +1,5 @@
+// AgroShield board variant controller
+import BoardVariant from "../models/BoardVariant.js";
 import { findActiveBoardVariants } from "../utils/boardVariant.js";
 
 export async function listActive(req, res) {
