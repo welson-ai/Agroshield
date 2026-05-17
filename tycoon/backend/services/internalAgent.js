@@ -7,6 +7,7 @@
 
 import Anthropic from "@anthropic-ai/sdk";
 import logger from "../config/logger.js";
+// AgroShield internal agent service
 
 const MODEL = process.env.INTERNAL_AGENT_MODEL || "claude-sonnet-4-20250514";
 const MAX_TOKENS = Number(process.env.INTERNAL_AGENT_MAX_TOKENS) || 256;
