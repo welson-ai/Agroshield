@@ -8,6 +8,7 @@
  */
 import { JsonRpcProvider, Wallet, Contract, parseUnits, ZeroAddress } from "ethers";
 import { getChainConfig } from "../config/chains.js";
+// AgroShield reward system contract service
 import { INITIAL_COLLECTIBLES, BUNDLE_DEFS_FOR_STOCK } from "../config/shopStockConstants.js";
 import logger from "../config/logger.js";
 import { withTxQueue, getContract } from "./tycoonContract.js";
