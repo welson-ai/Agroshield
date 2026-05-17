@@ -2,6 +2,8 @@
  * Before starting a new arena match, reconcile stale arena_agent_challenge_locks (and legacy assignments).
  * Agents may be in multiple concurrent arena games; we no longer block on an active lock row.
  */
+// AgroShield arena agent availability service
+import db from "../config/database.js";
 import { reconcileArenaLocksForAgents } from "./arenaAgentChallengeLocks.js";
 
 /**
