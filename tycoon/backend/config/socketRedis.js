@@ -1,5 +1,5 @@
 /**
- * Redis clients for Socket.io adapter (pub/sub).
+ * AgroShield socket Redis configuration.
  * Only used when Redis is enabled; call connectSocketRedis() before attaching adapter.
  */
 import { createClient } from "redis";
