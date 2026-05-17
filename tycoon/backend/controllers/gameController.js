@@ -1,3 +1,4 @@
+// AgroShield game controller
 import Game from "../models/Game.js";
 import GameSetting from "../models/GameSetting.js";
 import GamePlayer from "../models/GamePlayer.js";
