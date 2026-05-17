@@ -32,7 +32,7 @@ AgroShield MiniPay Frontend is the user interface for the decentralized agricult
 - Node.js >= 18.0.0
 - npm or yarn
 - Starknet wallet (e.g., Argent X or Braavos)
-- Access to the Tycoon backend contracts (see [Cairo repo](https://github.com/SaboStudios/Tycoon))
+- Access to the AgroShield backend contracts (see [Cairo repo](https://github.com/SaboStudios/Tycoon))
 
 ### 1️⃣ Clone the Repository
 
