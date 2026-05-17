@@ -13,7 +13,7 @@ AgroShield MiniPay Frontend is the user interface for the decentralized agricult
 - **On-Chain Interaction**: Real-time updates for policy purchases, risk assessments, and claims via Starknet's ZK-Rollups.
 - **Account Abstraction**: Gasless or simplified transactions for a smooth UX with Cartridge.
 - **TypeScript Support**: Type-safe code for robust development, aligned with the backend contracts.
-- **Decentralized Gameplay**: Frontend reflects the trustless game logic enforced by Cairo smart contracts.
+- **Decentralized Insurance**: Frontend reflects the trustless insurance logic enforced by Cairo smart contracts.
 
 ## 🔧 Tech Stack
 
