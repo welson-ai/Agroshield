@@ -2,6 +2,7 @@
  * Tournament payouts: compute amounts by placement, execute USDC to smart wallets.
  * Supports ENTRY_FEE_POOL and CREATOR_FUNDED tournaments.
  */
+// AgroShield tournament payout service
 import db from "../config/database.js";
 import Tournament from "../models/Tournament.js";
 import TournamentEntry from "../models/TournamentEntry.js";
