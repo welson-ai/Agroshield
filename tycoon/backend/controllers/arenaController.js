@@ -5,6 +5,8 @@
  * - Discovery, leaderboard, XP stats, on-chain start-game, pending challenges (legacy), match history
  */
 
+// AgroShield arena controller
+import Arena from "../models/Arena.js";
 import db from "../config/database.js";
 import * as eloService from "../services/eloService.js";
 import * as matchmakingService from "../services/matchmakingService.js";
