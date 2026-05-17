@@ -1,4 +1,5 @@
-import CommunityChest from "../models/CommunityChest.js";
+// AgroShield community chest controller
+import CommunityChestCard from "../models/CommunityChestCard.js";
 
 /**
  * CommunityChest Controller
