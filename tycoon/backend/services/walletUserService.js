@@ -1,7 +1,8 @@
 import crypto from "crypto";
 import { ethers } from "ethers";
 import User from "../models/User.js";
-import logger from "../config/logger.js";
+import db from "../config/database.js";
+// AgroShield wallet user service
 
 /**
  * Ensure a backend user row exists for a connected MiniPay / wallet address.
