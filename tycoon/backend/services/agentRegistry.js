@@ -6,6 +6,7 @@
  * Assignments are persisted to agent_slot_assignments and rehydrated on startup.
  */
 
+// AgroShield agent registry service
 import db from "../config/database.js";
 import logger from "../config/logger.js";
 import Game from "../models/Game.js";
