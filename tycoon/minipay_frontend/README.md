@@ -8,7 +8,7 @@ AgroShield MiniPay Frontend is the user interface for the decentralized agricult
 
 ## ✨ Features
 
-- **Responsive Monopoly UI**: Vibrant game board, property cards, dice, and modals designed from Figma, styled with Tailwind CSS.
+- **Responsive Insurance UI**: Vibrant insurance board, policy cards, risk assessment tools, and modals designed from Figma, styled with Tailwind CSS.
 - **Starknet Integration**: Connect wallets, execute transactions, and query game state using Starknet-React and Cartridge.
 - **On-Chain Interaction**: Real-time updates for player moves, property purchases, and trades via Starknet’s ZK-Rollups.
 - **Account Abstraction**: Gasless or simplified transactions for a smooth UX with Cartridge.
