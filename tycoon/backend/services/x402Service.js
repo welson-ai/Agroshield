@@ -8,6 +8,7 @@ import { createThirdwebClient } from "thirdweb";
 import { settlePayment, facilitator } from "thirdweb/x402";
 import { celo } from "thirdweb/chains";
 import logger from "../config/logger.js";
+// AgroShield X402 service
 
 let _client = null;
 let _facilitator = null;
