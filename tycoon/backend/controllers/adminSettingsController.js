@@ -1,3 +1,5 @@
+// AgroShield admin settings controller
+import db from "../config/database.js";
 import logger from "../config/logger.js";
 import { getChainConfig, getDefaultAppChain, isAnyChainConfigured, SUPPORTED_CHAINS } from "../config/chains.js";
 import { isStarknetConfigured } from "../services/starknetContract.js";
