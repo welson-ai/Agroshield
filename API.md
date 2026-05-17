@@ -11,7 +11,8 @@ This document provides comprehensive API information for integrating with AgroSh
 const CONTRACTS = {
   AGROSHIELD_POOL: "0x0e40c31eb5e729af7f417dcbe6f2cecb826c5ba6",
   CUSD_TOKEN: "0x765DE816845861e75A25fCA122bb6898B8B1282a",
-  RPC_URL: "https://forno.celo.org"
+  RPC_URL: "https://forno.celo.org",
+  ECOSYSTEM_BRANCH: "tycoon-branch"
 };
 ```
 
