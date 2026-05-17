@@ -18,7 +18,7 @@ AgroShield MiniPay Frontend is the user interface for the decentralized agricult
 ## 🔧 Tech Stack
 
 - **Next.js 15.3.3**: App Router for fast, server-rendered React pages.
-- **Tailwind CSS v4**: Modern, customizable styling for the Monopoly aesthetic.
+- **Tailwind CSS v4**: Modern, customizable styling for the agricultural insurance aesthetic.
 - **Starknet-React**: Hooks for wallet connection, transaction execution, and state queries on Starknet.
 - **Cartridge**: Simplifies account abstraction and Starknet wallet interactions.
 - **TypeScript**: Strong typing for components and blockchain interactions.
