@@ -23,7 +23,7 @@ AgroShield MiniPay Frontend is the user interface for the decentralized agricult
 - **Cartridge**: Simplifies account abstraction and Starknet wallet interactions.
 - **TypeScript**: Strong typing for components and blockchain interactions.
 - **ESLint**: Enforces code quality, integrated with Next.js rules.
-- **Figma**: Source of the UI design for the game board and components.
+- **Figma**: Source of the UI design for the insurance simulation board and components.
 
 ## 🚀 Getting Started
 
