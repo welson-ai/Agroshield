@@ -1,8 +1,8 @@
 {
-    "name": "base-monopoly-backend",
+    "name": "agroshield-backend",
     "version": "1.0.0",
     "type": "module",
-    "description": "Base Monopoly Backend",
+    "description": "AgroShield Agricultural Insurance Backend",
     "main": "server.js",
     "scripts": {
         "dev": "nodemon server.js",
