@@ -1,3 +1,5 @@
+// AgroShield admin analytics controller
+import db from "../config/database.js";
 import logger from "../config/logger.js";
 import { getDashboard, getRecentActivity } from "../services/analytics.js";
 
