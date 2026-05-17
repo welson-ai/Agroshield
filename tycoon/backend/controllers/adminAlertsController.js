@@ -1,3 +1,4 @@
+// AgroShield admin alerts controller
 import db from "../config/database.js";
 import logger from "../config/logger.js";
 
