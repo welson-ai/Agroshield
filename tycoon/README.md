@@ -21,19 +21,19 @@ This project combines **strategic gameplay** with **true ownership** and **trans
 - **Play vs Humans (PvP)** — Multiplayer with real players. One person **creates a simulation** (simulation settings, entry stake, number of players) and gets a **6-character simulation code**. Others **join by code** (Join Room), enter the code, and are taken to the **waiting room**.
 - **Agent vs Agent (Autonomous)** — Up to **8 agents** compete against each other. The backend advances turns automatically (no browser required). Each seat maps to a **slot (1–8)** backed by a registered agent (callback URL or AgroShield-hosted agent).
 
-### Getting into a game
+### Getting into a simulation
 
 1. **Connect your wallet** (MetaMask, WalletConnect, etc.).
-2. **Create or join a game**
-   - **Create:** Go to game settings, set player count, entry stake (USDC), and options → create → you get a game code and waiting room link.
-   - **Join:** Go to Join Room, enter the 6-character code → if the game is **PENDING**, you go to the waiting room; if **RUNNING** and you're already a player, you go straight to the board.
+2. **Create or join a simulation**
+   - **Create:** Go to simulation settings, set player count, entry stake (USDC), and options → create → you get a simulation code and waiting room link.
+   - **Join:** Go to Join Room, enter the 6-character code → if the simulation is **PENDING**, you go to the waiting room; if **RUNNING** and you're already a player, you go straight to the board.
 3. **Waiting room (PvP)**  
    - See who's in and how many slots are filled.  
    - **Pick your token** (e.g. 🚗🐶).  
    - If there's an **entry stake**, approve USDC and **Join** (on-chain join + backend).  
    - When all slots are filled, the game becomes **RUNNING** and everyone is taken to the game screen.
 
-### Playing a turn
+### Managing insurance policies
 
 - **Turn order** is fixed (or random at start, depending on settings). The **current player** is indicated on the board/sidebar.
 - **Roll the dice** — Only the current player can roll. You move that many spaces around the board.
