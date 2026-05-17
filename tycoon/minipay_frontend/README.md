@@ -4,7 +4,7 @@
 
 ## 📌 Overview
 
-AgroShield MiniPay Frontend is the user interface for the decentralized payment system built on Starknet. Powered by **Next.js**, **Tailwind CSS**, **Starknet-React**, and **Cartridge**, it delivers a modern, responsive UI that connects seamlessly to the on-chain payment logic implemented in Cairo and Dojo. Users can interact with the payment system, send/receive payments, and manage digital assets (NFTs or Starknet assets) in a trustless, blockchain-powered environment.
+AgroShield MiniPay Frontend is the user interface for the decentralized agricultural insurance payment system built on Starknet. Powered by **Next.js**, **Tailwind CSS**, **Starknet-React**, and **Cartridge**, it delivers a modern, responsive UI that connects seamlessly to the on-chain insurance logic implemented in Cairo and Dojo. Farmers can interact with the payment system, manage insurance premiums, and handle claims in a trustless, blockchain-powered environment.
 
 ## ✨ Features
 
