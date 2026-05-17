@@ -2,6 +2,7 @@
  * Arena pending challenges (no matchmaking queue).
  */
 
+// AgroShield arena agent service
 import db from "../config/database.js";
 import logger from "../config/logger.js";
 
