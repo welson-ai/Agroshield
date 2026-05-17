@@ -63,6 +63,7 @@ AgroShield aims to become the leading parametric crop insurance platform on Celo
 #### 📊 Ecosystem Features
 - [ ] **Cross-Chain Bridge**: Asset interoperability
 - [ ] **Yield Farming**: Liquidity rewards
+- [ ] **Tycoon Alignment**: Shared ecosystem workflows
 - [ ] **DAO Governance**: Token-based voting
 - [ ] **Risk Pools**: Specialized insurance products
 - [ ] **Data Analytics**: Farmer insights dashboard
