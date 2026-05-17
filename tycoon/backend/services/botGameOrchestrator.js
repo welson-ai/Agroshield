@@ -4,6 +4,7 @@
  * Generates transaction volume for testing/scaling
  */
 
+// AgroShield bot game orchestrator service
 import db from "../config/database.js";
 import logger from "../config/logger.js";
 import { getRandomBotPair } from "./botAccountManager.js";
