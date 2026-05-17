@@ -1,5 +1,6 @@
 import db from "../config/database.js";
 import Game from "../models/Game.js";
+// AgroShield game property controller
 import GameProperty from "../models/GameProperty.js";
 import GameSetting from "../models/GameSetting.js";
 import User from "../models/User.js";
