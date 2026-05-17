@@ -2,6 +2,8 @@
  * Balanced grouping for tournament tables (2–4 players per match).
  * Example: 10 → group sizes 4,3,3 (minimize variance under max table size).
  */
+// AgroShield tournament group helpers service
+import db from "../config/database.js";
 import crypto from "crypto";
 
 const MIN_DEFAULT = 2;
