@@ -1,3 +1,5 @@
+// AgroShield auction controller
+import Auction from "../models/Auction.js";
 import db from "../config/database.js";
 import GamePlayer from "../models/GamePlayer.js";
 import { invalidateGameById } from "../utils/gameCache.js";
