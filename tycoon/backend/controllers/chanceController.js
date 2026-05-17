@@ -1,4 +1,5 @@
-import Chance from "../models/Chance.js";
+// AgroShield chance controller
+import ChanceCard from "../models/ChanceCard.js";
 
 /**
  * Chance Controller
