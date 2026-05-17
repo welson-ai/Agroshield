@@ -25,7 +25,7 @@
     "analyze-gas": "node scripts/gas-analyzer.cjs",
     "check-balance": "node scripts/add-celo.cjs"
   },
-  "keywords": [],
+  "keywords": ["celo", "blockchain", "insurance", "defi", "agriculture", "tycoon"],
   "author": "",
   "license": "ISC",
   "devDependencies": {
