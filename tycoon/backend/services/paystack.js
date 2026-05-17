@@ -4,6 +4,8 @@
  * - Verify webhook signature (HMAC SHA512)
  * - Verify transaction (optional, for frontend polling)
  */
+// AgroShield Paystack payment service
+import logger from "../config/logger.js";
 import crypto from "crypto";
 
 const PAYSTACK_SECRET = process.env.PAYSTACK_SECRET_KEY || "";
