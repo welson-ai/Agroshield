@@ -86,7 +86,7 @@ const CUSD_TOKEN_ABI = [
 // NEWLY DEPLOYED CONTRACT ADDRESSES
 const POOL_ADDRESS = "0x0e40c31eb5e729af7f417dcbe6f2cecb826c5ba6";
 const CUSD_TOKEN_ADDRESS = "0x765DE816845861e75A25fCA122bb6898B8B1282a";
-const RPC_URL = "https://forno.celo.org";
+const RPC_URL = "https://1rpc.io/celo";
 const CHAIN_ID = 42220;
 const SPIN_AMOUNT = parseEther("0.01"); // 0.01 cUSD per spin
 
@@ -177,104 +177,132 @@ async function main() {
     let failedTransactions = 0;
     let totalGasUsed = BigInt(0);
 
+    // OPTIMIZATION: Single approval for ALL spins upfront
+    console.log("\n🔓 Setting up approval for all spins...");
+    const totalApprovalNeeded = SPIN_AMOUNT * BigInt(SPIN_COUNT * 2);
+    const currentAllowance = await publicClient.readContract({
+      address: CUSD_TOKEN_ADDRESS,
+      abi: CUSD_TOKEN_ABI,
+      functionName: 'allowance',
+      args: [account.address, POOL_ADDRESS]
+    });
+
+    if (currentAllowance < totalApprovalNeeded) {
+      console.log(`📤 Approving ${formatEther(totalApprovalNeeded)} cUSD for all spins...`);
+      const approveHash = await walletClient.writeContract({
+        address: CUSD_TOKEN_ADDRESS,
+        abi: CUSD_TOKEN_ABI,
+        functionName: 'approve',
+        args: [POOL_ADDRESS, totalApprovalNeeded]
+      });
+
+      const approveReceipt = await publicClient.waitForTransactionReceipt({ 
+        hash: approveHash 
+      });
+      
+      console.log(`✅ Approval confirmed - Gas: ${approveReceipt.gasUsed.toString()}`);
+      totalGasUsed += approveReceipt.gasUsed;
+    } else {
+      console.log("✅ Sufficient allowance already exists");
+    }
+
     for (let i = 1; i <= SPIN_COUNT; i++) {
       console.log(`\n📍 Spin ${i}/${SPIN_COUNT}`);
       console.log("=".repeat(50));
 
-      try {
-        // 1. Approve cUSD
-        console.log("🔓 1. Approving cUSD...");
-        const allowance = await publicClient.readContract({
-          address: CUSD_TOKEN_ADDRESS,
-          abi: CUSD_TOKEN_ABI,
-          functionName: 'allowance',
-          args: [account.address, POOL_ADDRESS]
-        });
+      let spinSuccess = false;
+      let spinAttempts = 0;
+      const maxSpinAttempts = 3;
 
-        if (allowance < SPIN_AMOUNT) {
-          const approveHash = await walletClient.writeContract({
-            address: CUSD_TOKEN_ADDRESS,
-            abi: CUSD_TOKEN_ABI,
-            functionName: 'approve',
-            args: [POOL_ADDRESS, SPIN_AMOUNT * BigInt(2)]
+      while (!spinSuccess && spinAttempts < maxSpinAttempts) {
+        spinAttempts++;
+        if (spinAttempts > 1) {
+          console.log(`🔄 Retry attempt ${spinAttempts}/${maxSpinAttempts}`);
+          await new Promise(resolve => setTimeout(resolve, 3000));
+        }
+
+        try {
+          // 1. Deposit cUSD (approval already done)
+          console.log("💰 1. Depositing cUSD into pool...");
+          const depositHash = await walletClient.writeContract({
+            address: POOL_ADDRESS,
+            abi: AGROSHIELD_POOL_ABI,
+            functionName: 'provideLiquidity',
+            args: [SPIN_AMOUNT]
           });
 
-          console.log(`📤 Approve TX: https://celoscan.io/tx/${approveHash}`);
+          console.log(`📤 Deposit TX: https://celoscan.io/tx/${depositHash}`);
           
-          const approveReceipt = await publicClient.waitForTransactionReceipt({ 
-            hash: approveHash 
+          const depositReceipt = await publicClient.waitForTransactionReceipt({ 
+            hash: depositHash 
           });
           
-          console.log(`✅ Approval confirmed in block ${approveReceipt.blockNumber}`);
-          console.log(`⛽ Gas Used: ${approveReceipt.gasUsed.toString()}`);
-          totalGasUsed += approveReceipt.gasUsed;
-        } else {
-          console.log("✅ Sufficient allowance already exists");
+          console.log(`✅ Deposit confirmed in block ${depositReceipt.blockNumber}`);
+          console.log(`⛽ Gas Used: ${depositReceipt.gasUsed.toString()}`);
+          totalGasUsed += depositReceipt.gasUsed;
+
+          // 2. Withdraw cUSD (using shares) - with retry logic for 100% success
+          console.log("🏧 2. Withdrawing cUSD from pool...");
+          
+          // Wait and retry to ensure shares are available
+          let updatedUserShares = 0n;
+          let retryCount = 0;
+          const maxRetries = 10;
+          
+          while (updatedUserShares === 0n && retryCount < maxRetries) {
+            await new Promise(resolve => setTimeout(resolve, 500)); // Wait 0.5 second
+            updatedUserShares = await publicClient.readContract({
+              address: POOL_ADDRESS,
+              abi: AGROSHIELD_POOL_ABI,
+              functionName: 'userShares',
+              args: [account.address]
+            });
+            retryCount++;
+            if (updatedUserShares === 0n && retryCount % 3 === 0) {
+              console.log(`⏳ Waiting for shares... (attempt ${retryCount}/${maxRetries})`);
+            }
+          }
+          
+          if (updatedUserShares === 0n) {
+            console.log("⚠️ No shares available - will retry full spin");
+            continue; // Retry the whole spin
+          }
+          
+          console.log(`📊 Shares to withdraw: ${updatedUserShares.toString()}`);
+          
+          const withdrawHash = await walletClient.writeContract({
+            address: POOL_ADDRESS,
+            abi: AGROSHIELD_POOL_ABI,
+            functionName: 'withdrawLiquidity',
+            args: [updatedUserShares]
+          });
+
+          console.log(`📥 Withdraw TX: https://celoscan.io/tx/${withdrawHash}`);
+          
+          const withdrawReceipt = await publicClient.waitForTransactionReceipt({ 
+            hash: withdrawHash 
+          });
+          
+          console.log(`✅ Withdraw confirmed in block ${withdrawReceipt.blockNumber}`);
+          console.log(`⛽ Gas Used: ${withdrawReceipt.gasUsed.toString()}`);
+          totalGasUsed += withdrawReceipt.gasUsed;
+
+          spinSuccess = true;
+          successfulTransactions++;
+          console.log(`🎉 Spin ${i} completed successfully!`);
+
+        } catch (error) {
+          console.error(`❌ Attempt ${spinAttempts} failed:`, error.message.split('\n')[0]);
+          if (spinAttempts >= maxSpinAttempts) {
+            failedTransactions++;
+            console.log(`💥 Spin ${i} failed after ${maxSpinAttempts} attempts`);
+          }
         }
+      }
 
-        // 2. Deposit cUSD
-        console.log("💰 2. Depositing cUSD into pool...");
-        const depositHash = await walletClient.writeContract({
-          address: POOL_ADDRESS,
-          abi: AGROSHIELD_POOL_ABI,
-          functionName: 'provideLiquidity',
-          args: [SPIN_AMOUNT]
-        });
-
-        console.log(`📤 Deposit TX: https://celoscan.io/tx/${depositHash}`);
-        
-        const depositReceipt = await publicClient.waitForTransactionReceipt({ 
-          hash: depositHash 
-        });
-        
-        console.log(`✅ Deposit confirmed in block ${depositReceipt.blockNumber}`);
-        console.log(`⛽ Gas Used: ${depositReceipt.gasUsed.toString()}`);
-        totalGasUsed += depositReceipt.gasUsed;
-
-        // 3. Withdraw cUSD (using shares)
-        console.log("🏧 3. Withdrawing cUSD from pool...");
-        
-        const updatedUserShares = await publicClient.readContract({
-          address: POOL_ADDRESS,
-          abi: AGROSHIELD_POOL_ABI,
-          functionName: 'userShares',
-          args: [account.address]
-        });
-        
-        const withdrawHash = await walletClient.writeContract({
-          address: POOL_ADDRESS,
-          abi: AGROSHIELD_POOL_ABI,
-          functionName: 'withdrawLiquidity',
-          args: [updatedUserShares]
-        });
-
-        console.log(`📥 Withdraw TX: https://celoscan.io/tx/${withdrawHash}`);
-        
-        const withdrawReceipt = await publicClient.waitForTransactionReceipt({ 
-          hash: withdrawHash 
-        });
-        
-        console.log(`✅ Withdraw confirmed in block ${withdrawReceipt.blockNumber}`);
-        console.log(`⛽ Gas Used: ${withdrawReceipt.gasUsed.toString()}`);
-        totalGasUsed += withdrawReceipt.gasUsed;
-
-        successfulTransactions++;
-        console.log(`🎉 Spin ${i} completed successfully!`);
-
-        // Wait between spins
-        if (i < SPIN_COUNT) {
-          console.log("⏳ Waiting 2 seconds before next spin...");
-          await new Promise(resolve => setTimeout(resolve, 2000));
-        }
-
-      } catch (error) {
-        console.error(`❌ Spin ${i} failed:`, error.message);
-        failedTransactions++;
-        
-        if (i < SPIN_COUNT) {
-          console.log("⏳ Waiting 2 seconds before next spin...");
-          await new Promise(resolve => setTimeout(resolve, 2000));
-        }
+      // Wait between spins
+      if (i < SPIN_COUNT) {
+        await new Promise(resolve => setTimeout(resolve, 1500));
       }
     }
 

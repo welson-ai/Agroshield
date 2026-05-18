@@ -4,7 +4,7 @@ pragma solidity ^0.8.19;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "./AgroShieldOracle.sol";
-import "./DynamicPremiums.sol";
+import "./DynamicPremiums-Fixed.sol";
 
 contract WeatherPrediction is Ownable, ReentrancyGuard {
     AgroShieldOracle public oracleContract;

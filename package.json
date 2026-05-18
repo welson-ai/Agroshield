@@ -25,7 +25,14 @@
     "analyze-gas": "node scripts/gas-analyzer.cjs",
     "check-balance": "node scripts/add-celo.cjs"
   },
-  "keywords": ["celo", "blockchain", "insurance", "defi", "agriculture", "tycoon"],
+  "keywords": [
+    "celo",
+    "blockchain",
+    "insurance",
+    "defi",
+    "agriculture",
+    "tycoon"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -38,6 +45,7 @@
   "dependencies": {
     "@openzeppelin/contracts": "^5.0.0",
     "dotenv": "^16.0.0",
+    "solc": "^0.8.35",
     "viem": "^2.0.0"
   },
   "type": "module"

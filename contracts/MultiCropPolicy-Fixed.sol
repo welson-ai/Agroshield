@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./AgroShieldPolicy.sol";
 import "./AgroShieldOracle.sol";
-import "./DynamicPremiums.sol";
+import "./DynamicPremiums-Fixed.sol";
 
 contract MultiCropPolicy is ReentrancyGuard, Ownable {
     IERC20 public immutable cusdToken;
