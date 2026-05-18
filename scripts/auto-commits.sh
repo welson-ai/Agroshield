@@ -5,6 +5,10 @@
 
 cd /Users/h/Documents/CascadeProjects/agroshield
 
+# Set git config
+git config user.name "welson.ai"
+git config user.email "metanexus8@gmail.com"
+
 for i in {1..100}; do
     # Create/update a file with timestamp
     echo "// AgroShield Update #$i - $(date '+%Y-%m-%d %H:%M:%S')" >> docs/changelog.md
@@ -23,3 +27,5 @@ for i in {1..100}; do
 done
 
 echo "🎊 All 100 commits completed!"
+echo "📤 Pushing to GitHub..."
+git push origin main
