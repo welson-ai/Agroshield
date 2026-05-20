@@ -2,7 +2,7 @@ const hre = require("hardhat");
 
 async function main() {
   const [signer] = await hre.ethers.getSigners();
-  const contractAddress = "0x74bFd5b1392a5588E7d9d2e6d741838F529070C2";
+  const contractAddress = "0xa321f7217190C33262Acd6464981D3C44b8C5980";
   
   // Minimal ABI for recordYield (cheapest state-changing function)
   const abi = [
