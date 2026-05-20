@@ -2,8 +2,7 @@
   "name": "solmate-contracts",
   "version": "1.0.0",
   "description": "Solmate smart contracts for Celo",
-  "type": "commonjs",
-  "scripts": {
+    "scripts": {
     "compile": "hardhat compile",
     "test": "hardhat test",
     "deploy": "hardhat run scripts/deploy.js --network celo",
