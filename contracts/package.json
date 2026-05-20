@@ -7,7 +7,7 @@
     "test": "hardhat test",
     "deploy": "hardhat run scripts/deploy.js --network celo",
     "verify": "hardhat verify",
-    "spin": "hardhat run scripts/spin-transactions.js --network celo"
+    "spin": "hardhat run scripts/spin-transactions.js --network celo --config hardhat.config.cjs"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
