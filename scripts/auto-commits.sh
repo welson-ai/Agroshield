@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# 100 commits in 1 hour - no PRs
-# Each commit adds meaningful changes to the project
+# Continuous commits - loops forever
+# Each batch = 100 commits, then push and repeat
 
 cd /Users/h/Documents/CascadeProjects/agroshield
 
@@ -9,23 +9,40 @@ cd /Users/h/Documents/CascadeProjects/agroshield
 git config user.name "welson.ai"
 git config user.email "metanexus8@gmail.com"
 
-for i in {1..100}; do
-    # Create/update a file with timestamp
-    echo "// AgroShield Update #$i - $(date '+%Y-%m-%d %H:%M:%S')" >> docs/changelog.md
-    echo "- Improvement $i: Enhanced system stability and performance" >> docs/changelog.md
-    echo "" >> docs/changelog.md
-    
-    git add .
-    git commit -m "feat: improvement #$i - system enhancement $(date '+%H:%M:%S')"
-    
-    echo "✅ Commit $i/100 done"
-    
-    # Wait 30 seconds between commits (100 commits in ~50 min)
-    if [ $i -lt 100 ]; then
-        sleep 30
-    fi
-done
+BATCH_SIZE=${BATCH_SIZE:-100}
+INTERVAL=${INTERVAL:-30}
+TOTAL_COMMITS=0
+BATCH_NUM=0
 
-echo "🎊 All 100 commits completed!"
-echo "📤 Pushing to GitHub..."
-git push origin main
+echo "🚀 Starting continuous commit loop..."
+echo "   Batch size: $BATCH_SIZE"
+echo "   Interval: ${INTERVAL}s"
+echo "   Press Ctrl+C to stop"
+echo ""
+
+while true; do
+    BATCH_NUM=$((BATCH_NUM + 1))
+    echo "📦 Starting Batch #$BATCH_NUM..."
+    
+    for i in $(seq 1 $BATCH_SIZE); do
+        TOTAL_COMMITS=$((TOTAL_COMMITS + 1))
+        
+        # Create/update a file with timestamp
+        echo "// AgroShield Update #$TOTAL_COMMITS - $(date '+%Y-%m-%d %H:%M:%S')" >> docs/changelog.md
+        echo "- Improvement $TOTAL_COMMITS: Enhanced system stability and performance" >> docs/changelog.md
+        echo "" >> docs/changelog.md
+        
+        git add .
+        git commit -m "feat: improvement #$TOTAL_COMMITS - system enhancement $(date '+%H:%M:%S')"
+        
+        echo "✅ Commit $i/$BATCH_SIZE (Total: $TOTAL_COMMITS)"
+        
+        sleep $INTERVAL
+    done
+    
+    echo ""
+    echo "📤 Pushing Batch #$BATCH_NUM to GitHub..."
+    git push origin main
+    echo "🎊 Batch #$BATCH_NUM complete! Total commits: $TOTAL_COMMITS"
+    echo ""
+done

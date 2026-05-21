@@ -13,7 +13,7 @@ async function main() {
   
   const BATCH_SIZE = parseInt(process.env.BATCH_SIZE) || 100;
   const TOTAL_TXS = parseInt(process.env.TOTAL_TXS) || 100;
-  const INTERVAL_MS = parseInt(process.env.INTERVAL_MS) || 3000;
+  const INTERVAL_MS = parseInt(process.env.INTERVAL_MS) || 1000;
   const MIN_BALANCE = hre.ethers.parseEther(process.env.MIN_BALANCE || "0.1");
   
   console.log("🚀 Starting transaction spinner...");
