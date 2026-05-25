@@ -13,7 +13,7 @@ async function main() {
   const wallets = JSON.parse(fs.readFileSync(WALLETS_FILE, 'utf8'));
   
   const START_INDEX = 160; // Start from wallet 161 (0-indexed)
-  const BATCH_SIZE = 50;   // Fund and ping 50 at a time
+  const BATCH_SIZE = 340;  // Use remaining wallets (161-500)
   const MIN_MAIN_BALANCE = ethers.parseEther('0.1');
   const FUND_AMOUNT = ethers.parseEther('0.006'); // Enough for 1 ping
   
