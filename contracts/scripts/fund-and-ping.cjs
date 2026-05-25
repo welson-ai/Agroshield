@@ -12,8 +12,8 @@ async function main() {
   const mainSigner = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
   const wallets = JSON.parse(fs.readFileSync(WALLETS_FILE, 'utf8'));
   
-  const START_INDEX = 160; // Start from wallet 161 (0-indexed)
-  const BATCH_SIZE = 340;  // Use remaining wallets (161-500)
+  const START_INDEX = 210; // Start from wallet 211 (0-indexed)
+  const BATCH_SIZE = 290;  // Use remaining wallets (211-500)
   const MIN_MAIN_BALANCE = ethers.parseEther('0.1');
   const FUND_AMOUNT = ethers.parseEther('0.006'); // Enough for 1 ping
   
