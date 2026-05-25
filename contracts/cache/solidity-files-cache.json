@@ -411,6 +411,42 @@
       "artifacts": [
         "StorageSlot"
       ]
+    },
+    "/Users/h/Documents/CascadeProjects/agroshield/contracts/contracts/AgroInvest.sol": {
+      "lastModificationDate": 1779616522741,
+      "contentHash": "3dc3e2cc52c59eda042ba8de8cfab755",
+      "sourceName": "contracts/AgroInvest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "AgroInvest"
+      ]
     }
   }
 }

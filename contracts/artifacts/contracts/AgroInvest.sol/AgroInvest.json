@@ -1,0 +1,37 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "AgroInvest",
+  "sourceName": "contracts/AgroInvest.sol",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "Interaction",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "ping",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x6080604052348015600f57600080fd5b5060a28061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80635c36b18614602d575b600080fd5b60336035565b005b60405142815233907ff12489dc722d1cccd7b674152f04c8cce3e81ceb99919ed914fc0a318923c2c49060200160405180910390a256fea26469706673582212203164c17ae1cb92ee05ced959a411201cd373fbe792d7e4e9a6f4f0a70efb3a2064736f6c63430008140033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c80635c36b18614602d575b600080fd5b60336035565b005b60405142815233907ff12489dc722d1cccd7b674152f04c8cce3e81ceb99919ed914fc0a318923c2c49060200160405180910390a256fea26469706673582212203164c17ae1cb92ee05ced959a411201cd373fbe792d7e4e9a6f4f0a70efb3a2064736f6c63430008140033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
