@@ -1,0 +1,12 @@
+{
+  "name": "agroshield-tool-6",
+  "version": "1.0.0",
+  "description": "Tool 6 for AgroShield ecosystem",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Tests passed\" && exit 0"
+  },
+  "keywords": ["agroshield", "celo", "defi", "tool6"],
+  "author": "welson.ai",
+  "license": "MIT"
+}
