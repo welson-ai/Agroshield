@@ -76,16 +76,25 @@ console.log(tool${i}());
 MIT
 EOF
     
-    # Publish
+    # Publish with retry
     echo "   Publishing..."
     npm config set //registry.npmjs.org/:_authToken "$TOKEN" > /dev/null 2>&1
-    npm publish > /dev/null 2>&1
     
-    if [ $? -eq 0 ]; then
-        echo "   ✅ Published: https://www.npmjs.com/package/$NAME"
-    else
-        echo "   ❌ Failed to publish $NAME"
-    fi
+    # Retry up to 3 times
+    for retry in {1..3}; do
+        npm publish 2>&1 | tee /tmp/npm-publish.log
+        if [ $? -eq 0 ]; then
+            echo "   ✅ Published: https://www.npmjs.com/package/$NAME"
+            break
+        else
+            if [ $retry -lt 3 ]; then
+                echo "   ⏳ Retry $retry/3..."
+                sleep 2
+            else
+                echo "   ❌ Failed to publish $NAME"
+            fi
+        fi
+    done
     
     cd /Users/h/Documents/CascadeProjects/agroshield
     echo ""
